@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 1343234742307061930}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.26699996, y: -0.30299997, z: -10}
+  m_LocalPosition: {x: 0.37599993, y: -0.26999998, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -276,7 +276,7 @@ GameObject:
   - component: {fileID: 7971429599895066230}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -290,7 +290,7 @@ Transform:
   m_GameObject: {fileID: 2972691034729363074}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.267, y: -0.303, z: 0}
+  m_LocalPosition: {x: 0.376, y: -0.27, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -390,8 +390,6 @@ MonoBehaviour:
   rb: {fileID: 3843945336032604311}
   moveDirection: {x: 0, y: 0}
   moveSpeed: 2.5
-  canTalk: 0
-  checkSide: 0
   animator: {fileID: 7971429599895066230}
 --- !u!70 &7216619493056515027
 CapsuleCollider2D:
@@ -425,8 +423,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.006800195, y: -0.16386522}
-  m_Size: {x: 0.3614876, y: 0.19433907}
+  m_Offset: {x: 0.0031329351, y: -0.16386522}
+  m_Size: {x: 0.39474598, y: 0.19433907}
   m_Direction: 1
 --- !u!95 &7971429599895066230
 Animator:
@@ -475,7 +473,7 @@ Transform:
   m_GameObject: {fileID: 5014243847344021340}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.26699996, y: -0.30299997, z: -10}
+  m_LocalPosition: {x: 0.37599993, y: -0.26999998, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

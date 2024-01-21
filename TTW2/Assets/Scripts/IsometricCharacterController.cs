@@ -9,9 +9,6 @@ public class IsometricPlayerMovementController : MonoBehaviour
     public Vector2 moveDirection;
     public float moveSpeed = 5f;
 
-    public bool canTalk = false;
-    public bool checkSide = false;
-
     public Animator animator;
 
     float horizontalInput;
