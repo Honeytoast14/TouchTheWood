@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60c896586f6440b4ebea537e7e4c360b, type: 3}
   m_Name: bird1
   m_EditorClassIdentifier: 
-  npcName: bird1
+  npcName: bird
   dialogueID: bird1

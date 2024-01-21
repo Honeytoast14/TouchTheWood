@@ -1,7 +1,7 @@
-using DS;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Yarn.Unity;
 
 public class IsometricPlayerMovementController : MonoBehaviour
 {
@@ -18,34 +18,17 @@ public class IsometricPlayerMovementController : MonoBehaviour
     float verticalInput;
     float movementSpeed;
 
-    TriggerEvent triggerTalk;
     void Start()
     {
-        triggerTalk = FindObjectOfType<TriggerEvent>();
-
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
 
    void Update()
-    {
+   {
         Move();
         Animate();
-
-        if (Input.GetKeyDown(KeyCode.Z))
-        {
-            if(canTalk == true)
-            {
-                triggerTalk.StartDialogue();
-                //Debug.Log("Is talking");
-            }
-
-            if(checkSide == true)
-            {
-                Debug.Log("This is " + " side");
-            }
-        }
-    }
+   }
 
     public void Move()
     {
