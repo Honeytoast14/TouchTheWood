@@ -4,90 +4,96 @@ using UnityEngine;
 using UnityEngine.Events;
 using Yarn.Unity;
 
-    public class TriggerEvent : MonoBehaviour
+public class TriggerEvent : MonoBehaviour
+{
+    private DialogueRunner dialogueRunner;
+    public UnityEvent onDialogueComplete;
+    public NPCData npcData;
+
+    Animator animator;
+    IsometricPlayerMovementController isometricPlayerMovementController;
+    Rigidbody2D rb;
+    GameObject player;
+
+    private bool isCurrentConversation = false;
+    private bool interactable = false;
+    void Start()
     {
-        private DialogueRunner dialogueRunner;
-        public UnityEvent onDialogueComplete;
-        public NPCData npcData;
+        isometricPlayerMovementController = FindObjectOfType<IsometricPlayerMovementController>();
 
-        Animator animator;
-        IsometricPlayerMovementController isometricPlayerMovementController;
-        Rigidbody2D rb;
-        GameObject player;
+        player = GameObject.Find("Player");
+        animator = GetComponentInParent<Animator>();
+        rb = player.gameObject.GetComponent<Rigidbody2D>();
 
-        private bool isCurrentConversation = false;
-        private bool interactable = false;
-        void Start()
-        {
-            isometricPlayerMovementController = FindObjectOfType<IsometricPlayerMovementController>();
+        dialogueRunner = FindObjectOfType<Yarn.Unity.DialogueRunner>();
+        dialogueRunner.onDialogueComplete.AddListener(EndDialouge);
 
-            player = GameObject.Find("Player");
-            animator = GetComponentInParent<Animator>();
-            rb = player.gameObject.GetComponent<Rigidbody2D>();
+        StartCoroutine(InputCheckCoroutine());
+    }
 
-            dialogueRunner = FindObjectOfType<Yarn.Unity.DialogueRunner>();
-            dialogueRunner.onDialogueComplete.AddListener(EndDialouge);
-        }
-
-    private void Update()
+    private IEnumerator InputCheckCoroutine()
     {
-        if (Input.GetKeyDown(KeyCode.Z))
+        while (true)
         {
-            if (interactable && !dialogueRunner.IsDialogueRunning)
+            if (Input.GetKeyDown(KeyCode.Z))
             {
-                StartDialogue();
+                if (interactable && !dialogueRunner.IsDialogueRunning)
+                {
+                    StartDialogue();
+                }
             }
+            yield return null;
         }
     }
 
-        private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
         {
-            if (collision.gameObject.tag == "Player")
-            {
-                interactable = true;
-                Debug.Log($"Enter {transform.parent.name}");
-            }
-        }
-
-        private void OnTriggerExit2D(Collider2D collision)
-        {
-            if (collision.gameObject.tag == "Player")
-            {
-                interactable = false;
-                Debug.Log($"Exit {transform.parent.name}");
-            }
-        }
-
-        private void EndDialouge()
-        {
-            if (isCurrentConversation)
-            {
-                Debug.Log("Dialogue is complete");
-
-                player.gameObject.GetComponent<IsometricPlayerMovementController>().enabled = true;
-                rb.constraints = RigidbodyConstraints2D.None;
-                rb.constraints = RigidbodyConstraints2D.FreezeRotation;
-
-                animator.SetBool("IsTalking", false);
-
-                isCurrentConversation = false;
-            }
-        }
-
-        public void StartDialogue()
-        {
-            Debug.Log($"Started conversation with {transform.parent.name}. Starting node: {npcData.name}");
-            isCurrentConversation = true;
-
-            if (npcData != null)
-            {
-                dialogueRunner.StartDialogue(npcData.dialogueID);
-
-                player.gameObject.GetComponent<IsometricPlayerMovementController>().enabled = false;
-                player.gameObject.GetComponent<Animator>().SetFloat("Speed", 0f);
-                rb.constraints = RigidbodyConstraints2D.FreezeAll;
-
-                animator.SetBool("IsTalking", true);
-            }
+            interactable = true;
+            Debug.Log($"Enter {transform.parent.name}");
         }
     }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            interactable = false;
+            Debug.Log($"Exit {transform.parent.name}");
+        }
+    }
+
+    private void EndDialouge()
+    {
+        if (isCurrentConversation)
+        {
+            Debug.Log("Dialogue is complete");
+
+            player.gameObject.GetComponent<IsometricPlayerMovementController>().enabled = true;
+            rb.constraints = RigidbodyConstraints2D.None;
+            rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+
+            animator.SetBool("IsTalking", false);
+
+            isCurrentConversation = false;
+        }
+    }
+
+    public void StartDialogue()
+    {
+        Debug.Log($"Started conversation with {transform.parent.name}. Starting node: {npcData.name}");
+        isCurrentConversation = true;
+
+        if (npcData != null)
+        {
+            dialogueRunner.StartDialogue(npcData.dialogueID);
+
+            player.gameObject.GetComponent<IsometricPlayerMovementController>().enabled = false;
+            player.gameObject.GetComponent<Animator>().SetFloat("Speed", 0f);
+            rb.constraints = RigidbodyConstraints2D.FreezeAll;
+
+            animator.SetBool("IsTalking", true);
+        }
+    }
+}
