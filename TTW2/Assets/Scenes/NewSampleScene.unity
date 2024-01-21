@@ -609,7 +609,6 @@ MonoBehaviour:
   holdTime: 1
   autoAdvance: 0
   palette: {fileID: 0}
-  advancementKey: 122
 --- !u!114 &219572180
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -97061,6 +97060,30 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7188572896636734991, guid: d302f1dfcf33bb94cac604b6ca5c54a8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7216619493056515027, guid: d302f1dfcf33bb94cac604b6ca5c54a8, type: 3}
+      propertyPath: m_Size.x
+      value: 0.3297747
+      objectReference: {fileID: 0}
+    - target: {fileID: 7216619493056515027, guid: d302f1dfcf33bb94cac604b6ca5c54a8, type: 3}
+      propertyPath: m_Size.y
+      value: 0.13629867
+      objectReference: {fileID: 0}
+    - target: {fileID: 7216619493056515027, guid: d302f1dfcf33bb94cac604b6ca5c54a8, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.002051894
+      objectReference: {fileID: 0}
+    - target: {fileID: 7216619493056515027, guid: d302f1dfcf33bb94cac604b6ca5c54a8, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.15864517
+      objectReference: {fileID: 0}
+    - target: {fileID: 7216619493056515027, guid: d302f1dfcf33bb94cac604b6ca5c54a8, type: 3}
+      propertyPath: m_Direction
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7216619493056515027, guid: d302f1dfcf33bb94cac604b6ca5c54a8, type: 3}
+      propertyPath: m_UsedByEffector
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
