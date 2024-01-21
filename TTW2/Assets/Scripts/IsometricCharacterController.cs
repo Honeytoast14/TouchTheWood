@@ -10,7 +10,7 @@ public class IsometricPlayerMovementController : MonoBehaviour
     public float moveSpeed = 5f;
 
     public bool canTalk = false;
-    private bool allowLeftClick = true;
+    public bool checkSide = false;
 
     public Animator animator;
 
@@ -37,13 +37,13 @@ public class IsometricPlayerMovementController : MonoBehaviour
             if(canTalk == true)
             {
                 triggerTalk.StartDialogue();
-                Debug.Log("Is talking");
+                //Debug.Log("Is talking");
             }
-        }
 
-        if (allowLeftClick && Input.GetMouseButtonDown(0))
-        {
-            Debug.Log("Left-click actions performed.");
+            if(checkSide == true)
+            {
+                Debug.Log("This is " + " side");
+            }
         }
     }
 
