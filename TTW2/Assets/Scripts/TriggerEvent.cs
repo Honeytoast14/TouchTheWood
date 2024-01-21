@@ -29,6 +29,7 @@ public class TriggerEvent : MonoBehaviour
         dialogueRunner.onDialogueComplete.AddListener(EndDialouge);
 
         StartCoroutine(InputCheckCoroutine());
+        Debug.Log($"test {transform.parent.gameObject.name}");
     }
 
     private IEnumerator InputCheckCoroutine()
