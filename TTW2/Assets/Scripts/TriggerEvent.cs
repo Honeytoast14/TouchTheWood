@@ -17,6 +17,7 @@ public class TriggerEvent : MonoBehaviour
 
     private bool isCurrentConversation = false;
     private bool interactable = false;
+
     void Start()
     {
         isometricPlayerMovementController = FindObjectOfType<IsometricPlayerMovementController>();
@@ -30,18 +31,15 @@ public class TriggerEvent : MonoBehaviour
 
         StartCoroutine(InputCheckCoroutine());
     }
-
     private IEnumerator InputCheckCoroutine()
     {
         while (true)
         {
-            if (Input.GetKeyDown(KeyCode.Z))
+            if (Input.GetKeyDown(KeyCode.Z) && interactable && !dialogueRunner.IsDialogueRunning)
             {
-                if (interactable && !dialogueRunner.IsDialogueRunning)
-                {
-                    StartDialogue();
-                }
+                StartDialogue();
             }
+
             yield return null;
         }
     }
@@ -64,6 +62,7 @@ public class TriggerEvent : MonoBehaviour
         }
     }
 
+
     private void EndDialouge()
     {
         if (isCurrentConversation)
@@ -82,7 +81,7 @@ public class TriggerEvent : MonoBehaviour
 
     public void StartDialogue()
     {
-        Debug.Log($"Started conversation with {transform.parent.name}. Starting node: {npcData.name}");
+        Debug.Log($"Started conversation with {transform.parent.name}.");
         isCurrentConversation = true;
 
         if (npcData != null)
@@ -92,7 +91,6 @@ public class TriggerEvent : MonoBehaviour
             player.gameObject.GetComponent<IsometricPlayerMovementController>().enabled = false;
             player.gameObject.GetComponent<Animator>().SetFloat("Speed", 0f);
             rb.constraints = RigidbodyConstraints2D.FreezeAll;
-
             animator.SetBool("IsTalking", true);
         }
     }
