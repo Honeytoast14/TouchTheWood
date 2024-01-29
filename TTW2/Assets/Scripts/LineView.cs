@@ -221,13 +221,21 @@ namespace Yarn.Unity
         /// </summary>
         LocalizedLine currentLine = null;
 
-        [SerializeField] private KeyCode advancementKey = KeyCode.Z;
+        private KeyCode advancementKey = KeyCode.Z;
+        TriggerEvent trigger;
+        private void Start()
+        {
+            trigger = FindAnyObjectByType<TriggerEvent>();
+        }
 
         public void Update()
         {
             if (Input.GetKeyDown(advancementKey))
             {
-                UserRequestedViewAdvancement();
+                if (trigger.canTalk)
+                {
+                    UserRequestedViewAdvancement();
+                }
             }
         }
 

@@ -18,6 +18,8 @@ public class TriggerEvent : MonoBehaviour
     private bool isCurrentConversation = false;
     private bool interactable = false;
 
+    public bool canTalk = false;
+
     void Start()
     {
         isometricPlayerMovementController = FindObjectOfType<IsometricPlayerMovementController>();
@@ -27,21 +29,27 @@ public class TriggerEvent : MonoBehaviour
         rb = player.gameObject.GetComponent<Rigidbody2D>();
 
         dialogueRunner = FindObjectOfType<Yarn.Unity.DialogueRunner>();
+        dialogueRunner.onDialogueStart.AddListener(UseCoolDownTalk);
         dialogueRunner.onDialogueComplete.AddListener(EndDialouge);
-
-        StartCoroutine(InputCheckCoroutine());
     }
-    private IEnumerator InputCheckCoroutine()
-    {
-        while (true)
-        {
-            if (Input.GetKeyDown(KeyCode.Z) && interactable && !dialogueRunner.IsDialogueRunning)
-            {
-                StartDialogue();
-            }
 
-            yield return null;
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Z) && interactable && !dialogueRunner.IsDialogueRunning)
+        {
+            StartDialogue();
         }
+    }
+
+    private void UseCoolDownTalk()
+    {
+       StartCoroutine(CoolDownTalk());
+    }
+
+    private IEnumerator CoolDownTalk()
+    {
+        yield return new WaitForSeconds(0.1f);
+        canTalk = true;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -62,7 +70,6 @@ public class TriggerEvent : MonoBehaviour
         }
     }
 
-
     private void EndDialouge()
     {
         if (isCurrentConversation)
@@ -76,7 +83,9 @@ public class TriggerEvent : MonoBehaviour
             animator.SetBool("IsTalking", false);
 
             isCurrentConversation = false;
+            
         }
+        canTalk = false;
     }
 
     public void StartDialogue()
