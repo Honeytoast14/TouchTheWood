@@ -4,6 +4,7 @@ position: -314,28
 // Bird:ฉันไม่ว่างหรอกนะเจ้าหนู ไปเล่นกับคนอื่นเถอะ
 // Bird:เดี๋ยวก่อนนะ ที่นี่มีเด็กได้ยังไง
 <<getNamePortrait Bird1>>
+<<getNamePortraitOption Bird1>>
 Bird: Hello, I'm bird
 Bird: Second Talk #lastline
     -> คำตอบ1
@@ -16,11 +17,12 @@ title: snail1
 tags:
 position: -299,-399
 ---
-<<getNamePortrait Snail1>>
+<<getNamePortrait nothave>>
+<<getNamePortraitOption nothave>>
 
 Snail: Hello, I'm snail
 Snail: Second Talk
-Snail: My picture is
+Snail: My picture is อิอิ
 ===
 
 // นี่มันตัวอะไร...? //เราขยับตัว

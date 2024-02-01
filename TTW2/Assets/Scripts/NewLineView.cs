@@ -228,10 +228,14 @@ namespace Yarn.Unity
         DialogueRunner dialogueRunner;
 
         TriggerEvent trigger;
-        public Image myImage;
+        GameObject portrait;
+        GameObject dialoguePanel;
+        [SerializeField] private Image myImage;
         private void Start()
         {
             trigger = FindAnyObjectByType<TriggerEvent>();
+            portrait = GameObject.Find("Portrait");
+            dialoguePanel = GameObject.Find("DialoguePanel");
 
             dialogueRunner = FindObjectOfType<DialogueRunner>();
             dialogueRunner.AddCommandHandler<string>("getNamePortrait", GetNamePortrait);
@@ -251,13 +255,26 @@ namespace Yarn.Unity
 
         public void GetNamePortrait(string characterName)
         {
-            string portraitPath = "Assets/Portraits/" + characterName + ".png";
-            Sprite portraitSprite = AssetDatabase.LoadAssetAtPath<Sprite>(portraitPath);
+            if (characterName != null)
+            {
+                if (characterName == "nothave")
+                {
+                    portrait.SetActive(false);
+                    dialoguePanel.GetComponent<HorizontalLayoutGroup>().padding.left = 100;
+                }
+                else
+                {
+                    portrait.SetActive(true);
 
-            Debug.Log(portraitPath);
-            myImage.sprite = portraitSprite;
+                    string portraitPath = "Assets/Portraits/" + characterName + ".png";
+                    Sprite portraitSprite = AssetDatabase.LoadAssetAtPath<Sprite>(portraitPath);
+
+                    myImage.sprite = portraitSprite;
+
+                    dialoguePanel.GetComponent<HorizontalLayoutGroup>().padding.left = 30;
+                }
+            }
         }
-
 
         /// <summary>
         /// A stop token that is used to interrupt the current animation.
