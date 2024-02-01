@@ -4,10 +4,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEditor.VersionControl;
+using UnityEditor;
 
 namespace Yarn.Unity
 {
-    public class LineView : DialogueViewBase
+    public class NewLineView : DialogueViewBase
     {
         /// <summary>
         /// The canvas group that contains the UI elements used by this Line
@@ -213,7 +215,7 @@ namespace Yarn.Unity
         [SerializeField]
         internal bool autoAdvance = false;
 
-        [SerializeField] 
+        [SerializeField]
         internal MarkupPalette palette;
         /// <summary>
         /// The current <see cref="LocalizedLine"/> that this line view is
@@ -222,10 +224,18 @@ namespace Yarn.Unity
         LocalizedLine currentLine = null;
 
         private KeyCode advancementKey = KeyCode.Z;
+
+        DialogueRunner dialogueRunner;
+
         TriggerEvent trigger;
+        public Image myImage;
         private void Start()
         {
             trigger = FindAnyObjectByType<TriggerEvent>();
+
+            dialogueRunner = FindObjectOfType<DialogueRunner>();
+            dialogueRunner.AddCommandHandler<string>("getNamePortrait", GetNamePortrait);
+
         }
 
         public void Update()
@@ -238,6 +248,16 @@ namespace Yarn.Unity
                 }
             }
         }
+
+        public void GetNamePortrait(string characterName)
+        {
+            string portraitPath = "Assets/Portraits/" + characterName + ".png";
+            Sprite portraitSprite = AssetDatabase.LoadAssetAtPath<Sprite>(portraitPath);
+
+            Debug.Log(portraitPath);
+            myImage.sprite = portraitSprite;
+        }
+
 
         /// <summary>
         /// A stop token that is used to interrupt the current animation.
@@ -276,12 +296,12 @@ namespace Yarn.Unity
                 yield return StartCoroutine(Effects.FadeAlpha(canvasGroup, 1, 0, fadeOutTime, currentStopToken));
                 currentStopToken.Complete();
             }
-            
+
             canvasGroup.alpha = 0;
             canvasGroup.blocksRaycasts = false;
             // turning interaction back on, if it needs it
             canvasGroup.interactable = interactable;
-            
+
             if (onDismissalComplete != null)
             {
                 onDismissalComplete();
@@ -296,7 +316,7 @@ namespace Yarn.Unity
             // Cancel all coroutines that we're currently running. This will
             // stop the RunLineInternal coroutine, if it's running.
             StopAllCoroutines();
-            
+
             // for now we are going to just immediately show everything
             // later we will make it fade in
             lineText.gameObject.SetActive(true);
@@ -411,45 +431,45 @@ namespace Yarn.Unity
                     lineText.maxVisibleCharacters = int.MaxValue;
                 }
 
-                    // If we're using the fade effect, start it, and wait for it to finish.
-                    if (useFadeEffect)
+                // If we're using the fade effect, start it, and wait for it to finish.
+                if (useFadeEffect)
+                {
+                    yield return StartCoroutine(Effects.FadeAlpha(canvasGroup, 0, 1, fadeInTime, currentStopToken));
+                    if (currentStopToken.WasInterrupted)
                     {
-                        yield return StartCoroutine(Effects.FadeAlpha(canvasGroup, 0, 1, fadeInTime, currentStopToken));
-                        if (currentStopToken.WasInterrupted)
-                        {
-                            // The fade effect was interrupted. Stop this entire coroutine.
-                            yield break;
-                        }
+                        // The fade effect was interrupted. Stop this entire coroutine.
+                        yield break;
                     }
+                }
 
-                    // If we're using the typewriter effect, start it, and wait for
-                    // it to finish.
-                    if (useTypewriterEffect)
+                // If we're using the typewriter effect, start it, and wait for
+                // it to finish.
+                if (useTypewriterEffect)
+                {
+                    var pauses = GetPauseDurationsInsideLine(text);
+
+                    // setting the canvas all back to its defaults because if we didn't also fade we don't have anything visible
+                    canvasGroup.alpha = 1f;
+                    canvasGroup.interactable = true;
+                    canvasGroup.blocksRaycasts = true;
+
+                    yield return StartCoroutine(Effects.PausableTypewriter(
+                        lineText,
+                        typewriterEffectSpeed,
+                        () => onCharacterTyped.Invoke(),
+                        () => onPauseStarted.Invoke(),
+                        () => onPauseEnded.Invoke(),
+                        pauses,
+                        currentStopToken
+                    ));
+
+                    if (currentStopToken.WasInterrupted)
                     {
-                        var pauses = GetPauseDurationsInsideLine(text);
-
-                        // setting the canvas all back to its defaults because if we didn't also fade we don't have anything visible
-                        canvasGroup.alpha = 1f;
-                        canvasGroup.interactable = true;
-                        canvasGroup.blocksRaycasts = true;
-
-                        yield return StartCoroutine(Effects.PausableTypewriter(
-                            lineText,
-                            typewriterEffectSpeed,
-                            () => onCharacterTyped.Invoke(),
-                            () => onPauseStarted.Invoke(),
-                            () => onPauseEnded.Invoke(),
-                            pauses,
-                            currentStopToken
-                        ));
-
-                        if (currentStopToken.WasInterrupted)
-                        {
-                            // The typewriter effect was interrupted. Stop this entire coroutine.
-                            yield break;
-                        }
+                        // The typewriter effect was interrupted. Stop this entire coroutine.
+                        yield break;
                     }
-                
+                }
+
             }
             currentLine = dialogueLine;
 
@@ -511,7 +531,7 @@ namespace Yarn.Unity
             // animation coroutine is what actually interrupts
             // for now this is fine.
             // Is an animation running that we can stop?
-            if (currentStopToken.CanInterrupt) 
+            if (currentStopToken.CanInterrupt)
             {
                 // Stop the current animation, and skip to the end of whatever
                 // started it.
@@ -596,7 +616,7 @@ namespace Yarn.Unity
         {
             var pausePositions = new Stack<(int, float)>();
             var label = "pause";
-            
+
             // sorting all the attributes in reverse positional order
             // this is so we can build the stack up in the right positioning
             var attributes = line.Attributes;
