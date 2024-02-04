@@ -7,7 +7,6 @@ using Yarn.Unity;
 public class TriggerEvent : MonoBehaviour
 {
     private DialogueRunner dialogueRunner;
-    public UnityEvent onDialogueComplete;
     public NPCData npcData;
 
     Animator animator;
@@ -43,7 +42,7 @@ public class TriggerEvent : MonoBehaviour
 
     private void UseCoolDownTalk()
     {
-       StartCoroutine(CoolDownTalk());
+        StartCoroutine(CoolDownTalk());
     }
 
     private IEnumerator CoolDownTalk()
@@ -83,7 +82,7 @@ public class TriggerEvent : MonoBehaviour
             animator.SetBool("IsTalking", false);
 
             isCurrentConversation = false;
-            
+
         }
         canTalk = false;
     }

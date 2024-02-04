@@ -56,5 +56,6 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "TTW2.sln"
+    "dotnet.defaultSolution": "TTW2.sln",
+    "dotnet.preferCSharpExtension": true
 }
