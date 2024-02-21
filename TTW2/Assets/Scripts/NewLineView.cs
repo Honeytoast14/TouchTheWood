@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEditor.VersionControl;
 using UnityEditor;
+using System.Linq;
 
 namespace Yarn.Unity
 {
@@ -224,6 +225,7 @@ namespace Yarn.Unity
         LocalizedLine currentLine = null;
 
         private KeyCode advancementKey = KeyCode.Z;
+        public bool groupTalk = false;
 
         DialogueRunner dialogueRunner;
 
@@ -231,6 +233,7 @@ namespace Yarn.Unity
         GameObject portrait;
         GameObject dialoguePanel;
         [SerializeField] private Image myImage;
+        [SerializeField] private List<NPCData> npcDataList;
         private void Start()
         {
             trigger = FindAnyObjectByType<TriggerEvent>();
@@ -239,7 +242,7 @@ namespace Yarn.Unity
 
             dialogueRunner = FindObjectOfType<DialogueRunner>();
             dialogueRunner.AddCommandHandler<string>("getNamePortrait", GetNamePortrait);
-
+            dialogueRunner.AddCommandHandler<bool>("setGroupTalk", SetGroupTalk);
         }
 
         public void Update()
@@ -274,6 +277,12 @@ namespace Yarn.Unity
                     dialoguePanel.GetComponent<HorizontalLayoutGroup>().padding.left = 30;
                 }
             }
+        }
+
+        public void SetGroupTalk(bool value)
+        {
+            groupTalk = value;
+            Debug.Log($"this is group talk from setGroupTalk: {groupTalk}");
         }
 
         /// <summary>
@@ -369,7 +378,6 @@ namespace Yarn.Unity
 
             canvasGroup.interactable = true;
             canvasGroup.blocksRaycasts = true;
-
             onInterruptLineFinished();
         }
 
@@ -487,9 +495,42 @@ namespace Yarn.Unity
                     }
                 }
 
+
+
             }
             currentLine = dialogueLine;
+            string currentSpeak = currentLine.CharacterName;
+            foreach (var npcData in npcDataList)
+            {
+                if (dialogueLine.CharacterName == npcData.npcName)
+                {
+                    GameObject[] npcObjects = GameObject.FindGameObjectsWithTag("NPC");
+                    Debug.Log($"this is {currentSpeak} said. and my name is {npcData.npcName}\n GroupTalk is {groupTalk}");
+                    foreach (GameObject npcObject in npcObjects)
+                    {
+                        if (npcObject.name == npcData.npcName)
+                        {
+                            Debug.Log($"Found GameObject with name: {npcObject.name}");
 
+                            Animator npcAnimator = npcObject.GetComponent<Animator>();
+
+                            if (npcAnimator != null && groupTalk)
+                            {
+                                npcAnimator.SetBool("IsTalking", true);
+                                groupTalk = false;
+                            }
+                            else
+                            {
+                                npcAnimator.SetBool("IsTalking", false);
+                                groupTalk = false;
+                            }
+
+                            break;
+                        }
+                    }
+                }
+
+            }
             // Run any presentations as a single coroutine. If this is stopped,
             // which UserRequestedViewAdvancement can do, then we will stop all
             // of the animations at once.
@@ -529,6 +570,11 @@ namespace Yarn.Unity
 
             // Our presentation is complete; call the completion handler.
             onDialogueLineFinished();
+        }
+
+        private GameObject FindObjectByName(string npcName)
+        {
+            throw new NotImplementedException();
         }
 
         /// <inheritdoc/>

@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Transactions;
+using JetBrains.Annotations;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.Events;
 using Yarn.Unity;
 
@@ -8,7 +11,7 @@ public class TriggerEvent : MonoBehaviour
 {
     private DialogueRunner dialogueRunner;
     public NPCData npcData;
-
+    NewLineView newLineView;
     Animator animator;
     IsometricPlayerMovementController isometricPlayerMovementController;
     Rigidbody2D rb;
@@ -18,6 +21,7 @@ public class TriggerEvent : MonoBehaviour
     private bool interactable = false;
 
     public bool canTalk = false;
+    bool triggerGroupTalk;
 
     void Start()
     {
@@ -26,8 +30,8 @@ public class TriggerEvent : MonoBehaviour
         player = GameObject.Find("Player");
         animator = GetComponentInParent<Animator>();
         rb = player.gameObject.GetComponent<Rigidbody2D>();
+        dialogueRunner = FindObjectOfType<DialogueRunner>();
 
-        dialogueRunner = FindObjectOfType<Yarn.Unity.DialogueRunner>();
         dialogueRunner.onDialogueStart.AddListener(UseCoolDownTalk);
         dialogueRunner.onDialogueComplete.AddListener(EndDialouge);
     }
@@ -79,7 +83,7 @@ public class TriggerEvent : MonoBehaviour
             rb.constraints = RigidbodyConstraints2D.None;
             rb.constraints = RigidbodyConstraints2D.FreezeRotation;
 
-            animator.SetBool("IsTalking", false);
+            animator.SetBool("IsTalking", true);
 
             isCurrentConversation = false;
 
@@ -99,7 +103,7 @@ public class TriggerEvent : MonoBehaviour
             player.gameObject.GetComponent<IsometricPlayerMovementController>().enabled = false;
             player.gameObject.GetComponent<Animator>().SetFloat("Speed", 0f);
             rb.constraints = RigidbodyConstraints2D.FreezeAll;
-            animator.SetBool("IsTalking", true);
         }
+        //animator.SetBool("IsTalking", false);
     }
 }

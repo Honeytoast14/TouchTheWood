@@ -5,5 +5,4 @@ public class NPCData : ScriptableObject
 {
     public string npcName;
     public string dialogueID;
-
 }

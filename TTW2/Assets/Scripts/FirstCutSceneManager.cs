@@ -11,10 +11,14 @@ public class FirstCutSceneManager : MonoBehaviour
     private PlayableDirector director;
 
     public Animator animator;
+    bool startTimeline = false;
     void Start()
     {
         director = GetComponent<PlayableDirector>();
-        dialogueRunner.onDialogueComplete.AddListener(playDirector);
+        if (startTimeline)
+        {
+            dialogueRunner.onDialogueComplete.AddListener(playDirector);
+        }
 
         dialogueRunner.AddCommandHandler("playDirector", playDirector);
         dialogueRunner.AddCommandHandler<float, float>("setCatAnimation", setCatAnimation);
@@ -23,6 +27,8 @@ public class FirstCutSceneManager : MonoBehaviour
     {
         //Debug.Log("playDirector and dialogue is complete");
         director.playableGraph.GetRootPlayable(0).Play();
+
+        startTimeline = false;
     }
 
     public void pauseScene()
