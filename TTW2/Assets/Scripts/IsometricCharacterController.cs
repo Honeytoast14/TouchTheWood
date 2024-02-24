@@ -1,18 +1,12 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
-using Yarn.Unity;
 
-public class IsometricPlayerMovementController : MonoBehaviour
+public class IsometricPlayerMovementController : MonoBehaviour, ISavable
 {
+    MenuController menuController;
     public Rigidbody2D rb;
     public Vector2 moveDirection;
     public float moveSpeed = 5f;
-
     public Animator animator;
-
     float horizontalInput;
     float verticalInput;
     float movementSpeed;
@@ -21,11 +15,11 @@ public class IsometricPlayerMovementController : MonoBehaviour
 
     void Start()
     {
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        // Cursor.lockState = CursorLockMode.Locked;
+        // Cursor.visible = false;
     }
 
-    void Update()
+    public void HandleUpdate()
     {
         Move();
         Animate();
@@ -54,5 +48,17 @@ public class IsometricPlayerMovementController : MonoBehaviour
         }
 
         animator.SetFloat("Speed", movementSpeed);
+    }
+
+    public object CaptureState()
+    {
+        float[] position = new float[] { transform.position.x, transform.position.y };
+        return position;
+    }
+
+    public void RestoreState(object state)
+    {
+        var position = (float[])state;
+        transform.position = new Vector3(position[0], position[1]);
     }
 }

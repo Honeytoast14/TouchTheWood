@@ -77,7 +77,7 @@ SpriteRenderer:
   m_SortingLayerID: 622914139
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: f67c3f64b0f381e4982f3c91524b1e71, type: 3}
+  m_Sprite: {fileID: -436169474, guid: 16938bd837bf64a47ba096bec0d866d6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -251,7 +251,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 403670d2cf275ba4e9b79e34d5e317de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onDialogueComplete:
-    m_PersistentCalls:
-      m_Calls: []
   npcData: {fileID: 11400000, guid: 5bd43521f14ee2a49b320231aa145beb, type: 2}
+  canTalk: 0

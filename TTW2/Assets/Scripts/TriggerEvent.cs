@@ -1,32 +1,22 @@
 using System.Collections;
-using System.Collections.Generic;
-using System.Transactions;
-using JetBrains.Annotations;
 using UnityEngine;
-using UnityEngine.AI;
-using UnityEngine.Events;
 using Yarn.Unity;
 
 public class TriggerEvent : MonoBehaviour
 {
     private DialogueRunner dialogueRunner;
-    public NPCData npcData;
-    NewLineView newLineView;
+    [SerializeField] NPCData npcData;
+    public NPCData NPCData => npcData;
     Animator animator;
-    IsometricPlayerMovementController isometricPlayerMovementController;
     Rigidbody2D rb;
     GameObject player;
 
-    private bool isCurrentConversation = false;
-    private bool interactable = false;
-
     public bool canTalk = false;
-    bool triggerGroupTalk;
+    private bool interactable = false;
+    private bool isCurrentConversation = false;
 
     void Start()
     {
-        isometricPlayerMovementController = FindObjectOfType<IsometricPlayerMovementController>();
-
         player = GameObject.Find("Player");
         animator = GetComponentInParent<Animator>();
         rb = player.gameObject.GetComponent<Rigidbody2D>();
@@ -57,7 +47,7 @@ public class TriggerEvent : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Player" && transform.parent.tag == "NPC")
         {
             interactable = true;
             Debug.Log($"Enter {transform.parent.name}");
@@ -66,7 +56,7 @@ public class TriggerEvent : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Player" && transform.parent.tag == "NPC")
         {
             interactable = false;
             Debug.Log($"Exit {transform.parent.name}");
@@ -104,6 +94,5 @@ public class TriggerEvent : MonoBehaviour
             player.gameObject.GetComponent<Animator>().SetFloat("Speed", 0f);
             rb.constraints = RigidbodyConstraints2D.FreezeAll;
         }
-        //animator.SetBool("IsTalking", false);
     }
 }
