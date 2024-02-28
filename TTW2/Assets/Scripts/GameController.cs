@@ -6,22 +6,19 @@ using Unity.VisualScripting.Dependencies.Sqlite;
 using UnityEngine;
 using Yarn.Unity;
 
-public enum GameSate { FreeRoam, Paused, Menu, Inventory }
+public enum GameState { FreeRoam, Paused, Menu, Inventory }
 public class GameController : MonoBehaviour
 {
-    [SerializeField] IsometricPlayerMovementController playerController;
-    [SerializeField] DialogueRunner dialogueRunner;
     [SerializeField] InventoryUI inventoryUI;
-    GameSate state;
+    public GameState state;
 
     MenuController menuController;
     void Start()
     {
         menuController.onBack += () =>
         {
-            state = GameSate.FreeRoam;
+            state = GameState.FreeRoam;
         };
-
         menuController.onMenuSelected += onMenuSelected;
     }
     private void Awake()
@@ -30,25 +27,26 @@ public class GameController : MonoBehaviour
     }
     void Update()
     {
-        if (state == GameSate.FreeRoam)
+        if (state == GameState.FreeRoam)
         {
-            playerController.HandleUpdate();
-
             if (Input.GetKeyDown(KeyCode.Escape))
             {
                 menuController.ShowMenuPage();
-                state = GameSate.Menu;
+                state = GameState.Menu;
+
+                inventoryUI.cover.enabled = true;
             }
         }
-        else if (state == GameSate.Menu)
+        else if (state == GameState.Menu)
         {
             menuController.HandleUpdate();
         }
-        else if (state == GameSate.Inventory)
+        else if (state == GameState.Inventory)
         {
             Action onBack = () =>
             {
-                state = GameSate.Menu;
+                state = GameState.Menu;
+                menuController.cover.enabled = false;
             };
             inventoryUI.HandleUpdate(onBack);
         }
@@ -58,9 +56,12 @@ public class GameController : MonoBehaviour
     {
         if (selectedItem == 0)  //Inventory
         {
-            state = GameSate.Inventory;
+            state = GameState.Inventory;
             inventoryUI.openInventory = true;
             inventoryUI.UpdateItemSelectionInventory();
+
+            menuController.cover.enabled = true;
+            inventoryUI.cover.enabled = false;
         }
     }
 }

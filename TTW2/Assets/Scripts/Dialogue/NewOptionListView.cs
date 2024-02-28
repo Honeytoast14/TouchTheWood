@@ -39,11 +39,10 @@ namespace Yarn.Unity
 
         // The line we saw most recently.
         LocalizedLine lastSeenLine;
-        DialogueRunner dialogueRunner;
-        NewLineView newLineView;
-
         GameObject portraitOption;
         GameObject lastLinePanel;
+
+        [SerializeField] private List<NPCData> npcDataList;
 
         [SerializeField] private Image myImage;
 
@@ -56,45 +55,56 @@ namespace Yarn.Unity
             portraitOption = GameObject.Find("PortraitOption");
             lastLinePanel = GameObject.Find("LastLine Panel");
 
-
-            dialogueRunner = FindObjectOfType<DialogueRunner>();
-            dialogueRunner.AddCommandHandler<string>("getNamePortraitOption", GetNamePortraitOption);
-        }
-
-        public void GetNamePortraitOption(string characterName)
-        {
-            if (characterName != null)
-            {
-                if (characterName == "nothave")
-                {
-                    portraitOption.SetActive(false);
-                    lastLinePanel.GetComponent<HorizontalLayoutGroup>().padding.left = 100;
-                }
-                else
-                {
-                    portraitOption.SetActive(true);
-
-                    string portraitPath = "Assets/Portraits/" + characterName + ".png";
-                    Sprite portraitSprite = AssetDatabase.LoadAssetAtPath<Sprite>(portraitPath);
-
-                    myImage.sprite = portraitSprite;
-
-                    lastLinePanel.GetComponent<HorizontalLayoutGroup>().padding.left = 30;
-                }
-            }
         }
 
         public void Reset()
         {
             canvasGroup = GetComponentInParent<CanvasGroup>();
         }
-
+        public void HidePortraitOption()
+        {
+            portraitOption.SetActive(false);
+            lastLinePanel.GetComponent<HorizontalLayoutGroup>().padding.left = 100;
+        }
         public override void RunLine(LocalizedLine dialogueLine, Action onDialogueLineFinished)
         {
             // Don't do anything with this line except note it and
             // immediately indicate that we're finished with it. RunOptions
             // will use it to display the text of the previous line.
             lastSeenLine = dialogueLine;
+            foreach (var npcData in npcDataList)
+            {
+                if (dialogueLine.CharacterName == npcData.npcName)
+                {
+                    Debug.Log($"Character Name is {dialogueLine.CharacterName}");
+                    GameObject[] npcObjects = GameObject.FindGameObjectsWithTag("NPC");
+                    foreach (GameObject npcObject in npcObjects)
+                    {
+                        if (npcData.hasPortrait)
+                        {
+                            portraitOption.SetActive(true);
+
+                            Sprite portraitSprite = AssetDatabase.LoadAssetAtPath<Sprite>(npcData.portraitPath);
+                            if (portraitSprite != null)
+                            {
+                                Debug.Log("Portrait Sprite Loaded Successfully");
+                                myImage.sprite = portraitSprite;
+                                lastLinePanel.GetComponent<HorizontalLayoutGroup>().padding.left = 30;
+                            }
+                            else
+                            {
+                                Debug.LogError("Failed to load Portrait Sprite. Check the path.");
+                            }
+                        }
+                        else
+                        {
+                            HidePortraitOption();
+                        }
+
+                        break;
+                    }
+                }
+            }
             onDialogueLineFinished();
         }
         public override void RunOptions(DialogueOption[] dialogueOptions, Action<int> onOptionSelected)

@@ -14,3 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   npcName: Kangaroo
   dialogueID: RestGuy_Talk1
+  hasPortrait: 0
+  portraitPath: 

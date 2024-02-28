@@ -226,10 +226,8 @@ namespace Yarn.Unity
 
         private KeyCode advancementKey = KeyCode.Z;
         public bool groupTalk = false;
-        bool havePortrait = false;
 
         DialogueRunner dialogueRunner;
-
         TriggerEvent trigger;
         GameObject portrait;
         GameObject dialoguePanel;
@@ -243,7 +241,6 @@ namespace Yarn.Unity
 
             dialogueRunner = FindObjectOfType<DialogueRunner>();
             dialogueRunner.onDialogueComplete.AddListener(setDefault);
-            dialogueRunner.AddCommandHandler<bool>("setPortrait", SetPortrait);
             dialogueRunner.AddCommandHandler<bool>("setGroupTalk", SetGroupTalk);
         }
 
@@ -260,20 +257,18 @@ namespace Yarn.Unity
 
         public void setDefault()
         {
-            havePortrait = false;
             groupTalk = false;
-
-            Debug.Log($"havePortrait is {havePortrait} and groupTalk is {groupTalk}");
-        }
-
-        public void SetPortrait(bool value)
-        {
-            havePortrait = value;
         }
 
         public void SetGroupTalk(bool value)
         {
             groupTalk = value;
+        }
+
+        public void HidePortrait()
+        {
+            portrait.SetActive(false);
+            dialoguePanel.GetComponent<HorizontalLayoutGroup>().padding.left = 100;
         }
 
         /// <summary>
@@ -496,34 +491,41 @@ namespace Yarn.Unity
                     GameObject[] npcObjects = GameObject.FindGameObjectsWithTag("NPC");
                     foreach (GameObject npcObject in npcObjects)
                     {
-                        if (npcObject.name == npcData.npcName)
+                        Animator npcAnimator = npcObject.GetComponent<Animator>();
+
+                        if (npcAnimator != null && groupTalk)
                         {
-                            Animator npcAnimator = npcObject.GetComponent<Animator>();
+                            npcAnimator.SetBool("IsTalking", true);
+                        }
+                        else
+                        {
+                            npcAnimator.SetBool("IsTalking", false);
+                        }
 
-                            if (npcAnimator != null && groupTalk)
-                            {
-                                npcAnimator.SetBool("IsTalking", true);
-                            }
-                            else
-                            {
-                                npcAnimator.SetBool("IsTalking", false);
-                            }
-                            if (havePortrait)
-                            {
-                                portrait.SetActive(true);
+                        if (npcData.hasPortrait)
+                        {
+                            portrait.SetActive(true);
 
-                                Sprite portraitSprite = AssetDatabase.LoadAssetAtPath<Sprite>(npcData.PortraitPath);
+                            Sprite portraitSprite = AssetDatabase.LoadAssetAtPath<Sprite>(npcData.portraitPath);
+                            if (portraitSprite != null)
+                            {
+                                Debug.Log("Portrait Sprite Loaded Successfully");
                                 myImage.sprite = portraitSprite;
                                 dialoguePanel.GetComponent<HorizontalLayoutGroup>().padding.left = 30;
                             }
                             else
                             {
-                                portrait.SetActive(false);
-                                dialoguePanel.GetComponent<HorizontalLayoutGroup>().padding.left = 100;
+                                Debug.LogError("Failed to load Portrait Sprite. Check the path.");
                             }
-
-                            break;
                         }
+                        else
+                        {
+                            HidePortrait();
+                        }
+
+
+
+                        break;
                     }
                 }
             }

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - NPC
   - SaveSpot
+  - Item
   layers:
   - Default
   - TransparentFX
@@ -13,12 +14,12 @@ TagManager:
   - 
   - Water
   - UI
-  - Ground
   - 
   - 
   - 
   - 
   - 
+  - SolidObject
   - 
   - 
   - 
@@ -49,6 +50,6 @@ TagManager:
   - name: Foreground
     uniqueID: 622914139
     locked: 0
-  - name: New Layer 3
+  - name: Player
     uniqueID: 470951853
     locked: 0

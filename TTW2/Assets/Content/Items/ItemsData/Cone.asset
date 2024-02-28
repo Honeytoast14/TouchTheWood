@@ -15,3 +15,4 @@ MonoBehaviour:
   itemImage: {fileID: 21300000, guid: 0151228d275e90a4b9406859d443cc42, type: 3}
   itemName: Cone
   itemDescription: It is hat right? right?
+  itemDialogueID: PickItem

@@ -14,4 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   npcName: Bird
   dialogueID: bird1
-  PortraitPath: nopic
+  hasPortrait: 1
+  portraitPath: Assets/Content/Portraits/Bird1.png

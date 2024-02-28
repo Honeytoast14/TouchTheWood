@@ -15,3 +15,4 @@ MonoBehaviour:
   itemImage: {fileID: 21300000, guid: 6b2ae4f882c005a428569255a586e039, type: 3}
   itemName: Jimuno?
   itemDescription: Eh? Why this thing so similar?
+  itemDialogueID: PickItem

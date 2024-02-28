@@ -15,3 +15,4 @@ MonoBehaviour:
   itemImage: {fileID: 21300000, guid: a30517803e2b67946928af349cf4db8b, type: 3}
   itemName: Window10
   itemDescription: IM NOT 11
+  itemDialogueID: PickItem

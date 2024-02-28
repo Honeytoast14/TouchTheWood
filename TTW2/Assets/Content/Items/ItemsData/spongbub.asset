@@ -15,3 +15,4 @@ MonoBehaviour:
   itemImage: {fileID: 21300000, guid: 260294a69f598e745850690406043ed9, type: 3}
   itemName: Spongbub
   itemDescription: Is this a creature?
+  itemDialogueID: PickItem

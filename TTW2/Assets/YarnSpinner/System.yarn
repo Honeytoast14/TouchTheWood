@@ -1,13 +1,14 @@
-﻿title: PickedItem
+﻿title: PickUpItem
 ---
-คุณจะเก็บสิ่งนี้หรือไม่
+SystemPickUp: คุณจะเก็บสิ่งนี้หรือไม่
     -> เก็บ
+        <<SetUsePickUp Item1>>
     -> ไม่เก็บ
 ===
 
 title: PushButton
 ---
-คุณจะกดปุ่มนี้หรือไม่
+System: คุณจะกดปุ่มนี้หรือไม่
     -> กด
     -> ไม่กด
 ===

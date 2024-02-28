@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class IsometricPlayerMovementController : MonoBehaviour, ISavable
 {
-    MenuController menuController;
+    public LayerMask SolidObjectLayer;
     public Rigidbody2D rb;
     public Vector2 moveDirection;
     public float moveSpeed = 5f;
@@ -15,14 +15,17 @@ public class IsometricPlayerMovementController : MonoBehaviour, ISavable
 
     void Start()
     {
-        // Cursor.lockState = CursorLockMode.Locked;
-        // Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
-    public void HandleUpdate()
+    public void Update()
     {
-        Move();
-        Animate();
+        if (IsWalkable(rb.position))
+        {
+            Move();
+            Animate();
+        }
     }
 
     public void Move()
@@ -48,6 +51,15 @@ public class IsometricPlayerMovementController : MonoBehaviour, ISavable
         }
 
         animator.SetFloat("Speed", movementSpeed);
+    }
+
+    private bool IsWalkable(Vector2 moveDirection)
+    {
+        if (Physics2D.OverlapCircle(moveDirection, 0f, SolidObjectLayer) != null)
+        {
+            return false;
+        }
+        return true;
     }
 
     public object CaptureState()

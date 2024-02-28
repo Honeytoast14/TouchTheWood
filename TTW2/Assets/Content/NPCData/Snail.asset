@@ -14,4 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   npcName: Snail
   dialogueID: snail1
-  PortraitPath: 
+  hasPortrait: 0
+  portraitPath: 

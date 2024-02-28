@@ -4,10 +4,14 @@ using Yarn.Unity;
 
 public class TriggerEvent : MonoBehaviour
 {
+    [Header("NPCData")]
+    [SerializeField] public NPCData npcData;
+    [Header("Item Giver")]
+    public ItemGiver itemGiver;
+    [Header("Pick Up")]
+    public PickUp pickUp;
     private DialogueRunner dialogueRunner;
-    [SerializeField] NPCData npcData;
-    public NPCData NPCData => npcData;
-    Animator animator;
+    GameController gameController;
     Rigidbody2D rb;
     GameObject player;
 
@@ -18,23 +22,53 @@ public class TriggerEvent : MonoBehaviour
     void Start()
     {
         player = GameObject.Find("Player");
-        animator = GetComponentInParent<Animator>();
+        //itemGiver = GetComponent<ItemGiver>();
         rb = player.gameObject.GetComponent<Rigidbody2D>();
         dialogueRunner = FindObjectOfType<DialogueRunner>();
+        gameController = FindObjectOfType<GameController>();
 
         dialogueRunner.onDialogueStart.AddListener(UseCoolDownTalk);
         dialogueRunner.onDialogueComplete.AddListener(EndDialouge);
+
+        if (itemGiver != null)
+        {
+            itemGiver.enabled = false;
+        }
+        if (pickUp != null)
+        {
+            pickUp.enabled = false;
+        }
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Z) && interactable && !dialogueRunner.IsDialogueRunning)
+        if (Input.GetKeyDown(KeyCode.Z) && interactable && gameController.state == GameState.FreeRoam && !dialogueRunner.IsDialogueRunning)
         {
             StartDialogue();
+            if (itemGiver != null)
+            {
+                itemGiver.enabled = true;
+            }
+
+            if (pickUp != null)
+            {
+                pickUp.enabled = true;
+            }
+        }
+
+        if (itemGiver != null && interactable && itemGiver.CanBeGiven())
+        {
+            itemGiver.GiveItem(player.GetComponent<IsometricPlayerMovementController>());
+        }
+
+        if (pickUp != null && interactable && pickUp.CanBeGiven())
+        {
+            pickUp.GiveItem(player.GetComponent<IsometricPlayerMovementController>());
         }
     }
 
-    private void UseCoolDownTalk()
+
+    public void UseCoolDownTalk()
     {
         StartCoroutine(CoolDownTalk());
     }
@@ -47,19 +81,17 @@ public class TriggerEvent : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Player" && transform.parent.tag == "NPC")
+        if (collision.gameObject.tag == "Player" && (transform.parent.tag == "NPC" || transform.parent.tag == "Item"))
         {
             interactable = true;
-            Debug.Log($"Enter {transform.parent.name}");
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Player" && transform.parent.tag == "NPC")
+        if (collision.gameObject.tag == "Player" && (transform.parent.tag == "NPC" || transform.parent.tag == "Item"))
         {
             interactable = false;
-            Debug.Log($"Exit {transform.parent.name}");
         }
     }
 
@@ -67,32 +99,25 @@ public class TriggerEvent : MonoBehaviour
     {
         if (isCurrentConversation)
         {
-            Debug.Log("Dialogue is complete");
-
             player.gameObject.GetComponent<IsometricPlayerMovementController>().enabled = true;
             rb.constraints = RigidbodyConstraints2D.None;
             rb.constraints = RigidbodyConstraints2D.FreezeRotation;
 
-            animator.SetBool("IsTalking", true);
-
             isCurrentConversation = false;
-
         }
         canTalk = false;
     }
 
     public void StartDialogue()
     {
-        Debug.Log($"Started conversation with {transform.parent.name}.");
-        isCurrentConversation = true;
-
         if (npcData != null)
         {
+            isCurrentConversation = true;
             dialogueRunner.StartDialogue(npcData.dialogueID);
-
-            player.gameObject.GetComponent<IsometricPlayerMovementController>().enabled = false;
-            player.gameObject.GetComponent<Animator>().SetFloat("Speed", 0f);
-            rb.constraints = RigidbodyConstraints2D.FreezeAll;
         }
+
+        player.gameObject.GetComponent<IsometricPlayerMovementController>().enabled = false;
+        player.gameObject.GetComponent<Animator>().SetFloat("Speed", 0f);
+        rb.constraints = RigidbodyConstraints2D.FreezeAll;
     }
 }
