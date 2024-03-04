@@ -105,6 +105,8 @@ public class TriggerEvent : MonoBehaviour
 
             isCurrentConversation = false;
         }
+        gameController.state = GameState.FreeRoam;
+
         canTalk = false;
     }
 
@@ -115,6 +117,8 @@ public class TriggerEvent : MonoBehaviour
             isCurrentConversation = true;
             dialogueRunner.StartDialogue(npcData.dialogueID);
         }
+
+        gameController.state = GameState.Dialogue;
 
         player.gameObject.GetComponent<IsometricPlayerMovementController>().enabled = false;
         player.gameObject.GetComponent<Animator>().SetFloat("Speed", 0f);

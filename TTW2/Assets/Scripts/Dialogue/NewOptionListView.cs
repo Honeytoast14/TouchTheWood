@@ -39,8 +39,7 @@ namespace Yarn.Unity
 
         // The line we saw most recently.
         LocalizedLine lastSeenLine;
-        GameObject portraitOption;
-        GameObject lastLinePanel;
+        [SerializeField] GameObject portraitBox;
 
         [SerializeField] private List<NPCData> npcDataList;
 
@@ -51,10 +50,6 @@ namespace Yarn.Unity
             canvasGroup.alpha = 0;
             canvasGroup.interactable = false;
             canvasGroup.blocksRaycasts = false;
-
-            portraitOption = GameObject.Find("PortraitOption");
-            lastLinePanel = GameObject.Find("LastLine Panel");
-
         }
 
         public void Reset()
@@ -63,8 +58,9 @@ namespace Yarn.Unity
         }
         public void HidePortraitOption()
         {
-            portraitOption.SetActive(false);
-            lastLinePanel.GetComponent<HorizontalLayoutGroup>().padding.left = 100;
+            portraitBox.SetActive(false);
+            lastLineContainer.GetComponent<HorizontalLayoutGroup>().padding.left = 110;
+            lastLineText.rectTransform.sizeDelta = new Vector2(1200, 259);
         }
         public override void RunLine(LocalizedLine dialogueLine, Action onDialogueLineFinished)
         {
@@ -82,14 +78,15 @@ namespace Yarn.Unity
                     {
                         if (npcData.hasPortrait)
                         {
-                            portraitOption.SetActive(true);
+                            portraitBox.SetActive(true);
 
                             Sprite portraitSprite = AssetDatabase.LoadAssetAtPath<Sprite>(npcData.portraitPath);
                             if (portraitSprite != null)
                             {
                                 Debug.Log("Portrait Sprite Loaded Successfully");
                                 myImage.sprite = portraitSprite;
-                                lastLinePanel.GetComponent<HorizontalLayoutGroup>().padding.left = 30;
+                                lastLineContainer.GetComponent<HorizontalLayoutGroup>().padding.left = 85;
+                                lastLineText.rectTransform.sizeDelta = new Vector2(860, 259);
                             }
                             else
                             {

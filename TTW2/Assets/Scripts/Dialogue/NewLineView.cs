@@ -224,19 +224,17 @@ namespace Yarn.Unity
         /// </summary>
         LocalizedLine currentLine = null;
 
-        private KeyCode advancementKey = KeyCode.Z;
         public bool groupTalk = false;
-
+        GameController gameController;
         DialogueRunner dialogueRunner;
         TriggerEvent trigger;
-        GameObject portrait;
         GameObject dialoguePanel;
         [SerializeField] private Image myImage;
         [SerializeField] private List<NPCData> npcDataList;
+        [SerializeField] GameObject portraitBox;
         private void Start()
         {
             trigger = FindAnyObjectByType<TriggerEvent>();
-            portrait = GameObject.Find("Portrait");
             dialoguePanel = GameObject.Find("DialoguePanel");
 
             dialogueRunner = FindObjectOfType<DialogueRunner>();
@@ -244,14 +242,11 @@ namespace Yarn.Unity
             dialogueRunner.AddCommandHandler<bool>("setGroupTalk", SetGroupTalk);
         }
 
-        public void Update()
+        public void HandleUpdate()
         {
-            if (Input.GetKeyDown(advancementKey))
+            if (trigger.canTalk)
             {
-                if (trigger.canTalk)
-                {
-                    UserRequestedViewAdvancement();
-                }
+                UserRequestedViewAdvancement();
             }
         }
 
@@ -267,8 +262,9 @@ namespace Yarn.Unity
 
         public void HidePortrait()
         {
-            portrait.SetActive(false);
-            dialoguePanel.GetComponent<HorizontalLayoutGroup>().padding.left = 100;
+            portraitBox.SetActive(false);
+            dialoguePanel.GetComponent<HorizontalLayoutGroup>().padding.left = 110;
+            lineText.rectTransform.sizeDelta = new Vector2(1200, 259);
         }
 
         /// <summary>
@@ -504,14 +500,15 @@ namespace Yarn.Unity
 
                         if (npcData.hasPortrait)
                         {
-                            portrait.SetActive(true);
+                            portraitBox.SetActive(true);
 
                             Sprite portraitSprite = AssetDatabase.LoadAssetAtPath<Sprite>(npcData.portraitPath);
                             if (portraitSprite != null)
                             {
                                 Debug.Log("Portrait Sprite Loaded Successfully");
                                 myImage.sprite = portraitSprite;
-                                dialoguePanel.GetComponent<HorizontalLayoutGroup>().padding.left = 30;
+                                dialoguePanel.GetComponent<HorizontalLayoutGroup>().padding.left = 85;
+                                lineText.rectTransform.sizeDelta = new Vector2(860, 259);
                             }
                             else
                             {
@@ -522,9 +519,6 @@ namespace Yarn.Unity
                         {
                             HidePortrait();
                         }
-
-
-
                         break;
                     }
                 }

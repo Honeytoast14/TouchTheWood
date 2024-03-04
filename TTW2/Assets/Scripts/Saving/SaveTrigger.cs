@@ -10,16 +10,17 @@ public class SaveTrigger : MonoBehaviour
     {
         if (canSave)
         {
-            if (Input.GetKeyDown(KeyCode.S))
+            if (Input.GetKeyDown(KeyCode.S) && SavingSystem.i != null)
             {
                 SavingSystem.i.Save("saveSlot1");
             }
         }
-        if (Input.GetKeyDown(KeyCode.L))
+        if (Input.GetKeyDown(KeyCode.L) && SavingSystem.i != null)
         {
             SavingSystem.i.Load("saveSlot1");
         }
     }
+
     public void OnTriggerEnter2D(Collider2D collider2D)
     {
         if (collider2D.gameObject.tag == "Player" && transform.parent.tag == "SaveSpot")

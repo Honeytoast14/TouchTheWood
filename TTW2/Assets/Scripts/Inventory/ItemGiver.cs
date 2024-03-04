@@ -2,17 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting.Dependencies.Sqlite;
 using UnityEngine;
+using Yarn.Compiler;
 using Yarn.Unity;
 
-public class ItemGiver : MonoBehaviour
+public class ItemGiver : MonoBehaviour, ISavable
 {
     [SerializeField] ItemData item;
     [SerializeField] int count = 1;
     GameObject parent;
-    bool used = false;
+    public bool used = false;
+    bool canPick = false;
     bool collisionCheck;
-    [SerializeField] bool isItem;
+    DialogueRunner dialogueRunner;
 
+    void Start()
+    {
+        dialogueRunner = GetComponent<DialogueRunner>();
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player" && transform.parent.tag == "NPC")
@@ -32,15 +38,16 @@ public class ItemGiver : MonoBehaviour
     public void GiveItem(IsometricPlayerMovementController player)
     {
         player.GetComponent<Inventory>().AddItem(item, count);
-        used = false;
+        used = true;
+        canPick = false;
 
-        Debug.Log($"Give {item} x{count}. set used to {used}");
+        Debug.Log($"Give {item} x{count}.");
         GetComponent<ItemGiver>().enabled = false;
     }
 
     public bool CanBeGiven()
     {
-        return collisionCheck && item != null && used && count > 0;
+        return collisionCheck && item != null && !used && count > 0 && canPick;
     }
 
     public void SetUsedInYarn(string parentName)
@@ -48,8 +55,27 @@ public class ItemGiver : MonoBehaviour
         ItemGiver itemGiver;
         parent = GameObject.Find(parentName);
         itemGiver = parent.gameObject.GetComponentInChildren<ItemGiver>();
-        itemGiver.used = true;
+        itemGiver.canPick = true;
 
         Debug.Log($"you recive {item} x{count}");
     }
+
+    public object CaptureState()
+    {
+        if (used && dialogueRunner != null)
+        {
+            return dialogueRunner.SaveStateToPersistentStorage("saveSlot1");
+        }
+        return null;
+    }
+
+    public void RestoreState(object state)
+    {
+        used = (bool)state;
+        if (dialogueRunner != null)
+        {
+            dialogueRunner.LoadStateFromPersistentStorage("saveSlot1");
+        }
+    }
+
 }

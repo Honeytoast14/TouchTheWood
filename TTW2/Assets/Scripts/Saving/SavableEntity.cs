@@ -30,11 +30,11 @@ public class SavableEntity : MonoBehaviour
         foreach (ISavable savable in GetComponents<ISavable>())
         {
             string id = savable.GetType().ToString();
-
-            if (stateDict.ContainsKey(id))
+            if (stateDict.ContainsKey(id) && stateDict[id] != null)
                 savable.RestoreState(stateDict[id]);
         }
     }
+
 
 #if UNITY_EDITOR
     // Update method used for generating UUID of the SavableEntity

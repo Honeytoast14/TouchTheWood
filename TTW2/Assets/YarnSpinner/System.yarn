@@ -1,8 +1,15 @@
-﻿title: PickUpItem
+﻿title: PickUpItem1
 ---
 SystemPickUp: คุณจะเก็บสิ่งนี้หรือไม่
     -> เก็บ
         <<SetUsePickUp Item1>>
+    -> ไม่เก็บ
+===
+title: PickUpItem2
+---
+SystemPickUp2: คุณจะเก็บสิ่งนี้หรือไม่
+    -> เก็บ
+        <<SetUsePickUp Item2>>
     -> ไม่เก็บ
 ===
 

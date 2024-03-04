@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 60c896586f6440b4ebea537e7e4c360b, type: 3}
-  m_Name: SystemPickUp
+  m_Name: SystemPickUp2
   m_EditorClassIdentifier: 
-  npcName: SystemPickUp
-  dialogueID: PickUpItem1
+  npcName: SystemPickUp2
+  dialogueID: PickUpItem2
   hasPortrait: 0
   portraitPath: 

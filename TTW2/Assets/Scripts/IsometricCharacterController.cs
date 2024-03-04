@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class IsometricPlayerMovementController : MonoBehaviour, ISavable
 {
-    public LayerMask SolidObjectLayer;
     public Rigidbody2D rb;
     public Vector2 moveDirection;
     public float moveSpeed = 5f;
@@ -10,7 +9,6 @@ public class IsometricPlayerMovementController : MonoBehaviour, ISavable
     float horizontalInput;
     float verticalInput;
     float movementSpeed;
-
     public bool canMove = true;
 
     void Start()
@@ -21,10 +19,12 @@ public class IsometricPlayerMovementController : MonoBehaviour, ISavable
 
     public void Update()
     {
-        if (IsWalkable(rb.position))
+        Move();
+        Animate();
+
+        if (Input.GetKeyDown(KeyCode.Z))
         {
-            Move();
-            Animate();
+            Interact();
         }
     }
 
@@ -53,13 +53,12 @@ public class IsometricPlayerMovementController : MonoBehaviour, ISavable
         animator.SetFloat("Speed", movementSpeed);
     }
 
-    private bool IsWalkable(Vector2 moveDirection)
+    void Interact()
     {
-        if (Physics2D.OverlapCircle(moveDirection, 0f, SolidObjectLayer) != null)
-        {
-            return false;
-        }
-        return true;
+        var facingDir = new Vector3(animator.GetFloat("Horizontal"), animator.GetFloat("Vertical"));
+        var InteractPos = transform.position + facingDir * 2.0f;
+
+        Debug.DrawLine(transform.position, InteractPos, Color.red, 0.3f);
     }
 
     public object CaptureState()

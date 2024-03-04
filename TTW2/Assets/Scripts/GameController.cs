@@ -1,29 +1,24 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
-using Unity.VisualScripting.Dependencies.Sqlite;
 using UnityEngine;
 using Yarn.Unity;
 
-public enum GameState { FreeRoam, Paused, Menu, Inventory }
+public enum GameState { FreeRoam, Menu, Inventory, Dialogue }
 public class GameController : MonoBehaviour
 {
     [SerializeField] InventoryUI inventoryUI;
+    [SerializeField] NewLineView newLineView;
     public GameState state;
 
     MenuController menuController;
-    void Start()
+    void Awake()
     {
+        menuController = GetComponent<MenuController>();
+
         menuController.onBack += () =>
         {
             state = GameState.FreeRoam;
         };
         menuController.onMenuSelected += onMenuSelected;
-    }
-    private void Awake()
-    {
-        menuController = GetComponent<MenuController>();
     }
     void Update()
     {
@@ -49,6 +44,13 @@ public class GameController : MonoBehaviour
                 menuController.cover.enabled = false;
             };
             inventoryUI.HandleUpdate(onBack);
+        }
+        else if (state == GameState.Dialogue)
+        {
+            if (Input.GetKeyDown(KeyCode.Z))
+            {
+                newLineView.HandleUpdate();
+            }
         }
     }
 
