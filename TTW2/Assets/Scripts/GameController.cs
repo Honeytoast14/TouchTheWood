@@ -19,6 +19,8 @@ public class GameController : MonoBehaviour
             state = GameState.FreeRoam;
         };
         menuController.onMenuSelected += onMenuSelected;
+
+        ItemDB.Init();
     }
     void Update()
     {

@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Yarn.Unity;
 
 public class SaveTrigger : MonoBehaviour
 {
-    [SerializeField]
+    [SerializeField] DialogueRunner dialogueRunner;
     public bool canSave = false;
     void Update()
     {
@@ -13,11 +14,13 @@ public class SaveTrigger : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.S) && SavingSystem.i != null)
             {
                 SavingSystem.i.Save("saveSlot1");
+                dialogueRunner.SaveStateToPersistentStorage("dialogueSaveTest");
             }
         }
         if (Input.GetKeyDown(KeyCode.L) && SavingSystem.i != null)
         {
             SavingSystem.i.Load("saveSlot1");
+            dialogueRunner.LoadStateFromPersistentStorage("dialogueSaveTest");
         }
     }
 

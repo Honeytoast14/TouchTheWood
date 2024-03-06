@@ -5,7 +5,7 @@ using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Inventory : MonoBehaviour
+public class Inventory : MonoBehaviour, ISavable
 {
     [SerializeField] List<ItemSlot> slots;
     public List<ItemSlot> Slots => slots;
@@ -34,6 +34,23 @@ public class Inventory : MonoBehaviour
 
         onUpdated?.Invoke();
     }
+
+    public object CaptureState()
+    {
+        var saveData = new InventorySaveData()
+        {
+            items = slots.Select(i => i.GetSaveData()).ToList()
+        };
+        return saveData;
+    }
+
+    public void RestoreState(object state)
+    {
+        var saveData = state as InventorySaveData;
+        slots = saveData.items.Select(i => new ItemSlot(i)).ToList();
+
+        onUpdated?.Invoke();
+    }
 }
 
 [Serializable]
@@ -41,6 +58,27 @@ public class ItemSlot
 {
     [SerializeField] ItemData item;
     [SerializeField] int count;
+
+    public ItemSlot(ItemSaveData saveData)
+    {
+        item = ItemDB.GetItemByName(saveData.name);
+        count = saveData.count;
+    }
+
+    public ItemSlot()
+    {
+
+    }
+
+    public ItemSaveData GetSaveData()
+    {
+        var saveData = new ItemSaveData()
+        {
+            name = item.name,
+            count = count
+        };
+        return saveData;
+    }
 
     public ItemData Item
     {
@@ -53,4 +91,16 @@ public class ItemSlot
         get => count;
         set => count = value;
     }
+}
+[Serializable]
+public class ItemSaveData
+{
+    public string name;
+    public int count;
+}
+
+[Serializable]
+public class InventorySaveData
+{
+    public List<ItemSaveData> items;
 }
