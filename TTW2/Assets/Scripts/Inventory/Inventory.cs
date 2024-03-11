@@ -35,6 +35,40 @@ public class Inventory : MonoBehaviour, ISavable
         onUpdated?.Invoke();
     }
 
+    public void RemoveItem(ItemData item, int count)
+    {
+        var itemSlot = slots.FirstOrDefault(slot => slot.Item == item);
+        if (count > 1)
+        {
+            itemSlot.Count -= count;
+        }
+        else
+        {
+            itemSlot.Count--;
+        }
+
+        if (itemSlot.Count == 0)
+        {
+            slots.Remove(itemSlot);
+        }
+
+        onUpdated?.Invoke();
+    }
+
+    public bool HasItem(ItemData item)
+    {
+        var itemSlot = slots.Exists(slot => slot.Item == item);
+
+        return itemSlot;
+    }
+
+    public int GetItemCount(ItemData item)
+    {
+        var itemSlot = slots.FirstOrDefault(slot => slot.Item == item);
+
+        return itemSlot != null && itemSlot.Count > 0 ? itemSlot.Count : 0;
+    }
+
     public object CaptureState()
     {
         var saveData = new InventorySaveData()

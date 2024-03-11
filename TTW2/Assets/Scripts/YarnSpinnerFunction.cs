@@ -19,11 +19,4 @@ public class YarnSpinnerFunction : MonoBehaviour
         dialogueRunner.AddCommandHandler<string>("SetUsePickUp", pickUp.SetUsedInYarn);
 
     }
-
-    // public void function()
-    // {
-    //     variableStorage.TryGetValue<float>("$number", out num);
-    //     variableStorage.SetValue("$number", num + 1);
-    //     Debug.Log($"set num to {num}");
-    // }
 }

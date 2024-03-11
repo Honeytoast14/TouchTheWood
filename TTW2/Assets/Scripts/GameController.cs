@@ -7,6 +7,7 @@ public class GameController : MonoBehaviour
 {
     [SerializeField] InventoryUI inventoryUI;
     [SerializeField] NewLineView newLineView;
+    [SerializeField] DialogueRunner dialogueRunner;
     public GameState state;
 
     MenuController menuController;
@@ -24,6 +25,7 @@ public class GameController : MonoBehaviour
     }
     void Update()
     {
+
         if (state == GameState.FreeRoam)
         {
             if (Input.GetKeyDown(KeyCode.Escape))

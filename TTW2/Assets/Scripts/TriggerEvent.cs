@@ -1,28 +1,43 @@
 using System.Collections;
+using Unity.VisualScripting.Dependencies.Sqlite;
 using UnityEngine;
 using Yarn.Unity;
+using Yarn.Unity.Tests;
 
 public class TriggerEvent : MonoBehaviour
 {
     [Header("NPCData")]
     [SerializeField] public NPCData npcData;
+
     [Header("Item Giver")]
     public ItemGiver itemGiver;
+
     [Header("Pick Up")]
     public PickUp pickUp;
+
+    [Header("Quest")]
+    [SerializeField] QuestData questToStart;
+    [SerializeField] QuestData questToComplete;
     private DialogueRunner dialogueRunner;
     GameController gameController;
     Rigidbody2D rb;
     GameObject player;
+    Quest activeQuest;
 
     public bool canTalk = false;
     private bool interactable = false;
     private bool isCurrentConversation = false;
 
+    public static TriggerEvent Instance { get; private set; }
+
+    void Awake()
+    {
+        Instance = this;
+    }
+
     void Start()
     {
         player = GameObject.Find("Player");
-        //itemGiver = GetComponent<ItemGiver>();
         rb = player.gameObject.GetComponent<Rigidbody2D>();
         dialogueRunner = FindObjectOfType<DialogueRunner>();
         gameController = FindObjectOfType<GameController>();
@@ -44,7 +59,37 @@ public class TriggerEvent : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Z) && interactable && gameController.state == GameState.FreeRoam && !dialogueRunner.IsDialogueRunning)
         {
-            StartDialogue();
+            if (questToStart != null)
+            {
+                activeQuest = new Quest(questToStart);
+                activeQuest.StartQuest();
+                questToStart = null;
+            }
+            else if (activeQuest != null)
+            {
+                if (activeQuest.canBeComplete())
+                {
+                    activeQuest.CompleteQuest(player.transform);
+                    activeQuest = null;
+                }
+                else
+                {
+                    activeQuest.InProgressQuest();
+                }
+            }
+            else if (questToComplete != null)
+            {
+                var quest = new Quest(questToComplete);
+                quest.CompleteQuest(player.transform);
+                questToComplete = null;
+
+                Debug.Log($"{quest.Base.Name} is complete!");
+            }
+            else
+            {
+                StartDialogue(npcData.dialogueID);
+            }
+
             if (itemGiver != null)
             {
                 itemGiver.enabled = true;
@@ -110,12 +155,12 @@ public class TriggerEvent : MonoBehaviour
         canTalk = false;
     }
 
-    public void StartDialogue()
+    public void StartDialogue(string npcDialogue)
     {
         if (npcData != null)
         {
             isCurrentConversation = true;
-            dialogueRunner.StartDialogue(npcData.dialogueID);
+            dialogueRunner.StartDialogue(npcDialogue);
         }
 
         gameController.state = GameState.Dialogue;
@@ -124,4 +169,9 @@ public class TriggerEvent : MonoBehaviour
         player.gameObject.GetComponent<Animator>().SetFloat("Speed", 0f);
         rb.constraints = RigidbodyConstraints2D.FreezeAll;
     }
+}
+
+public class NPCQuestSaveData
+{
+    public QuestSaveData activeQuest;
 }
