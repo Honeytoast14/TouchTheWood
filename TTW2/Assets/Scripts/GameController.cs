@@ -11,9 +11,12 @@ public class GameController : MonoBehaviour
     public GameState state;
 
     MenuController menuController;
+    TitleGame titleGame;
     void Awake()
     {
+        Time.timeScale = 1;
         menuController = GetComponent<MenuController>();
+        titleGame = GetComponent<TitleGame>();
 
         menuController.onBack += () =>
         {
@@ -68,6 +71,15 @@ public class GameController : MonoBehaviour
 
             menuController.cover.enabled = true;
             inventoryUI.cover.enabled = false;
+        }
+        if (selectedItem == 4)
+        {
+            EssentialObjects essentialObjects = FindObjectOfType<EssentialObjects>();
+            if (essentialObjects != null)
+            {
+                Destroy(essentialObjects.gameObject);
+            }
+            titleGame.LoadScene("TitleGame");
         }
     }
 }
