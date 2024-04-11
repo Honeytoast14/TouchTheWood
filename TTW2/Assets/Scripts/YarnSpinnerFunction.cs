@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 using Yarn.Unity;
 
@@ -15,8 +12,14 @@ public class YarnSpinnerFunction : MonoBehaviour
         pickUp = FindObjectOfType<PickUp>();
         itemGiver = FindObjectOfType<ItemGiver>();
 
-        dialogueRunner.AddCommandHandler<string>("SetUseItemGiver", itemGiver.SetUsedInYarn);
-        dialogueRunner.AddCommandHandler<string>("SetUsePickUp", pickUp.SetUsedInYarn);
+        if (itemGiver != null)
+        {
+            dialogueRunner.AddCommandHandler<string>("SetUseItemGiver", itemGiver.SetUsedInYarn);
+        }
 
+        if (pickUp != null)
+        {
+            dialogueRunner.AddCommandHandler<string>("SetUsePickUp", pickUp.SetUsedInYarn);
+        }
     }
 }

@@ -1,8 +1,6 @@
 using System.Collections;
-using Unity.VisualScripting.Dependencies.Sqlite;
 using UnityEngine;
 using Yarn.Unity;
-using Yarn.Unity.Tests;
 
 public class TriggerEvent : MonoBehaviour
 {
@@ -120,7 +118,7 @@ public class TriggerEvent : MonoBehaviour
 
     private IEnumerator CoolDownTalk()
     {
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.2f);
         canTalk = true;
     }
 
@@ -140,8 +138,12 @@ public class TriggerEvent : MonoBehaviour
         }
     }
 
-    private void EndDialouge()
+    public void EndDialouge()
     {
+        Debug.Log("Dialogue is complete call EndDialogue");
+
+        gameController.state = GameState.FreeRoam;
+
         if (isCurrentConversation)
         {
             player.gameObject.GetComponent<IsometricPlayerMovementController>().enabled = true;
@@ -150,7 +152,6 @@ public class TriggerEvent : MonoBehaviour
 
             isCurrentConversation = false;
         }
-        gameController.state = GameState.FreeRoam;
 
         canTalk = false;
     }

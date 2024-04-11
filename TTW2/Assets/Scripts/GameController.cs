@@ -26,9 +26,9 @@ public class GameController : MonoBehaviour
 
         ItemDB.Init();
     }
+
     void Update()
     {
-
         if (state == GameState.FreeRoam)
         {
             if (Input.GetKeyDown(KeyCode.Escape))

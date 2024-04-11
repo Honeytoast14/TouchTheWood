@@ -7,7 +7,6 @@ using TMPro;
 using UnityEditor;
 using System.Drawing;
 using UnityEngine.UIElements;
-using Microsoft.Unity.VisualStudio.Editor;
 using Image = UnityEngine.UI.Image;
 
 namespace Yarn.Unity

@@ -34018,7 +34018,7 @@ PrefabInstance:
     - target: {fileID: 5986104130903523905, guid: 6982e0ea866332e488110078de5724b1, type: 3}
       propertyPath: questToStart
       value: 
-      objectReference: {fileID: 11400000, guid: 6cf93533a9650cd46846a3bb91e87da7, type: 2}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -34977,7 +34977,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 3064728785967051635, guid: 55b78a68018fe054ba272336a6851b4c, type: 3}
+      propertyPath: itemGiver
+      value: 
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 4935551326868162860, guid: 55b78a68018fe054ba272336a6851b4c, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -35206,6 +35211,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2732722287644528030, guid: 369fefae04806a84b950e336b4fd5001, type: 3}
+      propertyPath: dialogueRunner
+      value: 
+      objectReference: {fileID: 1959040423}
     - target: {fileID: 2936911935480761991, guid: 369fefae04806a84b950e336b4fd5001, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
