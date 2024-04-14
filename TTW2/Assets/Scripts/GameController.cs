@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using Yarn.Unity;
 
@@ -56,7 +57,8 @@ public class GameController : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Z))
             {
-                newLineView.HandleUpdate();
+                StartCoroutine(PressDialogue());
+                //newLineView.HandleUpdate();
             }
         }
     }
@@ -81,5 +83,12 @@ public class GameController : MonoBehaviour
             }
             titleGame.LoadScene("TitleGame");
         }
+    }
+
+    private IEnumerator PressDialogue()
+    {
+        yield return new WaitForSeconds(0.1f);
+        //Debug.Log("Z is pressed from GameController(Dialogue State)");
+        newLineView.HandleUpdate();
     }
 }

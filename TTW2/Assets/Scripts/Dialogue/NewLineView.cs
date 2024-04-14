@@ -6,6 +6,8 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEditor;
 using System.Linq;
+using UnityEngine.UIElements;
+using Image = UnityEngine.UI.Image;
 
 namespace Yarn.Unity
 {
@@ -504,7 +506,7 @@ namespace Yarn.Unity
                             Sprite portraitSprite = Resources.Load<Sprite>(npcData.portraitPath);
                             if (portraitSprite != null)
                             {
-                                Debug.Log("Portrait Sprite Loaded Successfully");
+                                //Debug.Log("Portrait Sprite Loaded Successfully");
                                 myImage.sprite = portraitSprite;
                                 dialoguePanel.GetComponent<HorizontalLayoutGroup>().padding.left = 85;
                                 lineText.rectTransform.sizeDelta = new Vector2(860, 259);

@@ -4505,24 +4505,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
---- !u!1 &729073156 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3717711690665227510, guid: 55b78a68018fe054ba272336a6851b4c, type: 3}
-  m_PrefabInstance: {fileID: 4243187112470531622}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &729073161
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 729073156}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4881f89f8b930e34489bbb86116ccd4d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  uniqueId: 488791ec-39a8-442c-a31c-3f1222132d8d
 --- !u!1001 &926925224
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -33767,6 +33749,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bird_4th
       objectReference: {fileID: 0}
+    - target: {fileID: 2874947306598242938, guid: 20ad51ce787246e4283d696c3e0e0ceb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7191902252795691687, guid: 20ad51ce787246e4283d696c3e0e0ceb, type: 3}
       propertyPath: m_Size.y
       value: 0.33753014
@@ -34977,18 +34963,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3064728785967051635, guid: 55b78a68018fe054ba272336a6851b4c, type: 3}
-      propertyPath: itemGiver
-      value: 
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 4935551326868162860, guid: 55b78a68018fe054ba272336a6851b4c, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 3717711690665227510, guid: 55b78a68018fe054ba272336a6851b4c, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 729073161}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 55b78a68018fe054ba272336a6851b4c, type: 3}
 --- !u!1001 &6815593594723804025
 PrefabInstance:
@@ -35005,6 +34983,10 @@ PrefabInstance:
     - target: {fileID: 2956410980795980587, guid: 8c8e14a0a1aec4046a3c32b4fb12f27b, type: 3}
       propertyPath: m_Name
       value: Hedgegog and Kangaroo_4th
+      objectReference: {fileID: 0}
+    - target: {fileID: 2956410980795980587, guid: 8c8e14a0a1aec4046a3c32b4fb12f27b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3797337630992838796, guid: 8c8e14a0a1aec4046a3c32b4fb12f27b, type: 3}
       propertyPath: dialogueRunner

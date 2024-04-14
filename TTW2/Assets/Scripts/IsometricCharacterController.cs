@@ -22,10 +22,11 @@ public class IsometricPlayerMovementController : MonoBehaviour, ISavable
         Move();
         Animate();
 
-        if (Input.GetKeyDown(KeyCode.Z))
-        {
-            Interact();
-        }
+        // if (Input.GetKeyDown(KeyCode.Z))
+        // {
+        //     Debug.Log("call interact");
+        //     Interact();
+        // }
     }
 
     public void Move()
@@ -56,9 +57,14 @@ public class IsometricPlayerMovementController : MonoBehaviour, ISavable
     void Interact()
     {
         var facingDir = new Vector3(animator.GetFloat("Horizontal"), animator.GetFloat("Vertical"));
+
+        Debug.Log("Facing Direction: " + facingDir);
+
         var InteractPos = transform.position + facingDir * 2.0f;
 
         Debug.DrawLine(transform.position, InteractPos, Color.red, 0.3f);
+
+        Debug.Log("Interact method called");
     }
 
     public object CaptureState()

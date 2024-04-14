@@ -85,6 +85,7 @@ public class TriggerEvent : MonoBehaviour
             }
             else
             {
+                //Debug.Log("Z is pressed from triggerEvent");
                 StartDialogue(npcData.dialogueID);
             }
 
@@ -140,8 +141,6 @@ public class TriggerEvent : MonoBehaviour
 
     public void EndDialouge()
     {
-        Debug.Log("Dialogue is complete call EndDialogue");
-
         gameController.state = GameState.FreeRoam;
 
         if (isCurrentConversation)

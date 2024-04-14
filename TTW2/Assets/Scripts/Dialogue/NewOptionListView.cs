@@ -71,7 +71,7 @@ namespace Yarn.Unity
             {
                 if (dialogueLine.CharacterName == npcData.npcName)
                 {
-                    Debug.Log($"Character Name is {dialogueLine.CharacterName}");
+                    //Debug.Log($"Character Name is {dialogueLine.CharacterName}");
                     GameObject[] npcObjects = GameObject.FindGameObjectsWithTag("NPC");
                     foreach (GameObject npcObject in npcObjects)
                     {
@@ -82,7 +82,7 @@ namespace Yarn.Unity
                             Sprite portraitSprite = Resources.Load<Sprite>(npcData.portraitPath);
                             if (portraitSprite != null)
                             {
-                                Debug.Log("Portrait Sprite Loaded Successfully");
+                                //Debug.Log("Portrait Sprite Loaded Successfully");
                                 myImage.sprite = portraitSprite;
                                 lastLineContainer.GetComponent<HorizontalLayoutGroup>().padding.left = 85;
                                 lastLineText.rectTransform.sizeDelta = new Vector2(860, 259);
