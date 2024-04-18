@@ -10,6 +10,7 @@ public class IsometricPlayerMovementController : MonoBehaviour, ISavable
     float verticalInput;
     float movementSpeed;
     public bool canMove = true;
+    public bool isMoving;
 
     void Start()
     {
@@ -22,6 +23,10 @@ public class IsometricPlayerMovementController : MonoBehaviour, ISavable
         Move();
         Animate();
 
+        if (!canMove)
+        {
+            animator.SetFloat("Speed", 0f);
+        }
         // if (Input.GetKeyDown(KeyCode.Z))
         // {
         //     Debug.Log("call interact");
@@ -38,8 +43,13 @@ public class IsometricPlayerMovementController : MonoBehaviour, ISavable
 
             rb.velocity = new Vector2(horizontalInput, verticalInput) * moveSpeed;
 
+
             moveDirection = new Vector2(horizontalInput, verticalInput);
             movementSpeed = Mathf.Clamp(moveDirection.magnitude, 0.0f, 1.0f);
+        }
+        else
+        {
+            rb.velocity = Vector2.zero;
         }
     }
 
@@ -52,6 +62,20 @@ public class IsometricPlayerMovementController : MonoBehaviour, ISavable
         }
 
         animator.SetFloat("Speed", movementSpeed);
+    }
+
+    public void StopMoving()
+    {
+        canMove = false;
+        rb.constraints = RigidbodyConstraints2D.FreezeAll;
+        moveDirection = Vector2.zero;
+    }
+
+    public void ResumeMoving()
+    {
+        canMove = true;
+        rb.constraints = RigidbodyConstraints2D.None;
+        rb.constraints = RigidbodyConstraints2D.FreezeRotation;
     }
 
     void Interact()

@@ -18,9 +18,9 @@ public class TriggerEvent : MonoBehaviour
     [SerializeField] QuestData questToComplete;
     private DialogueRunner dialogueRunner;
     GameController gameController;
-    Rigidbody2D rb;
     GameObject player;
     Quest activeQuest;
+    IsometricPlayerMovementController playerController;
 
     public bool canTalk = false;
     private bool interactable = false;
@@ -36,9 +36,9 @@ public class TriggerEvent : MonoBehaviour
     void Start()
     {
         player = GameObject.Find("Player");
-        rb = player.gameObject.GetComponent<Rigidbody2D>();
         dialogueRunner = FindObjectOfType<DialogueRunner>();
         gameController = FindObjectOfType<GameController>();
+        playerController = FindObjectOfType<IsometricPlayerMovementController>();
 
         dialogueRunner.onDialogueStart.AddListener(UseCoolDownTalk);
         dialogueRunner.onDialogueComplete.AddListener(EndDialouge);
@@ -145,10 +145,7 @@ public class TriggerEvent : MonoBehaviour
 
         if (isCurrentConversation)
         {
-            player.gameObject.GetComponent<IsometricPlayerMovementController>().enabled = true;
-            rb.constraints = RigidbodyConstraints2D.None;
-            rb.constraints = RigidbodyConstraints2D.FreezeRotation;
-
+            playerController.ResumeMoving();
             isCurrentConversation = false;
         }
 
@@ -157,6 +154,8 @@ public class TriggerEvent : MonoBehaviour
 
     public void StartDialogue(string npcDialogue)
     {
+        playerController.StopMoving();
+
         if (npcData != null)
         {
             isCurrentConversation = true;
@@ -164,10 +163,6 @@ public class TriggerEvent : MonoBehaviour
         }
 
         gameController.state = GameState.Dialogue;
-
-        player.gameObject.GetComponent<IsometricPlayerMovementController>().enabled = false;
-        player.gameObject.GetComponent<Animator>().SetFloat("Speed", 0f);
-        rb.constraints = RigidbodyConstraints2D.FreezeAll;
     }
 }
 
