@@ -18,7 +18,6 @@ public class TriggerEvent : MonoBehaviour
     [SerializeField] QuestData questToComplete;
     private DialogueRunner dialogueRunner;
     GameController gameController;
-    GameObject player;
     Quest activeQuest;
     IsometricPlayerMovementController playerController;
 
@@ -35,18 +34,17 @@ public class TriggerEvent : MonoBehaviour
 
     void Start()
     {
-        player = GameObject.Find("Player");
         dialogueRunner = FindObjectOfType<DialogueRunner>();
         gameController = FindObjectOfType<GameController>();
         playerController = FindObjectOfType<IsometricPlayerMovementController>();
 
-        dialogueRunner.onDialogueStart.AddListener(UseCoolDownTalk);
         dialogueRunner.onDialogueComplete.AddListener(EndDialouge);
 
         if (itemGiver != null)
         {
             itemGiver.enabled = false;
         }
+
         if (pickUp != null)
         {
             pickUp.enabled = false;
@@ -67,7 +65,7 @@ public class TriggerEvent : MonoBehaviour
             {
                 if (activeQuest.canBeComplete())
                 {
-                    activeQuest.CompleteQuest(player.transform);
+                    activeQuest.CompleteQuest(playerController.transform);
                     activeQuest = null;
                 }
                 else
@@ -78,7 +76,7 @@ public class TriggerEvent : MonoBehaviour
             else if (questToComplete != null)
             {
                 var quest = new Quest(questToComplete);
-                quest.CompleteQuest(player.transform);
+                quest.CompleteQuest(playerController.transform);
                 questToComplete = null;
 
                 Debug.Log($"{quest.Base.Name} is complete!");
@@ -102,25 +100,13 @@ public class TriggerEvent : MonoBehaviour
 
         if (itemGiver != null && interactable && itemGiver.CanBeGiven())
         {
-            itemGiver.GiveItem(player.GetComponent<IsometricPlayerMovementController>());
+            itemGiver.GiveItem(playerController);
         }
 
         if (pickUp != null && interactable && pickUp.CanBeGiven())
         {
-            pickUp.GiveItem(player.GetComponent<IsometricPlayerMovementController>());
+            pickUp.GiveItem(playerController);
         }
-    }
-
-
-    public void UseCoolDownTalk()
-    {
-        StartCoroutine(CoolDownTalk());
-    }
-
-    private IEnumerator CoolDownTalk()
-    {
-        yield return new WaitForSeconds(0.2f);
-        canTalk = true;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

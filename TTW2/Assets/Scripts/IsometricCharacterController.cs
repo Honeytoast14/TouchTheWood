@@ -69,6 +69,7 @@ public class IsometricPlayerMovementController : MonoBehaviour, ISavable
         canMove = false;
         rb.constraints = RigidbodyConstraints2D.FreezeAll;
         moveDirection = Vector2.zero;
+        // Debug.Log("Stop player from moving");
     }
 
     public void ResumeMoving()
@@ -76,6 +77,7 @@ public class IsometricPlayerMovementController : MonoBehaviour, ISavable
         canMove = true;
         rb.constraints = RigidbodyConstraints2D.None;
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+        // Debug.Log("Player can move now");
     }
 
     void Interact()

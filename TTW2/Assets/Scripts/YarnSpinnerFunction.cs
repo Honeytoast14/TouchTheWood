@@ -6,6 +6,7 @@ public class YarnSpinnerFunction : MonoBehaviour
     DialogueRunner dialogueRunner;
     PickUp pickUp;
     ItemGiver itemGiver;
+    [SerializeField] NewLineView newLineView;
     void Start()
     {
         dialogueRunner = FindObjectOfType<DialogueRunner>();
@@ -21,5 +22,6 @@ public class YarnSpinnerFunction : MonoBehaviour
         {
             dialogueRunner.AddCommandHandler<string>("SetUsePickUp", pickUp.SetUsedInYarn);
         }
+        dialogueRunner.AddCommandHandler<bool>("setGroupTalk", newLineView.SetGroupTalk);
     }
 }

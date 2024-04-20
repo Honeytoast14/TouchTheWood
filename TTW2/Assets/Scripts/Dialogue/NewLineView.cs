@@ -240,17 +240,24 @@ namespace Yarn.Unity
 
             dialogueRunner = FindObjectOfType<DialogueRunner>();
             dialogueRunner.onDialogueComplete.AddListener(setDefault);
-            dialogueRunner.AddCommandHandler<bool>("setGroupTalk", SetGroupTalk);
         }
 
-        public void HandleUpdate()
-        {
-            if (trigger.canTalk)
-            {
-                UserRequestedViewAdvancement();
-            }
-        }
+        // public void HandleUpdate()
+        // {
+        //     // StartCoroutine(WaitTheText());
+        //     // UserRequestedViewAdvancement();
+        //     if (trigger.canTalk)
+        //     {
+        //         Debug.Log("can talk is true");
+        //         UserRequestedViewAdvancement();
+        //     }
+        // }
 
+        // private IEnumerator WaitTheText()
+        // {
+        //     yield return new WaitForSeconds(0.2f);
+        //     UserRequestedViewAdvancement();
+        // }
         public void setDefault()
         {
             groupTalk = false;

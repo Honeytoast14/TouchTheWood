@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
+using System.Diagnostics;
 using UnityEngine;
 using Yarn.Unity;
+using Debug = UnityEngine.Debug;
 
 public enum GameState { FreeRoam, Menu, Inventory, Dialogue }
 public class GameController : MonoBehaviour
@@ -13,6 +15,8 @@ public class GameController : MonoBehaviour
 
     MenuController menuController;
     TitleGame titleGame;
+
+    ItemGiver testItemGiver;
     void Awake()
     {
         Time.timeScale = 1;
@@ -58,7 +62,6 @@ public class GameController : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Z))
             {
                 StartCoroutine(PressDialogue());
-                //newLineView.HandleUpdate();
             }
         }
     }
@@ -87,8 +90,10 @@ public class GameController : MonoBehaviour
 
     private IEnumerator PressDialogue()
     {
+        yield return new WaitForSeconds(0.2f);
+        // Debug.Log("Z is pressed from GameController(Dialogue State)");
+        //newLineView.HandleUpdate();
+        newLineView.UserRequestedViewAdvancement();
         yield return new WaitForSeconds(0.1f);
-        //Debug.Log("Z is pressed from GameController(Dialogue State)");
-        newLineView.HandleUpdate();
     }
 }

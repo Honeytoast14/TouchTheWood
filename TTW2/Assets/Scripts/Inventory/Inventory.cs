@@ -10,6 +10,9 @@ public class Inventory : MonoBehaviour, ISavable
     [SerializeField] List<ItemSlot> slots;
     public List<ItemSlot> Slots => slots;
     public event Action onUpdated;
+    public List<ItemSlot> currentSlots => Slots;
+
+
     public static Inventory GetInventory()
     {
         return FindObjectOfType<IsometricPlayerMovementController>().GetComponent<Inventory>();

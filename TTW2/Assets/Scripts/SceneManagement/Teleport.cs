@@ -4,25 +4,38 @@ using Unity.VisualScripting;
 using UnityEditor;
 using UnityEditor.Animations;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Teleport : MonoBehaviour
 {
     [SerializeField] Animator fadeTransition;
+    [SerializeField] string essentialObjectsSceneName;
 
     [Header("In Scene")]
     [SerializeField] Transform inDestination;
 
     [Header("Another Scence")]
-    [SerializeField] Transform outDestination;
+    [SerializeField] string outDestination;
+    [SerializeField] Transform positionToGo;
 
     [Header("Face to")]
-    [SerializeField] Animator playerFaceTo;
-    public bool left, right, front, back, leftFront, rightFront, leftBack, rightBack = false;
+    public bool left;
+    public bool right;
+    public bool front;
+    public bool back;
+    public bool leftFront;
+    public bool rightFront;
+    public bool leftBack;
+    public bool rightBack;
+    Animator playerFaceTo;
     IsometricPlayerMovementController playerController;
+    TitleGame titleGame;
 
     void Start()
     {
         playerController = FindObjectOfType<IsometricPlayerMovementController>();
+        titleGame = FindObjectOfType<TitleGame>();
+        playerFaceTo = playerController.gameObject.GetComponent<Animator>();
     }
 
     private void OnTriggerEnter2D(Collider2D collider)
@@ -32,15 +45,17 @@ public class Teleport : MonoBehaviour
             Debug.Log("Player is in teleport");
             if (inDestination != null)
             {
-                StartCoroutine(TeleportPlayer(collider, inDestination));
+                StartCoroutine(TeleportPlayerInScene(collider, inDestination));
             }
 
-            if (outDestination != null)
-                Debug.Log($"Move to Scene {outDestination.position}");
+            if (outDestination != null && positionToGo != null)
+            {
+                StartCoroutine(TeleportPlayerToAnotherScene(collider, outDestination, positionToGo));
+            }
         }
     }
 
-    private IEnumerator TeleportPlayer(Collider2D player, Transform placeToGo)
+    private IEnumerator TeleportPlayerInScene(Collider2D player, Transform placeToGo)
     {
         if (fadeTransition != null)
         {
@@ -55,6 +70,21 @@ public class Teleport : MonoBehaviour
             fadeTransition.SetTrigger("Fade Out");
             playerController.ResumeMoving();
         }
+    }
+
+    private IEnumerator TeleportPlayerToAnotherScene(Collider2D player, string nameScene, Transform placeToGo)
+    {
+        playerController.StopMoving();
+        fadeTransition.SetTrigger("Fade In");
+        yield return new WaitForSeconds(0.9f);
+
+        titleGame.LoadScene(nameScene);
+        player.transform.position = placeToGo.position;
+        playerController.ResumeMoving();
+        SetPlayerFaceTo();
+
+        yield return new WaitForSeconds(0.15f);
+        fadeTransition.SetTrigger("Fade Out");
     }
 
     private void SetPlayerFaceTo()
