@@ -50,3 +50,6 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: New Layer 3
+    uniqueID: 3249568569
+    locked: 0
