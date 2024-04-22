@@ -25652,6 +25652,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5342791806753241121, guid: 55b78a68018fe054ba272336a6851b4c, type: 3}
+      propertyPath: m_Size.x
+      value: 0.59185004
+      objectReference: {fileID: 0}
+    - target: {fileID: 5342791806753241121, guid: 55b78a68018fe054ba272336a6851b4c, type: 3}
+      propertyPath: m_Size.y
+      value: 0.4258927
+      objectReference: {fileID: 0}
+    - target: {fileID: 5342791806753241121, guid: 55b78a68018fe054ba272336a6851b4c, type: 3}
+      propertyPath: m_Offset.x
+      value: 0.0019107655
+      objectReference: {fileID: 0}
+    - target: {fileID: 5342791806753241121, guid: 55b78a68018fe054ba272336a6851b4c, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.08870227
+      objectReference: {fileID: 0}
     - target: {fileID: 353344906310352126, guid: fefc001310bda1d49b32f713a80c4bdf, type: 3}
       propertyPath: m_Name
       value: BearBoss
@@ -25695,22 +25711,6 @@ PrefabInstance:
     - target: {fileID: 2878371205317776774, guid: fefc001310bda1d49b32f713a80c4bdf, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5342791806753241121, guid: 55b78a68018fe054ba272336a6851b4c, type: 3}
-      propertyPath: m_Size.x
-      value: 0.59185004
-      objectReference: {fileID: 0}
-    - target: {fileID: 5342791806753241121, guid: 55b78a68018fe054ba272336a6851b4c, type: 3}
-      propertyPath: m_Size.y
-      value: 0.4258927
-      objectReference: {fileID: 0}
-    - target: {fileID: 5342791806753241121, guid: 55b78a68018fe054ba272336a6851b4c, type: 3}
-      propertyPath: m_Offset.x
-      value: 0.0019107655
-      objectReference: {fileID: 0}
-    - target: {fileID: 5342791806753241121, guid: 55b78a68018fe054ba272336a6851b4c, type: 3}
-      propertyPath: m_Offset.y
-      value: -0.08870227
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
