@@ -35,6 +35,9 @@ public class Teleport : MonoBehaviour
         playerController = FindObjectOfType<IsometricPlayerMovementController>();
         titleGame = FindObjectOfType<TitleGame>();
         playerFaceTo = playerController.gameObject.GetComponent<Animator>();
+
+        if (playerFaceTo = null)
+            Debug.LogError("Can't find player animator");
     }
 
     private void OnTriggerEnter2D(Collider2D collider)
@@ -63,7 +66,7 @@ public class Teleport : MonoBehaviour
             yield return new WaitForSeconds(1f);
 
             player.transform.position = placeToGo.position;
-            SetPlayerFaceTo();
+            SetPlayerFaceTo(player.GetComponent<Animator>());
 
             yield return new WaitForSeconds(0.2f);
             fadeTransition.SetTrigger("Fade Out");
@@ -80,59 +83,67 @@ public class Teleport : MonoBehaviour
         titleGame.LoadScene(nameScene);
         player.transform.position = placeToGo.position;
         playerController.ResumeMoving();
-        SetPlayerFaceTo();
+        SetPlayerFaceTo(playerFaceTo);
 
         yield return new WaitForSeconds(0.15f);
         fadeTransition.SetTrigger("Fade Out");
     }
 
-    private void SetPlayerFaceTo()
+    private void SetPlayerFaceTo(Animator animator)
     {
         if (left)
         {
             //playerFaceTo.Play("Stable_left");
             playerFaceTo.SetFloat("Horizontal", -1);
             playerFaceTo.SetFloat("Vertical", 0);
+            Debug.Log("Set face to left");
         }
         else if (right)
         {
             // playerFaceTo.Play("Stable_right");
             playerFaceTo.SetFloat("Horizontal", 1);
             playerFaceTo.SetFloat("Vertical", 0);
+            Debug.Log("Set face to right");
         }
         else if (front)
         {
             // playerFaceTo.Play("Stable_Down");
             playerFaceTo.SetFloat("Horizontal", 0);
             playerFaceTo.SetFloat("Vertical", -1);
+            Debug.Log("Set face to down");
         }
         else if (back)
         {
             // playerFaceTo.Play("Stable_Up");
             playerFaceTo.SetFloat("Horizontal", 0);
             playerFaceTo.SetFloat("Vertical", 1);
+            Debug.Log("Set face to up");
         }
         else if (leftDown)
         {
             // playerFaceTo.Play("Stable_Down_Left");
             playerFaceTo.SetFloat("Horizontal", -1);
             playerFaceTo.SetFloat("Vertical", -1);
+            Debug.Log("Set face to leftDown");
         }
         else if (rightDown)
         {
             // playerFaceTo.Play("Stable_Down_Right");
-            playerFaceTo.SetFloat("Horizontal", 1);
-            playerFaceTo.SetFloat("Vertical", -1);
+            animator.SetFloat("Horizontal", 1);
+            animator.SetFloat("Vertical", -1);
+            Debug.Log("Set face to rightDown");
         }
         else if (leftUp)
         {// playerFaceTo.Play("Stable_Up_Left");
             playerFaceTo.SetFloat("Horizontal", -1);
             playerFaceTo.SetFloat("Vertical", 1);
+            Debug.Log("Set face to leftUp");
         }
         else if (rightUp)
         { // playerFaceTo.Play("Stable_Up_Right");
             playerFaceTo.SetFloat("Horizontal", 1);
             playerFaceTo.SetFloat("Vertical", 1);
+            Debug.Log("Set face to rightUp");
         }
         else
         {
