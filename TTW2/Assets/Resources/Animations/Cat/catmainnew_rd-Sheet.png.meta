@@ -123,169 +123,169 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: catmainnew_ld-Sheet_0
+      name: catmainnew_rd-Sheet_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 32
         height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 627e28cced215a142aade9f0c0cb024d
-      internalID: -1974557530
+      spriteID: 4b31330eb061e2f41b3eaa5fb2a7e478
+      internalID: 226753537
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: catmainnew_ld-Sheet_1
+      name: catmainnew_rd-Sheet_1
       rect:
         serializedVersion: 2
         x: 32
         y: 0
         width: 32
         height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 63ddd2074798c184aaf50354b927872e
-      internalID: 1607580243
+      spriteID: 9a0d827f784cfc14bb9dc699d3bcfa3e
+      internalID: 1768709664
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: catmainnew_ld-Sheet_2
+      name: catmainnew_rd-Sheet_2
       rect:
         serializedVersion: 2
         x: 64
         y: 0
         width: 32
         height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bb1cb3c3167eb124dba4a5f37da93108
-      internalID: 316037928
+      spriteID: a44e3251214cdf0469aa1012626bccfd
+      internalID: -1430392472
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: catmainnew_ld-Sheet_3
+      name: catmainnew_rd-Sheet_3
       rect:
         serializedVersion: 2
         x: 96
         y: 0
         width: 32
         height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ff35cdd2d02a21d449af50b64f8dce5c
-      internalID: -1523178306
+      spriteID: 424e9a7ebd84d504cb6f8889e7d58bd1
+      internalID: -465965555
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: catmainnew_ld-Sheet_4
+      name: catmainnew_rd-Sheet_4
       rect:
         serializedVersion: 2
         x: 128
         y: 0
         width: 32
         height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 42d1219aa3497ee4cac25d3110e1acaa
-      internalID: -287937677
+      spriteID: de5035c50fe6c134ab197b6ec1fc4fa9
+      internalID: -1896165617
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: catmainnew_ld-Sheet_5
+      name: catmainnew_rd-Sheet_5
       rect:
         serializedVersion: 2
         x: 160
         y: 0
         width: 32
         height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 011730d574033744aab71d7fc34ed129
-      internalID: -1538646991
+      spriteID: bd86c878542b96c42831b153f041834a
+      internalID: -2041358497
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: catmainnew_ld-Sheet_6
+      name: catmainnew_rd-Sheet_6
       rect:
         serializedVersion: 2
         x: 192
         y: 0
         width: 32
         height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8e7037bc48916914e900fdf905db84b9
-      internalID: 1524258570
+      spriteID: b2fb55883488f0249a73aebe4c3d7e10
+      internalID: -1759997163
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: catmainnew_ld-Sheet_7
+      name: catmainnew_rd-Sheet_7
       rect:
         serializedVersion: 2
         x: 224
         y: 0
         width: 32
         height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a6100eedfd2c3e44098098492f3678c4
-      internalID: 842619783
+      spriteID: 5be73aeb417bf0a48a8f0a74633795a6
+      internalID: 2097888771
       vertices: []
       indices: 
       edges: []
@@ -301,14 +301,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      catmainnew_ld-Sheet_0: -1974557530
-      catmainnew_ld-Sheet_1: 1607580243
-      catmainnew_ld-Sheet_2: 316037928
-      catmainnew_ld-Sheet_3: -1523178306
-      catmainnew_ld-Sheet_4: -287937677
-      catmainnew_ld-Sheet_5: -1538646991
-      catmainnew_ld-Sheet_6: 1524258570
-      catmainnew_ld-Sheet_7: 842619783
+      catmainnew_rd-Sheet_0: 226753537
+      catmainnew_rd-Sheet_1: 1768709664
+      catmainnew_rd-Sheet_2: -1430392472
+      catmainnew_rd-Sheet_3: -465965555
+      catmainnew_rd-Sheet_4: -1896165617
+      catmainnew_rd-Sheet_5: -2041358497
+      catmainnew_rd-Sheet_6: -1759997163
+      catmainnew_rd-Sheet_7: 2097888771
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
