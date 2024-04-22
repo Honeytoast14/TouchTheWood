@@ -9,7 +9,6 @@ using UnityEngine.SceneManagement;
 public class Teleport : MonoBehaviour
 {
     [SerializeField] Animator fadeTransition;
-    [SerializeField] string essentialObjectsSceneName;
 
     [Header("In Scene")]
     [SerializeField] Transform inDestination;
@@ -23,10 +22,10 @@ public class Teleport : MonoBehaviour
     public bool right;
     public bool front;
     public bool back;
-    public bool leftFront;
-    public bool rightFront;
-    public bool leftBack;
-    public bool rightBack;
+    public bool leftDown;
+    public bool rightDown;
+    public bool leftUp;
+    public bool rightUp;
     Animator playerFaceTo;
     IsometricPlayerMovementController playerController;
     TitleGame titleGame;
@@ -113,24 +112,24 @@ public class Teleport : MonoBehaviour
             playerFaceTo.SetFloat("Horizontal", 0);
             playerFaceTo.SetFloat("Vertical", 1);
         }
-        else if (leftFront)
+        else if (leftDown)
         {
             // playerFaceTo.Play("Stable_Down_Left");
             playerFaceTo.SetFloat("Horizontal", -1);
             playerFaceTo.SetFloat("Vertical", -1);
         }
-        else if (rightFront)
+        else if (rightDown)
         {
             // playerFaceTo.Play("Stable_Down_Right");
             playerFaceTo.SetFloat("Horizontal", 1);
             playerFaceTo.SetFloat("Vertical", -1);
         }
-        else if (leftBack)
+        else if (leftUp)
         {// playerFaceTo.Play("Stable_Up_Left");
             playerFaceTo.SetFloat("Horizontal", -1);
             playerFaceTo.SetFloat("Vertical", 1);
         }
-        else if (rightBack)
+        else if (rightUp)
         { // playerFaceTo.Play("Stable_Up_Right");
             playerFaceTo.SetFloat("Horizontal", 1);
             playerFaceTo.SetFloat("Vertical", 1);
