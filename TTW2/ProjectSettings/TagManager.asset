@@ -44,15 +44,9 @@ TagManager:
   - name: underground
     uniqueID: 2065437559
     locked: 0
+  - name: colider
+    uniqueID: 1216900991
+    locked: 0
   - name: Default
     uniqueID: 0
-    locked: 0
-  - name: wall1
-    uniqueID: 622914139
-    locked: 0
-  - name: wall2
-    uniqueID: 1260420933
-    locked: 0
-  - name: Player
-    uniqueID: 470951853
     locked: 0

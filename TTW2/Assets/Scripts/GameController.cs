@@ -1,25 +1,37 @@
 using System;
+using System.Collections;
+using System.Diagnostics;
 using UnityEngine;
 using Yarn.Unity;
+using Debug = UnityEngine.Debug;
 
 public enum GameState { FreeRoam, Menu, Inventory, Dialogue }
 public class GameController : MonoBehaviour
 {
     [SerializeField] InventoryUI inventoryUI;
     [SerializeField] NewLineView newLineView;
+    [SerializeField] DialogueRunner dialogueRunner;
     public GameState state;
 
     MenuController menuController;
+    TitleGame titleGame;
+
+    ItemGiver testItemGiver;
     void Awake()
     {
+        Time.timeScale = 1;
         menuController = GetComponent<MenuController>();
+        titleGame = GetComponent<TitleGame>();
 
         menuController.onBack += () =>
         {
             state = GameState.FreeRoam;
         };
         menuController.onMenuSelected += onMenuSelected;
+
+        ItemDB.Init();
     }
+
     void Update()
     {
         if (state == GameState.FreeRoam)
@@ -49,7 +61,7 @@ public class GameController : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Z))
             {
-                newLineView.HandleUpdate();
+                StartCoroutine(PressDialogue());
             }
         }
     }
@@ -65,5 +77,23 @@ public class GameController : MonoBehaviour
             menuController.cover.enabled = true;
             inventoryUI.cover.enabled = false;
         }
+        if (selectedItem == 4)
+        {
+            EssentialObjects essentialObjects = FindObjectOfType<EssentialObjects>();
+            if (essentialObjects != null)
+            {
+                Destroy(essentialObjects.gameObject);
+            }
+            titleGame.LoadScene("TitleGame");
+        }
+    }
+
+    private IEnumerator PressDialogue()
+    {
+        yield return new WaitForSeconds(0.2f);
+        // Debug.Log("Z is pressed from GameController(Dialogue State)");
+        //newLineView.HandleUpdate();
+        newLineView.UserRequestedViewAdvancement();
+        yield return new WaitForSeconds(0.1f);
     }
 }

@@ -6,34 +6,45 @@ public class TriggerEvent : MonoBehaviour
 {
     [Header("NPCData")]
     [SerializeField] public NPCData npcData;
+
     [Header("Item Giver")]
     public ItemGiver itemGiver;
+
     [Header("Pick Up")]
     public PickUp pickUp;
+
+    [Header("Quest")]
+    [SerializeField] QuestData questToStart;
+    [SerializeField] QuestData questToComplete;
     private DialogueRunner dialogueRunner;
     GameController gameController;
-    Rigidbody2D rb;
-    GameObject player;
+    Quest activeQuest;
+    IsometricPlayerMovementController playerController;
 
     public bool canTalk = false;
     private bool interactable = false;
     private bool isCurrentConversation = false;
 
+    public static TriggerEvent Instance { get; private set; }
+
+    void Awake()
+    {
+        Instance = this;
+    }
+
     void Start()
     {
-        player = GameObject.Find("Player");
-        //itemGiver = GetComponent<ItemGiver>();
-        rb = player.gameObject.GetComponent<Rigidbody2D>();
         dialogueRunner = FindObjectOfType<DialogueRunner>();
         gameController = FindObjectOfType<GameController>();
+        playerController = FindObjectOfType<IsometricPlayerMovementController>();
 
-        dialogueRunner.onDialogueStart.AddListener(UseCoolDownTalk);
         dialogueRunner.onDialogueComplete.AddListener(EndDialouge);
 
         if (itemGiver != null)
         {
             itemGiver.enabled = false;
         }
+
         if (pickUp != null)
         {
             pickUp.enabled = false;
@@ -44,7 +55,38 @@ public class TriggerEvent : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Z) && interactable && gameController.state == GameState.FreeRoam && !dialogueRunner.IsDialogueRunning)
         {
-            StartDialogue();
+            if (questToStart != null)
+            {
+                activeQuest = new Quest(questToStart);
+                activeQuest.StartQuest();
+                questToStart = null;
+            }
+            else if (activeQuest != null)
+            {
+                if (activeQuest.canBeComplete())
+                {
+                    activeQuest.CompleteQuest(playerController.transform);
+                    activeQuest = null;
+                }
+                else
+                {
+                    activeQuest.InProgressQuest();
+                }
+            }
+            else if (questToComplete != null)
+            {
+                var quest = new Quest(questToComplete);
+                quest.CompleteQuest(playerController.transform);
+                questToComplete = null;
+
+                Debug.Log($"{quest.Base.Name} is complete!");
+            }
+            else
+            {
+                //Debug.Log("Z is pressed from triggerEvent");
+                StartDialogue(npcData.dialogueID);
+            }
+
             if (itemGiver != null)
             {
                 itemGiver.enabled = true;
@@ -58,25 +100,13 @@ public class TriggerEvent : MonoBehaviour
 
         if (itemGiver != null && interactable && itemGiver.CanBeGiven())
         {
-            itemGiver.GiveItem(player.GetComponent<IsometricPlayerMovementController>());
+            itemGiver.GiveItem(playerController);
         }
 
         if (pickUp != null && interactable && pickUp.CanBeGiven())
         {
-            pickUp.GiveItem(player.GetComponent<IsometricPlayerMovementController>());
+            pickUp.GiveItem(playerController);
         }
-    }
-
-
-    public void UseCoolDownTalk()
-    {
-        StartCoroutine(CoolDownTalk());
-    }
-
-    private IEnumerator CoolDownTalk()
-    {
-        yield return new WaitForSeconds(0.1f);
-        canTalk = true;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -95,33 +125,34 @@ public class TriggerEvent : MonoBehaviour
         }
     }
 
-    private void EndDialouge()
+    public void EndDialouge()
     {
+        gameController.state = GameState.FreeRoam;
+
         if (isCurrentConversation)
         {
-            player.gameObject.GetComponent<IsometricPlayerMovementController>().enabled = true;
-            rb.constraints = RigidbodyConstraints2D.None;
-            rb.constraints = RigidbodyConstraints2D.FreezeRotation;
-
+            playerController.ResumeMoving();
             isCurrentConversation = false;
         }
-        gameController.state = GameState.FreeRoam;
 
         canTalk = false;
     }
 
-    public void StartDialogue()
+    public void StartDialogue(string npcDialogue)
     {
+        playerController.StopMoving();
+
         if (npcData != null)
         {
             isCurrentConversation = true;
-            dialogueRunner.StartDialogue(npcData.dialogueID);
+            dialogueRunner.StartDialogue(npcDialogue);
         }
 
         gameController.state = GameState.Dialogue;
-
-        player.gameObject.GetComponent<IsometricPlayerMovementController>().enabled = false;
-        player.gameObject.GetComponent<Animator>().SetFloat("Speed", 0f);
-        rb.constraints = RigidbodyConstraints2D.FreezeAll;
     }
+}
+
+public class NPCQuestSaveData
+{
+    public QuestSaveData activeQuest;
 }

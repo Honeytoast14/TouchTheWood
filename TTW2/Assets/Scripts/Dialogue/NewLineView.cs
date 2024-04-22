@@ -4,9 +4,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using UnityEditor.VersionControl;
 using UnityEditor;
 using System.Linq;
+using UnityEngine.UIElements;
+using Image = UnityEngine.UI.Image;
 
 namespace Yarn.Unity
 {
@@ -239,17 +240,24 @@ namespace Yarn.Unity
 
             dialogueRunner = FindObjectOfType<DialogueRunner>();
             dialogueRunner.onDialogueComplete.AddListener(setDefault);
-            dialogueRunner.AddCommandHandler<bool>("setGroupTalk", SetGroupTalk);
         }
 
-        public void HandleUpdate()
-        {
-            if (trigger.canTalk)
-            {
-                UserRequestedViewAdvancement();
-            }
-        }
+        // public void HandleUpdate()
+        // {
+        //     // StartCoroutine(WaitTheText());
+        //     // UserRequestedViewAdvancement();
+        //     if (trigger.canTalk)
+        //     {
+        //         Debug.Log("can talk is true");
+        //         UserRequestedViewAdvancement();
+        //     }
+        // }
 
+        // private IEnumerator WaitTheText()
+        // {
+        //     yield return new WaitForSeconds(0.2f);
+        //     UserRequestedViewAdvancement();
+        // }
         public void setDefault()
         {
             groupTalk = false;
@@ -502,10 +510,10 @@ namespace Yarn.Unity
                         {
                             portraitBox.SetActive(true);
 
-                            Sprite portraitSprite = AssetDatabase.LoadAssetAtPath<Sprite>(npcData.portraitPath);
+                            Sprite portraitSprite = Resources.Load<Sprite>(npcData.portraitPath);
                             if (portraitSprite != null)
                             {
-                                Debug.Log("Portrait Sprite Loaded Successfully");
+                                //Debug.Log("Portrait Sprite Loaded Successfully");
                                 myImage.sprite = portraitSprite;
                                 dialoguePanel.GetComponent<HorizontalLayoutGroup>().padding.left = 85;
                                 lineText.rectTransform.sizeDelta = new Vector2(860, 259);
