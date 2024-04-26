@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: SystemPickUp
   m_EditorClassIdentifier: 
   npcName: SystemPickUp
-  dialogueID: PickUpItem1
+  dialogueName: PickUpItem1
   hasPortrait: 0
   portraitPath: 

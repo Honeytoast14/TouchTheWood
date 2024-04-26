@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Bird
   m_EditorClassIdentifier: 
   npcName: Bird
-  dialogueID: bird1
+  dialogueName: bird1
   hasPortrait: 1
   portraitPath: Portraits/Bird1

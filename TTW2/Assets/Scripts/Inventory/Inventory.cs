@@ -58,6 +58,12 @@ public class Inventory : MonoBehaviour, ISavable
         onUpdated?.Invoke();
     }
 
+    public bool CanUseItem(ItemData item)
+    {
+        var itemSlot = slots.FirstOrDefault(slot => slot.Item == item && item.canUse);
+        return itemSlot != null;
+    }
+
     public bool HasItem(ItemData item)
     {
         var itemSlot = slots.Exists(slot => slot.Item == item);

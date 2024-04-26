@@ -8,6 +8,12 @@ public class PickUp : MonoBehaviour, ISavable
     public bool Used { get; set; } = false;
     bool canPick = false;
     bool collisionCheck;
+    AddGameObject addGameObject;
+
+    void Start()
+    {
+        addGameObject = FindObjectOfType<AddGameObject>();
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -27,7 +33,8 @@ public class PickUp : MonoBehaviour, ISavable
 
     public void GiveItem(IsometricPlayerMovementController player)
     {
-        Inventory inventory = player.GetComponent<Inventory>();
+        var inventory = Inventory.GetInventory();
+        var canUseItem = inventory.CanUseItem(item);
         if (inventory != null)
         {
             inventory.AddItem(item, count);
@@ -42,6 +49,15 @@ public class PickUp : MonoBehaviour, ISavable
             GetComponent<CapsuleCollider2D>().enabled = false;
             GetComponent<TriggerEvent>().enabled = false;
             GetComponent<PickUp>().enabled = false;
+
+            if (addGameObject != null)
+            {
+                addGameObject.CreateChildObject(item.name);
+                if (item == canUseItem)
+                {
+
+                }
+            }
         }
         else
         {

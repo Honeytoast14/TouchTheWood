@@ -84,7 +84,7 @@ public class TriggerEvent : MonoBehaviour
             else
             {
                 //Debug.Log("Z is pressed from triggerEvent");
-                StartDialogue(npcData.dialogueID);
+                StartDialogue(npcData.dialogueName);
             }
 
             if (itemGiver != null)

@@ -70,6 +70,7 @@ public class Teleport : MonoBehaviour
 
             yield return new WaitForSeconds(0.2f);
             fadeTransition.SetTrigger("Fade Out");
+            yield return new WaitForSeconds(0.15f);
             playerController.ResumeMoving();
         }
     }
@@ -82,8 +83,8 @@ public class Teleport : MonoBehaviour
 
         titleGame.LoadScene(nameScene);
         player.transform.position = placeToGo.position;
-        playerController.ResumeMoving();
         SetPlayerFaceTo(playerFaceTo);
+        playerController.ResumeMoving();
 
         yield return new WaitForSeconds(0.15f);
         fadeTransition.SetTrigger("Fade Out");

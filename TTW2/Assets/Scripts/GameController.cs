@@ -5,18 +5,18 @@ using UnityEngine;
 using Yarn.Unity;
 using Debug = UnityEngine.Debug;
 
-public enum GameState { FreeRoam, Menu, Inventory, Dialogue }
+public enum GameState { FreeRoam, Menu, Inventory, Dialogue, PuzzlePicture }
 public class GameController : MonoBehaviour
 {
     [SerializeField] InventoryUI inventoryUI;
     [SerializeField] NewLineView newLineView;
-    [SerializeField] DialogueRunner dialogueRunner;
     public GameState state;
 
+    public static GameController Instance { get; private set; }
+    public SceneDetails currentScene { get; private set; }
+    public SceneDetails previousScene { get; private set; }
     MenuController menuController;
     TitleGame titleGame;
-
-    ItemGiver testItemGiver;
     void Awake()
     {
         Time.timeScale = 1;
@@ -30,6 +30,8 @@ public class GameController : MonoBehaviour
         menuController.onMenuSelected += onMenuSelected;
 
         ItemDB.Init();
+
+        Instance = this;
     }
 
     void Update()
@@ -64,6 +66,18 @@ public class GameController : MonoBehaviour
                 StartCoroutine(PressDialogue());
             }
         }
+        else if (state == GameState.PuzzlePicture)
+        {
+            Action onBack = () =>
+            {
+                state = GameState.FreeRoam;
+            };
+
+            if (PuzzleRotatePic.Instance != null)
+                PuzzleRotatePic.Instance.HandleUpdate(onBack);
+            else
+                Debug.LogError("Can't find PuzzleRotatePic");
+        }
     }
 
     void onMenuSelected(int selectedItem)
@@ -77,7 +91,7 @@ public class GameController : MonoBehaviour
             menuController.cover.enabled = true;
             inventoryUI.cover.enabled = false;
         }
-        if (selectedItem == 4)
+        if (selectedItem == 4) // Exit Game
         {
             EssentialObjects essentialObjects = FindObjectOfType<EssentialObjects>();
             if (essentialObjects != null)
@@ -95,5 +109,11 @@ public class GameController : MonoBehaviour
         //newLineView.HandleUpdate();
         newLineView.UserRequestedViewAdvancement();
         yield return new WaitForSeconds(0.1f);
+    }
+
+    public void CurrrentScene(SceneDetails curScene)
+    {
+        previousScene = currentScene;
+        currentScene = curScene;
     }
 }

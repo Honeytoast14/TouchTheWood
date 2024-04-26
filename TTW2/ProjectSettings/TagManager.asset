@@ -8,6 +8,8 @@ TagManager:
   - SaveSpot
   - Item
   - Teleport Portal
+  - PuzzleTrigger
+  - Obstacle
   layers:
   - Default
   - TransparentFX

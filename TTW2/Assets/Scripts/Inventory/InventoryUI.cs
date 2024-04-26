@@ -79,6 +79,7 @@ public class InventoryUI : MonoBehaviour
 
     public void HandleUpdate(Action onBack)
     {
+        var slot = inventory.Slots[selectedItem];
         if (Input.GetKeyDown(KeyCode.X) || Input.GetKeyDown(KeyCode.Escape))
         {
             onBack?.Invoke();
@@ -88,6 +89,14 @@ public class InventoryUI : MonoBehaviour
             }
             cover.enabled = true;
             ResetItemData();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            if (slot.Item == inventory.CanUseItem(slot.Item))
+            {
+                Debug.Log("Select item that can use");
+            }
         }
 
         int preSelection = selectedItem;

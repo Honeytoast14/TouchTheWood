@@ -5,7 +5,7 @@ using UnityEngine;
 public class NPCData : ScriptableObject
 {
     public string npcName;
-    public string dialogueID;
+    public string dialogueName;
     public bool hasPortrait;
 
     public string portraitPath;
