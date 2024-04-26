@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 public class MenuController : MonoBehaviour
 {
+    [SerializeField] List<GameObject> borderButton;
     [SerializeField] public GameObject MenuPage;
     [SerializeField] public Image cover;
     public event Action<int> onMenuSelected;
@@ -56,18 +57,20 @@ public class MenuController : MonoBehaviour
     {
         for (int i = 0; i < menuButtons.Count; i++)
         {
-            ColorBlock colors = menuButtons[i].colors;
+            // ColorBlock colors = menuButtons[i].colors;
 
             if (i == selectedItem)
             {
-                colors.normalColor = GlobalSetting.i.HighlightColor;
+                // colors.normalColor = GlobalSetting.i.HighlightColor;
+                borderButton[i].SetActive(true);
             }
             else
             {
-                colors.normalColor = GlobalSetting.i.NormalColor;
+                // colors.normalColor = GlobalSetting.i.NormalColor;
+                borderButton[i].SetActive(false);
             }
 
-            menuButtons[i].colors = colors;
+            // menuButtons[i].colors = colors;
         }
     }
 

@@ -91,7 +91,7 @@ public class GameController : MonoBehaviour
             menuController.cover.enabled = true;
             inventoryUI.cover.enabled = false;
         }
-        if (selectedItem == 4) // Exit Game
+        if (selectedItem == 3) // Exit Game
         {
             EssentialObjects essentialObjects = FindObjectOfType<EssentialObjects>();
             if (essentialObjects != null)
