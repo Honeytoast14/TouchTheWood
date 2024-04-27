@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: ba535716c0d2d364396e93b11b065546
+guid: 71a2ff08d1154354d94615f1c6f20e60
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,7 +110,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: colider_0
+      name: rock_0
       rect:
         serializedVersion: 2
         x: 0
@@ -118,20 +118,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.25}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e1723e6c11569a440b20b316ff379636
-      internalID: -1202251872
+      spriteID: 33b0e62b545124b48b5b63a32933f310
+      internalID: -122055944
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: colider_1
+      name: rock_1
       rect:
         serializedVersion: 2
         x: 32
@@ -139,20 +139,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.25}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6c736a6fb56cbd445bda3f1cd52409ae
-      internalID: -2037458103
+      spriteID: 10dae298ab81e3847bfebbe0b864bd08
+      internalID: -1762947001
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: colider_2
+      name: rock_2
       rect:
         serializedVersion: 2
         x: 64
@@ -160,20 +160,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.25}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 00264df37c2b5de4692ecac082a23de4
-      internalID: -1087303679
+      spriteID: ab468f551c5e9564a89c50a16b7e17c7
+      internalID: -442135473
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: colider_3
+      name: rock_3
       rect:
         serializedVersion: 2
         x: 96
@@ -181,14 +181,98 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.25}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2558f13198c2961429143d907e862dcb
-      internalID: -491651018
+      spriteID: f3d1d4c234bf9784eaa45729f55b6231
+      internalID: 506679641
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rock_4
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 32
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d219597d9876b384da4e1e70729e6ecb
+      internalID: 1777469102
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rock_5
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 0
+        width: 32
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f8cef4a23fff561478c1acce1835dbe5
+      internalID: 1343684746
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rock_6
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 32
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 99b3e4ce5f9d42e4c986f27957265f4a
+      internalID: -752099831
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rock_7
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 0
+        width: 32
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 570b887e2f9e4134691a534686cdd120
+      internalID: -950944747
       vertices: []
       indices: 
       edges: []
@@ -204,10 +288,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      colider_0: -1202251872
-      colider_1: -2037458103
-      colider_2: -1087303679
-      colider_3: -491651018
+      rock_0: -122055944
+      rock_1: -1762947001
+      rock_2: -442135473
+      rock_3: 506679641
+      rock_4: 1777469102
+      rock_5: 1343684746
+      rock_6: -752099831
+      rock_7: -950944747
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

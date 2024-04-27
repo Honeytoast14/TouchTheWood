@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: ba535716c0d2d364396e93b11b065546
+guid: cba37924dbc2435449b023880480b77d
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,7 +110,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: colider_0
+      name: switch_0
       rect:
         serializedVersion: 2
         x: 0
@@ -118,20 +118,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.25}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e1723e6c11569a440b20b316ff379636
-      internalID: -1202251872
+      spriteID: ef4dc8b7e7cd3ed499e49f16a703738c
+      internalID: 1448620375
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: colider_1
+      name: switch_1
       rect:
         serializedVersion: 2
         x: 32
@@ -139,56 +139,14 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.25}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6c736a6fb56cbd445bda3f1cd52409ae
-      internalID: -2037458103
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: colider_2
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 0
-        width: 32
-        height: 32
-      alignment: 9
-      pivot: {x: 0.5, y: 0.25}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 00264df37c2b5de4692ecac082a23de4
-      internalID: -1087303679
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: colider_3
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 0
-        width: 32
-        height: 32
-      alignment: 9
-      pivot: {x: 0.5, y: 0.25}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2558f13198c2961429143d907e862dcb
-      internalID: -491651018
+      spriteID: 99ede93ac086e594e81efb1804c127ce
+      internalID: -672972097
       vertices: []
       indices: 
       edges: []
@@ -204,10 +162,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      colider_0: -1202251872
-      colider_1: -2037458103
-      colider_2: -1087303679
-      colider_3: -491651018
+      switch_0: 1448620375
+      switch_1: -672972097
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

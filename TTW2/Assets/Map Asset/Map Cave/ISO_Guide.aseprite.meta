@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: d528dd0ab7032904896ce3d9edb83b32
+guid: bb0502fc5a093dc48ab116d4990a7909
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -119,18 +119,18 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: asset map cave
+  - name: ISO_Guide
     originalName: 
-    pivot: {x: 1.0218023, y: -1.0220588}
+    pivot: {x: 0.49802372, y: 0.011126566}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 1376
-      height: 816
-    spriteID: 03c78401db920ba47a73b72579ecb524
+      width: 3036
+      height: 1438
+    spriteID: 52e6bacf87892044daffc977f44d988f
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -142,23 +142,23 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: 320957733
-    name: asset map cave
+    guid: 862141984
+    name: ISO_Guide
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: asset map cave
+    - name: ISO_Guide
       frameIndex: 0
       cellRect:
-        x: 112
-        y: 834
-        width: 1376
-        height: 816
-      spriteId: 03c78401db920ba47a73b72579ecb524
+        x: 0
+        y: -16
+        width: 3036
+        height: 1438
+      spriteId: 52e6bacf87892044daffc977f44d988f
     linkedCells: []
     parentIndex: -1
   platformSettings: []
   secondarySpriteTextures: []
   spritePackingTag: 
-  canvasSize: {x: 3036, y: 1666}
+  canvasSize: {x: 3024, y: 1408}

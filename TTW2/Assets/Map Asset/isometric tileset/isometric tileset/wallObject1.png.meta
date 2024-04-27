@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: ba535716c0d2d364396e93b11b065546
+guid: f4aba8067917d004d975f57dc8945ab4
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -46,8 +46,8 @@ TextureImporter:
   spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
-  alignment: 0
-  spritePivot: {x: 0.5, y: 0.5}
+  alignment: 9
+  spritePivot: {x: 0.5, y: 0.75}
   spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
@@ -110,7 +110,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: colider_0
+      name: wallObject1_0
       rect:
         serializedVersion: 2
         x: 0
@@ -118,20 +118,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.25}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e1723e6c11569a440b20b316ff379636
-      internalID: -1202251872
+      spriteID: 3d7da5502a24f484f8ff504722f19301
+      internalID: 689480228
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: colider_1
+      name: wallObject1_1
       rect:
         serializedVersion: 2
         x: 32
@@ -139,56 +139,14 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.25}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6c736a6fb56cbd445bda3f1cd52409ae
-      internalID: -2037458103
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: colider_2
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 0
-        width: 32
-        height: 32
-      alignment: 9
-      pivot: {x: 0.5, y: 0.25}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 00264df37c2b5de4692ecac082a23de4
-      internalID: -1087303679
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: colider_3
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 0
-        width: 32
-        height: 32
-      alignment: 9
-      pivot: {x: 0.5, y: 0.25}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2558f13198c2961429143d907e862dcb
-      internalID: -491651018
+      spriteID: 751bbdd40d6a0d74c9211768c829348b
+      internalID: -1953225589
       vertices: []
       indices: 
       edges: []
@@ -197,17 +155,15 @@ TextureImporter:
     physicsShape: []
     bones: []
     spriteID: 5e97eb03825dee720800000000000000
-    internalID: 0
+    internalID: 1537655665
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      colider_0: -1202251872
-      colider_1: -2037458103
-      colider_2: -1087303679
-      colider_3: -491651018
+      wallObject1_0: 689480228
+      wallObject1_1: -1953225589
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
