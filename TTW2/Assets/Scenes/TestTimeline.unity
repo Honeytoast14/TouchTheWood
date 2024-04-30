@@ -24969,7 +24969,6 @@ MonoBehaviour:
   questToCheck: {fileID: 11400000, guid: 6cf93533a9650cd46846a3bb91e87da7, type: 2}
   onStart: 0
   onComplete: 2
-  questList: {fileID: 0}
 --- !u!4 &1860104386
 Transform:
   m_ObjectHideFlags: 0
@@ -30996,27 +30995,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6110112118386522828, guid: 369fefae04806a84b950e336b4fd5001, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6110112118386522828, guid: 369fefae04806a84b950e336b4fd5001, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6110112118386522828, guid: 369fefae04806a84b950e336b4fd5001, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 175
       objectReference: {fileID: 0}
     - target: {fileID: 6110112118386522828, guid: 369fefae04806a84b950e336b4fd5001, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 175
       objectReference: {fileID: 0}
     - target: {fileID: 6110112118386522828, guid: 369fefae04806a84b950e336b4fd5001, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 137.5
       objectReference: {fileID: 0}
     - target: {fileID: 6110112118386522828, guid: 369fefae04806a84b950e336b4fd5001, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -107.5
       objectReference: {fileID: 0}
     - target: {fileID: 6138700245421026340, guid: 369fefae04806a84b950e336b4fd5001, type: 3}
       propertyPath: m_AnchoredPosition.y
