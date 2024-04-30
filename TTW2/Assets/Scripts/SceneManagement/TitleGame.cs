@@ -7,19 +7,36 @@ using UnityEngine.UI;
 public class TitleGame : MonoBehaviour
 {
     [SerializeField] List<Button> disableButtons;
-
+    [SerializeField] Animator fadeTransition;
     public GameObject loadingScene;
     public Slider loadingBar;
+    SoundPlayer soundPlayer;
+    GameObject title;
     void Start()
     {
+        soundPlayer = FindObjectOfType<SoundPlayer>();
+
         foreach (Button button in disableButtons)
         {
             button.interactable = false;
         }
+
+        if (title = GameObject.Find("ButtonGroup"))
+        {
+            soundPlayer.PlayerMusic();
+        }
+
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     IEnumerator LoadSceneAsyn(string sceneName)
     {
+        fadeTransition.gameObject.SetActive(true);
+        fadeTransition.SetTrigger("Fade In");
+        yield return new WaitForSeconds(0.9f);
+        fadeTransition.gameObject.SetActive(false);
+
         AsyncOperation operation = SceneManager.LoadSceneAsync(sceneName);
         loadingScene.SetActive(true);
         while (!operation.isDone)
@@ -31,6 +48,8 @@ public class TitleGame : MonoBehaviour
 
     public void ExitGame()
     {
+        StartCoroutine(SetFadeIn());
+
         Application.Quit();
     }
     public void LoadScene(string nameScene)
@@ -38,4 +57,19 @@ public class TitleGame : MonoBehaviour
         StartCoroutine(LoadSceneAsyn(nameScene));
     }
 
+    IEnumerator SetFadeIn()
+    {
+        fadeTransition.SetTrigger("Fade In");
+        yield return new WaitForSeconds(1f);
+    }
+
+    public void CloseTitle(GameObject gameObject)
+    {
+        gameObject.SetActive(false);
+    }
+
+    public void OpenTitle()
+    {
+        title.SetActive(true);
+    }
 }

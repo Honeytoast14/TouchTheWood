@@ -80,6 +80,7 @@ public class InventoryUI : MonoBehaviour
     public void HandleUpdate(Action onBack)
     {
         var slot = inventory.Slots[selectedItem];
+
         if (Input.GetKeyDown(KeyCode.X) || Input.GetKeyDown(KeyCode.Escape))
         {
             onBack?.Invoke();
@@ -96,6 +97,12 @@ public class InventoryUI : MonoBehaviour
             if (slot.Item == inventory.CanUseItem(slot.Item))
             {
                 Debug.Log("Select item that can use");
+                if (slot.Item.name == "PicturePuzzle1")
+                    PuzzleRotatePicFirst.Instance.OpenPicturePuzzle();
+                if (slot.Item.name == "PicturePuzzle2")
+                    PuzzleRotatePicSecond.Instance.OpenPicturePuzzle();
+                if (slot.Item.name == "PicturePuzzle3")
+                    PuzzleRotatePicThird.Instance.OpenPicturePuzzle();
             }
         }
 

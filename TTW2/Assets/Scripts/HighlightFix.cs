@@ -3,20 +3,40 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Rendering;
 using UnityEngine.UI;
 
-
 [RequireComponent(typeof(Selectable))]
-public class HighlightFix : MonoBehaviour, IPointerEnterHandler, IDeselectHandler
+public class HighlightFix : MonoBehaviour, IDeselectHandler, ISelectHandler
 {
-    public void OnPointerEnter(PointerEventData eventData)
+    [SerializeField] GameObject border;
+    SoundPlayer soundPlayer;
+
+    private bool isSelected = false;
+
+    void Start()
     {
-        if (!EventSystem.current.alreadySelecting)
-            EventSystem.current.SetSelectedGameObject(this.gameObject);
+        border.SetActive(false);
+
+        soundPlayer = GameObject.FindGameObjectWithTag("Audio").GetComponent<SoundPlayer>();
+    }
+
+    public void OnSelect(BaseEventData eventData)
+    {
+        isSelected = true;
+        border.SetActive(true);
     }
 
     public void OnDeselect(BaseEventData eventData)
     {
-        this.GetComponent<Selectable>().OnPointerExit(null);
+        if (isSelected)
+        {
+            isSelected = false;
+            border.SetActive(false);
+            if (soundPlayer != null)
+            {
+                soundPlayer.PlayerSFX(soundPlayer.buttonClick);
+            }
+        }
     }
 }

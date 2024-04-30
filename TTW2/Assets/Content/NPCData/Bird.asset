@@ -15,4 +15,4 @@ MonoBehaviour:
   npcName: Bird
   dialogueName: bird1
   hasPortrait: 1
-  portraitPath: Portraits/Bird1
+  portraitPath: Portraits/Test/Bird1

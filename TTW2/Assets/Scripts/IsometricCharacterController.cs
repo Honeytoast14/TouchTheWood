@@ -11,7 +11,7 @@ public class IsometricPlayerMovementController : MonoBehaviour, ISavable
     float movementSpeed;
     public bool canMove = true;
     public bool isMoving;
-
+    public static IsometricPlayerMovementController Instance { get; private set; }
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
@@ -20,8 +20,11 @@ public class IsometricPlayerMovementController : MonoBehaviour, ISavable
 
     public void Update()
     {
-        Move();
-        Animate();
+        if (GameController.Instance.state == GameState.FreeRoam)
+        {
+            Move();
+            Animate();
+        }
 
         if (!canMove)
         {

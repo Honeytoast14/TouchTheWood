@@ -10,6 +10,7 @@ TagManager:
   - Teleport Portal
   - PuzzleTrigger
   - Obstacle
+  - Audio
   layers:
   - Default
   - TransparentFX

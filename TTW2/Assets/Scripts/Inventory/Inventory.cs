@@ -35,6 +35,7 @@ public class Inventory : MonoBehaviour, ISavable
             });
         }
 
+        Debug.Log($"item: {item} and count: {count}");
         onUpdated?.Invoke();
     }
 

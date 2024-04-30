@@ -7,12 +7,7 @@ using UnityEngine.SceneManagement;
 public class SceneDetails : MonoBehaviour
 {
     [SerializeField] List<SceneDetails> connectedScene;
-    public static SceneDetails Instance { get; private set; }
-    public bool isLoad { get; set; }
-    void Awake()
-    {
-        Instance = this;
-    }
+    public bool isLoad { get; private set; }
 
     private void OnTriggerEnter2D(Collider2D player)
     {
@@ -23,7 +18,7 @@ public class SceneDetails : MonoBehaviour
 
             foreach (var scene in connectedScene)
             {
-                scene.LoadAdditiveScene(gameObject.name);
+                scene.LoadAdditiveScene(scene.name);
             }
 
             if (GameController.Instance.previousScene != null)
