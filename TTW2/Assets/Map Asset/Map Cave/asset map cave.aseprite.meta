@@ -121,15 +121,15 @@ ScriptedImporter:
   animatedSpriteImportData:
   - name: asset map cave
     originalName: 
-    pivot: {x: 0.8531554, y: -0.5165441}
+    pivot: {x: 1.0218023, y: -1.0220588}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 1648
-      height: 1088
+      width: 1376
+      height: 816
     spriteID: 03c78401db920ba47a73b72579ecb524
     spriteBone: []
     spriteOutline: []
@@ -152,9 +152,9 @@ ScriptedImporter:
       frameIndex: 0
       cellRect:
         x: 112
-        y: 562
-        width: 1648
-        height: 1088
+        y: 834
+        width: 1376
+        height: 816
       spriteId: 03c78401db920ba47a73b72579ecb524
     linkedCells: []
     parentIndex: -1
