@@ -20,8 +20,8 @@ public class Teleport : MonoBehaviour
     [Header("Face to")]
     public bool left;
     public bool right;
-    public bool front;
-    public bool back;
+    public bool up;
+    public bool down;
     public bool leftDown;
     public bool rightDown;
     public bool leftUp;
@@ -95,36 +95,36 @@ public class Teleport : MonoBehaviour
         if (left)
         {
             //playerFaceTo.Play("Stable_left");
-            playerFaceTo.SetFloat("Horizontal", -1);
-            playerFaceTo.SetFloat("Vertical", 0);
+            animator.SetFloat("Horizontal", -1);
+            animator.SetFloat("Vertical", 0);
             Debug.Log("Set face to left");
         }
         else if (right)
         {
             // playerFaceTo.Play("Stable_right");
-            playerFaceTo.SetFloat("Horizontal", 1);
-            playerFaceTo.SetFloat("Vertical", 0);
+            animator.SetFloat("Horizontal", 1);
+            animator.SetFloat("Vertical", 0);
             Debug.Log("Set face to right");
         }
-        else if (front)
+        else if (down)
         {
             // playerFaceTo.Play("Stable_Down");
-            playerFaceTo.SetFloat("Horizontal", 0);
-            playerFaceTo.SetFloat("Vertical", -1);
+            animator.SetFloat("Horizontal", 0);
+            animator.SetFloat("Vertical", -1);
             Debug.Log("Set face to down");
         }
-        else if (back)
+        else if (up)
         {
             // playerFaceTo.Play("Stable_Up");
-            playerFaceTo.SetFloat("Horizontal", 0);
-            playerFaceTo.SetFloat("Vertical", 1);
+            animator.SetFloat("Horizontal", 0);
+            animator.SetFloat("Vertical", 1);
             Debug.Log("Set face to up");
         }
         else if (leftDown)
         {
             // playerFaceTo.Play("Stable_Down_Left");
-            playerFaceTo.SetFloat("Horizontal", -1);
-            playerFaceTo.SetFloat("Vertical", -1);
+            animator.SetFloat("Horizontal", -1);
+            animator.SetFloat("Vertical", -1);
             Debug.Log("Set face to leftDown");
         }
         else if (rightDown)
@@ -136,14 +136,14 @@ public class Teleport : MonoBehaviour
         }
         else if (leftUp)
         {// playerFaceTo.Play("Stable_Up_Left");
-            playerFaceTo.SetFloat("Horizontal", -1);
-            playerFaceTo.SetFloat("Vertical", 1);
+            animator.SetFloat("Horizontal", -1);
+            animator.SetFloat("Vertical", 1);
             Debug.Log("Set face to leftUp");
         }
         else if (rightUp)
         { // playerFaceTo.Play("Stable_Up_Right");
-            playerFaceTo.SetFloat("Horizontal", 1);
-            playerFaceTo.SetFloat("Vertical", 1);
+            animator.SetFloat("Horizontal", 1);
+            animator.SetFloat("Vertical", 1);
             Debug.Log("Set face to rightUp");
         }
         else

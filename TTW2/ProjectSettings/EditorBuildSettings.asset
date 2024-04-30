@@ -15,15 +15,6 @@ EditorBuildSettings:
     path: Assets/Scenes/TestTimeline.unity
     guid: 49bbcb4e00219d34ca2873ec84cde42d
   - enabled: 1
-    path: Assets/Scenes/TestTimeline 1.unity
-    guid: f4d69c491113c024c943dea1c443a6b9
-  - enabled: 1
-    path: Assets/Scenes/TestDialogue.unity
-    guid: a67bf7a7c626ed943895d33644988c23
-  - enabled: 1
-    path: Assets/Scenes/TestDialogue1.unity
-    guid: cb448362b2a7f16498a1555f337edd73
-  - enabled: 1
     path: Assets/Scenes/Puzzles/PicturePuzzle1.unity
     guid: 82c1afe9b90890d44ac99b7dfe8e39b9
   - enabled: 1
