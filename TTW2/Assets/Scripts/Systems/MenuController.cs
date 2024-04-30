@@ -19,6 +19,7 @@ public class MenuController : MonoBehaviour
     {
         MenuPage.SetActive(false);
     }
+
     private void Awake()
     {
         menuButtons = GameObject.Find("Button Group").GetComponentsInChildren<Button>().ToList();

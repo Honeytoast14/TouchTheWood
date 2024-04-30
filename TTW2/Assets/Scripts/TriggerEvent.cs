@@ -111,17 +111,19 @@ public class TriggerEvent : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Player" && (transform.parent.tag == "NPC" || transform.parent.tag == "Item"))
+        if (transform.parent.tag == "NPC" || transform.parent.tag == "Item")
         {
-            interactable = true;
+            if (collision.gameObject.tag == "Player")
+                interactable = true;
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Player" && (transform.parent.tag == "NPC" || transform.parent.tag == "Item"))
+        if (transform.parent.tag == "NPC" || transform.parent.tag == "Item")
         {
-            interactable = false;
+            if (collision.gameObject.tag == "Player")
+                interactable = false;
         }
     }
 
@@ -142,11 +144,8 @@ public class TriggerEvent : MonoBehaviour
     {
         playerController.StopMoving();
 
-        if (npcData != null)
-        {
-            isCurrentConversation = true;
-            dialogueRunner.StartDialogue(npcDialogue);
-        }
+        isCurrentConversation = true;
+        dialogueRunner.StartDialogue(npcDialogue);
 
         gameController.state = GameState.Dialogue;
     }

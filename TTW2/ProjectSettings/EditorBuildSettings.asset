@@ -12,9 +12,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Menu/TitleGame.unity
     guid: f15b9be7dd4f26646a47dcbc79b43701
   - enabled: 1
-    path: Assets/Scenes/TestTimeline.unity
-    guid: 49bbcb4e00219d34ca2873ec84cde42d
-  - enabled: 1
     path: Assets/Scenes/Puzzles/PicturePuzzle1.unity
     guid: 82c1afe9b90890d44ac99b7dfe8e39b9
   - enabled: 1
@@ -23,4 +20,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Puzzles/PicturePuzzle3.unity
     guid: 54056f10e4888ba4cb76320ccf15c632
+  - enabled: 1
+    path: Assets/Scenes/Cave floor5.unity
+    guid: 88d0d77f3c726de45933ad6bcb2a0dcb
+  - enabled: 1
+    path: Assets/Scenes/Cave floor4.unity
+    guid: f4ed0dc5b7e6d0e499f381a9d24421d0
   m_configObjects: {}

@@ -6,12 +6,14 @@ public class YarnSpinnerFunction : MonoBehaviour
     DialogueRunner dialogueRunner;
     PickUp pickUp;
     ItemGiver itemGiver;
+    PuzzleWall puzzleWall;
     [SerializeField] NewLineView newLineView;
     void Start()
     {
         dialogueRunner = FindObjectOfType<DialogueRunner>();
         pickUp = FindObjectOfType<PickUp>();
         itemGiver = FindObjectOfType<ItemGiver>();
+        puzzleWall = FindObjectOfType<PuzzleWall>();
 
         if (itemGiver != null)
         {
@@ -24,5 +26,7 @@ public class YarnSpinnerFunction : MonoBehaviour
         }
         dialogueRunner.AddCommandHandler<bool>("setGroupTalk", newLineView.SetGroupTalk);
 
+        if (puzzleWall != null)
+            dialogueRunner.AddCommandHandler<string, string>("SetEmojiWall", puzzleWall.SetEmoji);
     }
 }

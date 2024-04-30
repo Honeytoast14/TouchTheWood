@@ -32,10 +32,13 @@ public class TitleGame : MonoBehaviour
 
     IEnumerator LoadSceneAsyn(string sceneName)
     {
-        fadeTransition.gameObject.SetActive(true);
-        fadeTransition.SetTrigger("Fade In");
-        yield return new WaitForSeconds(0.9f);
-        fadeTransition.gameObject.SetActive(false);
+        if (fadeTransition != null)
+        {
+            fadeTransition.gameObject.SetActive(true);
+            fadeTransition.SetTrigger("Fade In");
+            yield return new WaitForSeconds(0.9f);
+            fadeTransition.gameObject.SetActive(false);
+        }
 
         AsyncOperation operation = SceneManager.LoadSceneAsync(sceneName);
         loadingScene.SetActive(true);

@@ -26,7 +26,6 @@ public class Teleport : MonoBehaviour
     public bool rightDown;
     public bool leftUp;
     public bool rightUp;
-    Animator playerFaceTo;
     IsometricPlayerMovementController playerController;
     TitleGame titleGame;
 
@@ -34,10 +33,6 @@ public class Teleport : MonoBehaviour
     {
         playerController = FindObjectOfType<IsometricPlayerMovementController>();
         titleGame = FindObjectOfType<TitleGame>();
-        playerFaceTo = playerController.gameObject.GetComponent<Animator>();
-
-        if (playerFaceTo = null)
-            Debug.LogError("Can't find player animator");
     }
 
     private void OnTriggerEnter2D(Collider2D collider)
@@ -70,7 +65,7 @@ public class Teleport : MonoBehaviour
 
             yield return new WaitForSeconds(0.2f);
             fadeTransition.SetTrigger("Fade Out");
-            yield return new WaitForSeconds(0.15f);
+            yield return new WaitForSeconds(0.09f);
             playerController.ResumeMoving();
         }
     }
@@ -83,7 +78,7 @@ public class Teleport : MonoBehaviour
 
         titleGame.LoadScene(nameScene);
         player.transform.position = placeToGo.position;
-        SetPlayerFaceTo(playerFaceTo);
+        SetPlayerFaceTo(player.GetComponent<Animator>());
         playerController.ResumeMoving();
 
         yield return new WaitForSeconds(0.15f);

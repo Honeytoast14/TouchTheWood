@@ -331,16 +331,16 @@ MonoBehaviour:
           m_StringArgument: TestTimeline
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: SoundPlayer, Assembly-CSharp
-        m_MethodName: PlayerSoundTwo
-        m_Mode: 1
+      - m_Target: {fileID: 2111514007}
+        m_TargetAssemblyTypeName: TitleGame, Assembly-CSharp
+        m_MethodName: LoadScene
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Cave floor5
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &24009705

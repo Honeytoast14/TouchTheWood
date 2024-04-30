@@ -501,7 +501,7 @@ namespace Yarn.Unity
                         {
                             npcAnimator.SetBool("IsTalking", true);
                         }
-                        else
+                        else if (npcAnimator = null)
                         {
                             npcAnimator.SetBool("IsTalking", false);
                         }
