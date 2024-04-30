@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Hedgehog
   m_EditorClassIdentifier: 
   npcName: Hedgehog
-  dialogueID: RestGuy_Talk1
+  dialogueName: RestGuy_Talk1
   hasPortrait: 0
   portraitPath: 

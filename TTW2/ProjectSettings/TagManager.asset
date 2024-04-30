@@ -7,6 +7,10 @@ TagManager:
   - NPC
   - SaveSpot
   - Item
+  - Teleport Portal
+  - PuzzleTrigger
+  - Obstacle
+  - Audio
   layers:
   - Default
   - TransparentFX
@@ -41,15 +45,15 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: underground
+    uniqueID: 2065437559
+    locked: 0
+  - name: colider
+    uniqueID: 1216900991
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Background
-    uniqueID: 2065437559
-    locked: 0
-  - name: Foreground
-    uniqueID: 622914139
-    locked: 0
-  - name: Player
-    uniqueID: 470951853
+  - name: New Layer 3
+    uniqueID: 3249568569
     locked: 0

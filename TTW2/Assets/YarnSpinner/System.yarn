@@ -2,14 +2,21 @@
 ---
 SystemPickUp: คุณจะเก็บสิ่งนี้หรือไม่
     -> เก็บ
-        <<SetUsePickUp Item1>>
+        <<SetUsePickUp PickupPicturePuzzle1>>
     -> ไม่เก็บ
 ===
 title: PickUpItem2
 ---
 SystemPickUp2: คุณจะเก็บสิ่งนี้หรือไม่
     -> เก็บ
-        <<SetUsePickUp Item2>>
+        <<SetUsePickUp PickupPicturePuzzle2>>
+    -> ไม่เก็บ
+===
+title: PickUpItem3
+---
+SystemPickUp2: คุณจะเก็บสิ่งนี้หรือไม่
+    -> เก็บ
+        <<SetUsePickUp PickupPicturePuzzle3>>
     -> ไม่เก็บ
 ===
 
@@ -30,4 +37,10 @@ title: TestSave2
 ---
 Shwark: ว่าไงเจ้าหนู เจอกันอีกแล้ว!
 Shwark: ไปเจอเรื่องอะไรมาบ้างละ
+===
+
+title: UsePaper1
+---
+-> ใช้
+-> ไม่ใช้
 ===

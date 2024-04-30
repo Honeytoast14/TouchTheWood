@@ -26,16 +26,24 @@ public class InventoryUI : MonoBehaviour
     List<ItemSlotUI> slotUIList = new List<ItemSlotUI>();
     private int selectedItem = 0;
     public bool openInventory = false;
+
     private void Awake()
     {
         inventory = Inventory.GetInventory();
         itemListRect = itemList.GetComponent<RectTransform>();
     }
+
     private void Start()
     {
         UpdateItemList();
         inventory.onUpdated += UpdateItemList;
     }
+
+    private void OnDestroy()
+    {
+        inventory.onUpdated -= UpdateItemList;
+    }
+
     void UpdateItemList()
     {
         slotUIList.Clear();
@@ -48,7 +56,6 @@ public class InventoryUI : MonoBehaviour
         {
             var slotUIObj = Instantiate(itemSlotUI, itemList.transform);
             slotUIObj.SetData(itemSlot);
-
             slotUIList.Add(slotUIObj);
         }
 
@@ -72,16 +79,31 @@ public class InventoryUI : MonoBehaviour
 
     public void HandleUpdate(Action onBack)
     {
+        var slot = inventory.Slots[selectedItem];
+
         if (Input.GetKeyDown(KeyCode.X) || Input.GetKeyDown(KeyCode.Escape))
         {
             onBack?.Invoke();
-            for (int i = 0; i < slotUIList.Count; i++)
+            foreach (var slotUI in slotUIList)
             {
-                slotUIList[i].HideSelectBorder();
+                slotUI.HideSelectBorder();
             }
             cover.enabled = true;
-
             ResetItemData();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            if (slot.Item == inventory.CanUseItem(slot.Item))
+            {
+                Debug.Log("Select item that can use");
+                if (slot.Item.name == "PicturePuzzle1")
+                    PuzzleRotatePicFirst.Instance.OpenPicturePuzzle();
+                if (slot.Item.name == "PicturePuzzle2")
+                    PuzzleRotatePicSecond.Instance.OpenPicturePuzzle();
+                if (slot.Item.name == "PicturePuzzle3")
+                    PuzzleRotatePicThird.Instance.OpenPicturePuzzle();
+            }
         }
 
         int preSelection = selectedItem;

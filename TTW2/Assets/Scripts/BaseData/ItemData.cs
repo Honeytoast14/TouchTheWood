@@ -6,6 +6,5 @@ public class ItemData : ScriptableObject
     public Sprite itemImage;
     public string itemName;
     public string itemDescription;
-    public string itemDialogueID;
-
+    public bool canUse;
 }

@@ -10,7 +10,8 @@ public class IsometricPlayerMovementController : MonoBehaviour, ISavable
     float verticalInput;
     float movementSpeed;
     public bool canMove = true;
-
+    public bool isMoving;
+    public static IsometricPlayerMovementController Instance { get; private set; }
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
@@ -19,13 +20,21 @@ public class IsometricPlayerMovementController : MonoBehaviour, ISavable
 
     public void Update()
     {
-        Move();
-        Animate();
-
-        if (Input.GetKeyDown(KeyCode.Z))
+        if (GameController.Instance.state == GameState.FreeRoam)
         {
-            Interact();
+            Move();
+            Animate();
         }
+
+        if (!canMove)
+        {
+            animator.SetFloat("Speed", 0f);
+        }
+        // if (Input.GetKeyDown(KeyCode.Z))
+        // {
+        //     Debug.Log("call interact");
+        //     Interact();
+        // }
     }
 
     public void Move()
@@ -37,8 +46,13 @@ public class IsometricPlayerMovementController : MonoBehaviour, ISavable
 
             rb.velocity = new Vector2(horizontalInput, verticalInput) * moveSpeed;
 
+
             moveDirection = new Vector2(horizontalInput, verticalInput);
             movementSpeed = Mathf.Clamp(moveDirection.magnitude, 0.0f, 1.0f);
+        }
+        else
+        {
+            rb.velocity = Vector2.zero;
         }
     }
 
@@ -53,12 +67,33 @@ public class IsometricPlayerMovementController : MonoBehaviour, ISavable
         animator.SetFloat("Speed", movementSpeed);
     }
 
+    public void StopMoving()
+    {
+        canMove = false;
+        rb.constraints = RigidbodyConstraints2D.FreezeAll;
+        moveDirection = Vector2.zero;
+        // Debug.Log("Stop player from moving");
+    }
+
+    public void ResumeMoving()
+    {
+        canMove = true;
+        rb.constraints = RigidbodyConstraints2D.None;
+        rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+        // Debug.Log("Player can move now");
+    }
+
     void Interact()
     {
         var facingDir = new Vector3(animator.GetFloat("Horizontal"), animator.GetFloat("Vertical"));
+
+        Debug.Log("Facing Direction: " + facingDir);
+
         var InteractPos = transform.position + facingDir * 2.0f;
 
         Debug.DrawLine(transform.position, InteractPos, Color.red, 0.3f);
+
+        Debug.Log("Interact method called");
     }
 
     public object CaptureState()

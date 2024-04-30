@@ -97,3 +97,27 @@ title: snail1_AfterQuest
 Snail: ขอบคุณที่ให้ของกับฉันนะ
 //ฉันจำได้ว่าให้ของเธอไปแล้วนะ มีอะไรอีกหรอ?
 ===
+
+title: test_dialogue
+---
+Narrator: Hello
+-> Hello
+-> Hi
+Narrator: Nice to meet you.
+Narrator: Hello
+-> Hello
+-> Hi
+Narrator: Nice to meet you.
+Narrator: Hello
+-> Hello
+-> Hi
+Narrator: Nice to meet you.
+Narrator: Hello
+-> Hello
+-> Hi
+Narrator: Nice to meet you.
+Narrator: Hello
+-> Hello
+-> Hi
+Narrator: Nice to meet you.
+===

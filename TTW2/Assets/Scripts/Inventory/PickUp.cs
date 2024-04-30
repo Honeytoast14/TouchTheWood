@@ -1,9 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
-using Unity.VisualScripting.Dependencies.Sqlite;
 using UnityEngine;
-using Yarn.Unity;
 
 public class PickUp : MonoBehaviour, ISavable
 {
@@ -32,17 +27,27 @@ public class PickUp : MonoBehaviour, ISavable
 
     public void GiveItem(IsometricPlayerMovementController player)
     {
-        player.GetComponent<Inventory>().AddItem(item, count);
-        Used = true;
-        canPick = false;
+        var inventory = Inventory.GetInventory();
+        var canUseItem = inventory.CanUseItem(item);
+        if (inventory != null)
+        {
+            inventory.AddItem(item, count);
 
-        Debug.Log($"Give {item} x{count}. set used to {Used}");
+            Used = true;
+            canPick = false;
 
-        transform.parent.GetComponent<CapsuleCollider2D>().enabled = false;
-        transform.parent.GetComponent<SpriteRenderer>().enabled = false;
-        GetComponent<CapsuleCollider2D>().enabled = false;
-        GetComponent<TriggerEvent>().enabled = false;
-        GetComponent<PickUp>().enabled = false;
+            Debug.Log($"Give {item} x{count}. set used to {Used}");
+
+            transform.parent.GetComponent<CapsuleCollider2D>().enabled = false;
+            transform.parent.GetComponent<SpriteRenderer>().enabled = false;
+            GetComponent<CapsuleCollider2D>().enabled = false;
+            GetComponent<TriggerEvent>().enabled = false;
+            GetComponent<PickUp>().enabled = false;
+        }
+        else
+        {
+            Debug.LogError("Cant find inventory for pick up items");
+        }
     }
 
     public bool CanBeGiven()

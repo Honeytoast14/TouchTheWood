@@ -180,8 +180,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2477367078681670634}
-  - component: {fileID: 7906579560696030118}
   - component: {fileID: 2229138681109009349}
+  - component: {fileID: 7906579560696030118}
   m_Layer: 0
   m_Name: Trigger
   m_TagString: Untagged
@@ -204,20 +204,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2067463995254354627}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7906579560696030118
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5443486522330163986}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 403670d2cf275ba4e9b79e34d5e317de, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  npcData: {fileID: 11400000, guid: 56730b4d2adfb0e4da3de018dfab2e65, type: 2}
-  canTalk: 0
 --- !u!70 &2229138681109009349
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -253,3 +239,21 @@ CapsuleCollider2D:
   m_Offset: {x: -0.006796539, y: -0.009345412}
   m_Size: {x: 0.40824652, y: 0.5429313}
   m_Direction: 0
+--- !u!114 &7906579560696030118
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5443486522330163986}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 403670d2cf275ba4e9b79e34d5e317de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  npcData: {fileID: 11400000, guid: 56730b4d2adfb0e4da3de018dfab2e65, type: 2}
+  itemGiver: {fileID: 0}
+  pickUp: {fileID: 0}
+  questToStart: {fileID: 0}
+  questToComplete: {fileID: 0}
+  canTalk: 0

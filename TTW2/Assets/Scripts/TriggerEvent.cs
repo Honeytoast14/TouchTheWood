@@ -1,8 +1,6 @@
 using System.Collections;
-using Unity.VisualScripting.Dependencies.Sqlite;
 using UnityEngine;
 using Yarn.Unity;
-using Yarn.Unity.Tests;
 
 public class TriggerEvent : MonoBehaviour
 {
@@ -20,9 +18,8 @@ public class TriggerEvent : MonoBehaviour
     [SerializeField] QuestData questToComplete;
     private DialogueRunner dialogueRunner;
     GameController gameController;
-    Rigidbody2D rb;
-    GameObject player;
     Quest activeQuest;
+    IsometricPlayerMovementController playerController;
 
     public bool canTalk = false;
     private bool interactable = false;
@@ -37,18 +34,17 @@ public class TriggerEvent : MonoBehaviour
 
     void Start()
     {
-        player = GameObject.Find("Player");
-        rb = player.gameObject.GetComponent<Rigidbody2D>();
         dialogueRunner = FindObjectOfType<DialogueRunner>();
         gameController = FindObjectOfType<GameController>();
+        playerController = FindObjectOfType<IsometricPlayerMovementController>();
 
-        dialogueRunner.onDialogueStart.AddListener(UseCoolDownTalk);
         dialogueRunner.onDialogueComplete.AddListener(EndDialouge);
 
         if (itemGiver != null)
         {
             itemGiver.enabled = false;
         }
+
         if (pickUp != null)
         {
             pickUp.enabled = false;
@@ -69,7 +65,7 @@ public class TriggerEvent : MonoBehaviour
             {
                 if (activeQuest.canBeComplete())
                 {
-                    activeQuest.CompleteQuest(player.transform);
+                    activeQuest.CompleteQuest(playerController.transform);
                     activeQuest = null;
                 }
                 else
@@ -80,14 +76,15 @@ public class TriggerEvent : MonoBehaviour
             else if (questToComplete != null)
             {
                 var quest = new Quest(questToComplete);
-                quest.CompleteQuest(player.transform);
+                quest.CompleteQuest(playerController.transform);
                 questToComplete = null;
 
                 Debug.Log($"{quest.Base.Name} is complete!");
             }
             else
             {
-                StartDialogue(npcData.dialogueID);
+                //Debug.Log("Z is pressed from triggerEvent");
+                StartDialogue(npcData.dialogueName);
             }
 
             if (itemGiver != null)
@@ -103,25 +100,13 @@ public class TriggerEvent : MonoBehaviour
 
         if (itemGiver != null && interactable && itemGiver.CanBeGiven())
         {
-            itemGiver.GiveItem(player.GetComponent<IsometricPlayerMovementController>());
+            itemGiver.GiveItem(playerController);
         }
 
         if (pickUp != null && interactable && pickUp.CanBeGiven())
         {
-            pickUp.GiveItem(player.GetComponent<IsometricPlayerMovementController>());
+            pickUp.GiveItem(playerController);
         }
-    }
-
-
-    public void UseCoolDownTalk()
-    {
-        StartCoroutine(CoolDownTalk());
-    }
-
-    private IEnumerator CoolDownTalk()
-    {
-        yield return new WaitForSeconds(0.1f);
-        canTalk = true;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -140,23 +125,23 @@ public class TriggerEvent : MonoBehaviour
         }
     }
 
-    private void EndDialouge()
+    public void EndDialouge()
     {
+        gameController.state = GameState.FreeRoam;
+
         if (isCurrentConversation)
         {
-            player.gameObject.GetComponent<IsometricPlayerMovementController>().enabled = true;
-            rb.constraints = RigidbodyConstraints2D.None;
-            rb.constraints = RigidbodyConstraints2D.FreezeRotation;
-
+            playerController.ResumeMoving();
             isCurrentConversation = false;
         }
-        gameController.state = GameState.FreeRoam;
 
         canTalk = false;
     }
 
     public void StartDialogue(string npcDialogue)
     {
+        playerController.StopMoving();
+
         if (npcData != null)
         {
             isCurrentConversation = true;
@@ -164,10 +149,6 @@ public class TriggerEvent : MonoBehaviour
         }
 
         gameController.state = GameState.Dialogue;
-
-        player.gameObject.GetComponent<IsometricPlayerMovementController>().enabled = false;
-        player.gameObject.GetComponent<Animator>().SetFloat("Speed", 0f);
-        rb.constraints = RigidbodyConstraints2D.FreezeAll;
     }
 }
 

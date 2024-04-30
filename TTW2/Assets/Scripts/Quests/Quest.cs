@@ -44,6 +44,7 @@ public class Quest
     public void CompleteQuest(Transform player)
     {
         TriggerEvent.Instance.StartDialogue(Base.DialogueNodeComplete);
+        Debug.Log("complete quest");
 
         var inventory = Inventory.GetInventory();
         if (Base.RequiredItem != null && Base.RequiredCount > 0)

@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: BearBoss
   m_EditorClassIdentifier: 
   npcName: Bear Boss
-  dialogueID: Header_Guy_FourthFloor
+  dialogueName: Header_Guy_FourthFloor
   hasPortrait: 0
   portraitPath: 

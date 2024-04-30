@@ -10,6 +10,9 @@ public class Inventory : MonoBehaviour, ISavable
     [SerializeField] List<ItemSlot> slots;
     public List<ItemSlot> Slots => slots;
     public event Action onUpdated;
+    public List<ItemSlot> currentSlots => Slots;
+
+
     public static Inventory GetInventory()
     {
         return FindObjectOfType<IsometricPlayerMovementController>().GetComponent<Inventory>();
@@ -32,6 +35,7 @@ public class Inventory : MonoBehaviour, ISavable
             });
         }
 
+        Debug.Log($"item: {item} and count: {count}");
         onUpdated?.Invoke();
     }
 
@@ -53,6 +57,12 @@ public class Inventory : MonoBehaviour, ISavable
         }
 
         onUpdated?.Invoke();
+    }
+
+    public bool CanUseItem(ItemData item)
+    {
+        var itemSlot = slots.FirstOrDefault(slot => slot.Item == item && item.canUse);
+        return itemSlot != null;
     }
 
     public bool HasItem(ItemData item)
