@@ -32,18 +32,19 @@ public class Quest
         return saveData;
     }
 
-    public void StartQuest()
+    public void StartQuest(string dialogueStartQuest)
     {
         Status = QuestStatus.Started;
-        TriggerEvent.Instance.StartDialogue(Base.DialogueNodeStart);
+        TriggerEvent.Instance.StartDialogue(dialogueStartQuest);
+
 
         var questList = QuestList.GetQuestList();
         questList.AddQuest(this);
     }
 
-    public void CompleteQuest(Transform player)
+    public void CompleteQuest(Transform player, string dialogueCompleteQuest)
     {
-        TriggerEvent.Instance.StartDialogue(Base.DialogueNodeComplete);
+        TriggerEvent.Instance.StartDialogue(dialogueCompleteQuest);
         Debug.Log("complete quest");
 
         var inventory = Inventory.GetInventory();
@@ -60,7 +61,7 @@ public class Quest
         Status = QuestStatus.Completed;
     }
 
-    public void InProgressQuest()
+    public void InProgressQuest(string dialogueInProgress)
     {
         TriggerEvent.Instance.StartDialogue(Base.DialogueNodeInprogress);
     }

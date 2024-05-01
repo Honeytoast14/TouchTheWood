@@ -28,12 +28,14 @@ public class Teleport : MonoBehaviour
     public bool leftUp;
     public bool rightUp;
     IsometricPlayerMovementController playerController;
+    YarnSpinnerFunction yarnSpinnerFunction;
     TitleGame titleGame;
 
     void Start()
     {
         playerController = FindObjectOfType<IsometricPlayerMovementController>();
         titleGame = FindObjectOfType<TitleGame>();
+        yarnSpinnerFunction = FindObjectOfType<YarnSpinnerFunction>();
     }
 
     private void OnTriggerEnter2D(Collider2D collider)
@@ -80,6 +82,7 @@ public class Teleport : MonoBehaviour
         titleGame.LoadScene(nameScene);
         player.transform.position = placeToGo.position;
         SetPlayerFaceTo(player.GetComponent<Animator>());
+        // yarnSpinnerFunction.LoadYarnCommand();
         playerController.ResumeMoving();
 
         yield return new WaitForSeconds(0.15f);

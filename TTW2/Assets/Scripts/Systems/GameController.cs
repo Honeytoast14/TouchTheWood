@@ -5,7 +5,7 @@ using UnityEngine;
 using Yarn.Unity;
 using Debug = UnityEngine.Debug;
 
-public enum GameState { FreeRoam, Menu, Inventory, Dialogue, PuzzlePicture, Setting }
+public enum GameState { FreeRoam, Menu, Inventory, Dialogue, PuzzlePicture, Setting, RailPuzzle }
 public class GameController : MonoBehaviour
 {
     [SerializeField] InventoryUI inventoryUI;
@@ -81,23 +81,36 @@ public class GameController : MonoBehaviour
                 state = GameState.Inventory;
             };
 
-            if (PuzzleRotatePicFirst.Instance.firstIsOpen)
+            if (PuzzleRotatePicFirst.Instance != null)
             {
-                PuzzleRotatePicFirst.Instance.HandleUpdate(onBack);
+                if (PuzzleRotatePicFirst.Instance.firstIsOpen)
+                {
+                    PuzzleRotatePicFirst.Instance.HandleUpdate(onBack);
+                }
             }
-            else if (PuzzleRotatePicSecond.Instance.secondIsOpen)
+            if (PuzzleRotatePicSecond.Instance != null)
             {
-                PuzzleRotatePicSecond.Instance.HandleUpdate(onBack);
+                if (PuzzleRotatePicSecond.Instance.secondIsOpen)
+                {
+                    PuzzleRotatePicSecond.Instance.HandleUpdate(onBack);
+                }
             }
-            else if (PuzzleRotatePicThird.Instance.thirdIsOpen)
+            if (PuzzleRotatePicThird.Instance != null)
             {
-                PuzzleRotatePicThird.Instance.HandleUpdate(onBack);
+                if (PuzzleRotatePicThird.Instance.thirdIsOpen)
+                {
+                    PuzzleRotatePicThird.Instance.HandleUpdate(onBack);
+                }
             }
-            else
+            if (PuzzleRail.Instance != null)
             {
-                Debug.LogError("Can't find PuzzleRotatePic");
+                if (PuzzleRail.Instance.railIsOpen)
+                {
+                    PuzzleRail.Instance.HandleUpdate();
+                }
             }
         }
+
         else if (state == GameState.Setting)
         {
             Action onBack = () =>
@@ -124,7 +137,7 @@ public class GameController : MonoBehaviour
             menuController.cover.enabled = true;
             inventoryUI.cover.enabled = false;
         }
-        if (selectedItem == 3) // Exit Game
+        if (selectedItem == 1) // Exit Game
         {
             EssentialObjects essentialObjects = FindObjectOfType<EssentialObjects>();
             if (essentialObjects != null)

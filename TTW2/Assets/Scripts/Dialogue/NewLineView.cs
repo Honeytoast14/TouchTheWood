@@ -511,6 +511,7 @@ namespace Yarn.Unity
                             portraitBox.SetActive(true);
 
                             Sprite portraitSprite = Resources.Load<Sprite>(npcData.portraitPath);
+
                             if (portraitSprite != null)
                             {
                                 //Debug.Log("Portrait Sprite Loaded Successfully");

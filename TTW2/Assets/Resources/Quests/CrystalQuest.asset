@@ -18,6 +18,6 @@ MonoBehaviour:
   dialogueNodeInprogress: snail1_ProgressQuest
   dialogueNodeComplete: snail1_AfterQuest
   requiredItem: {fileID: 11400000, guid: e74de2d8bc6decb4f8c71a7d95e16d50, type: 2}
-  requiredCount: 2
+  requiredCount: 5
   rewardItem: {fileID: 11400000, guid: 548eb94601e17624494c4b20fef22411, type: 2}
-  rewardCount: 3
+  rewardCount: 0

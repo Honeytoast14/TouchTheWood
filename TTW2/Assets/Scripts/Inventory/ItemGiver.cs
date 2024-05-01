@@ -1,4 +1,5 @@
 using UnityEngine;
+using Yarn.Unity;
 
 public class ItemGiver : MonoBehaviour, ISavable
 {
@@ -8,7 +9,15 @@ public class ItemGiver : MonoBehaviour, ISavable
     public bool used = false;
     bool canPick = false;
     bool collisionCheck;
+    public bool setYarn = false;
+    DialogueRunner dialogueRunner;
 
+    void Awake()
+    {
+        dialogueRunner = FindObjectOfType<DialogueRunner>();
+
+        dialogueRunner.AddCommandHandler<string>("SetUseItemGiver", SetUsedInYarn);
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player" && transform.parent.tag == "NPC")

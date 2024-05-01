@@ -15,15 +15,11 @@ public class YarnSpinnerFunction : MonoBehaviour
         itemGiver = FindObjectOfType<ItemGiver>();
         puzzleWall = FindObjectOfType<PuzzleWall>();
 
-        if (itemGiver != null)
-        {
-            dialogueRunner.AddCommandHandler<string>("SetUseItemGiver", itemGiver.SetUsedInYarn);
-        }
+        LoadYarnCommand();
+    }
 
-        if (pickUp != null)
-        {
-            dialogueRunner.AddCommandHandler<string>("SetUsePickUp", pickUp.SetUsedInYarn);
-        }
+    public void LoadYarnCommand()
+    {
         dialogueRunner.AddCommandHandler<bool>("setGroupTalk", newLineView.SetGroupTalk);
 
         if (puzzleWall != null)

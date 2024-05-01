@@ -19,6 +19,42 @@ SystemPickUp2: คุณจะเก็บสิ่งนี้หรือไ�
         <<SetUsePickUp PickupPicturePuzzle3>>
     -> ไม่เก็บ
 ===
+title: PickUpOrePieceRed
+---
+SystemPickUp: คุณจะเก็บสิ่งนี้หรือไม่
+    -> เก็บ
+        <<SetUsePickUp OrePieceRed>>
+    -> ไม่เก็บ
+===
+title: PickUpOrePieceBlue
+---
+SystemPickUp: คุณจะเก็บสิ่งนี้หรือไม่
+    -> เก็บ
+        <<SetUsePickUp OrePieceBlue>>
+    -> ไม่เก็บ
+===
+title: PickUpOrePiecePurple
+---
+SystemPickUp: คุณจะเก็บสิ่งนี้หรือไม่
+    -> เก็บ
+        <<SetUsePickUp OrePiecePurple>>
+    -> ไม่เก็บ
+===
+title: PickUpOrePieceYellow
+---
+SystemPickUp: คุณจะเก็บสิ่งนี้หรือไม่
+    -> เก็บ
+        <<SetUsePickUp OrePieceYellow>>
+    -> ไม่เก็บ
+===
+title: PickUpOrePieceGreen
+---
+SystemPickUp: คุณจะเก็บสิ่งนี้หรือไม่
+    -> เก็บ
+        <<SetUsePickUp OrePieceGreen>>
+    -> ไม่เก็บ
+===
+
 
 title: lever_firstFloor_true
 ---

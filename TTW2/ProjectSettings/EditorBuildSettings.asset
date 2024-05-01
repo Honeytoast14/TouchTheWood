@@ -18,6 +18,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Puzzles/PicturePuzzle2.unity
     guid: 6bb60098a18e8964e95ff4af3fb11c41
   - enabled: 1
+    path: Assets/Scenes/Puzzles/RailPuzzle.unity
+    guid: 735c076130319f847bfb679dd85a3a6c
+  - enabled: 1
     path: Assets/Scenes/Puzzles/PicturePuzzle3.unity
     guid: 54056f10e4888ba4cb76320ccf15c632
   - enabled: 1

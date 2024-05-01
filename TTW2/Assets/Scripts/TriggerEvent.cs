@@ -16,6 +16,7 @@ public class TriggerEvent : MonoBehaviour
     [Header("Quest")]
     [SerializeField] QuestData questToStart;
     [SerializeField] QuestData questToComplete;
+    [SerializeField] GameObject questAttention;
     private DialogueRunner dialogueRunner;
     GameController gameController;
     Quest activeQuest;
@@ -58,25 +59,26 @@ public class TriggerEvent : MonoBehaviour
             if (questToStart != null)
             {
                 activeQuest = new Quest(questToStart);
-                activeQuest.StartQuest();
+                activeQuest.StartQuest(npcData.dialogueName + "_StartQuest");
                 questToStart = null;
             }
             else if (activeQuest != null)
             {
                 if (activeQuest.canBeComplete())
                 {
-                    activeQuest.CompleteQuest(playerController.transform);
+                    activeQuest.CompleteQuest(playerController.transform, npcData.dialogueName + "_AfterQuest");
+                    questAttention.SetActive(false);
                     activeQuest = null;
                 }
                 else
                 {
-                    activeQuest.InProgressQuest();
+                    activeQuest.InProgressQuest(npcData.dialogueName + "_ProgressQuest");
                 }
             }
             else if (questToComplete != null)
             {
                 var quest = new Quest(questToComplete);
-                quest.CompleteQuest(playerController.transform);
+                quest.CompleteQuest(playerController.transform, npcData.dialogueName + "_AfterQuest");
                 questToComplete = null;
 
                 Debug.Log($"{quest.Base.Name} is complete!");

@@ -1,4 +1,5 @@
 using UnityEngine;
+using Yarn.Unity;
 
 public class PickUp : MonoBehaviour, ISavable
 {
@@ -8,6 +9,16 @@ public class PickUp : MonoBehaviour, ISavable
     public bool Used { get; set; } = false;
     bool canPick = false;
     bool collisionCheck;
+    public bool setYarn = false;
+    DialogueRunner dialogueRunner;
+    void Awake()
+    {
+        dialogueRunner = FindObjectOfType<DialogueRunner>();
+
+        if (setYarn)
+            dialogueRunner.AddCommandHandler<string>("SetUsePickUp", SetUsedInYarn);
+
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
