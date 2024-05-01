@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 using UnityEngine.UIElements;
 
-public class PuzzleWall : MonoBehaviour
+public class PuzzleWall : MonoBehaviour, ISavable
 {
     [SerializeField] GameObject wall;
     [Header("Tile Change")]
@@ -20,9 +20,9 @@ public class PuzzleWall : MonoBehaviour
     [Header("Animator")]
     public Animator emoji;
     bool interactable = false;
-    bool destroyObject = false;
+    public bool destroyObject { get; set; } = false;
     TriggerEvent triggerEvent;
-    public bool useSwitch = false;
+    public bool useSwitch { get; set; } = false;
 
     void Start()
     {
@@ -63,7 +63,7 @@ public class PuzzleWall : MonoBehaviour
         if (colision.gameObject.tag == "Player")
         {
             interactable = true;
-            Debug.Log("can interact");
+            // Debug.Log("can interact");
         }
     }
 
@@ -72,7 +72,7 @@ public class PuzzleWall : MonoBehaviour
         if (colision.gameObject.tag == "Player")
         {
             interactable = false;
-            Debug.Log("cannot interact");
+            // Debug.Log("cannot interact");
         }
     }
 
@@ -105,12 +105,32 @@ public class PuzzleWall : MonoBehaviour
         }
     }
 
-
     private IEnumerator SetEmojiTime(string animationName)
     {
         emoji.gameObject.SetActive(true);
         emoji.Play(animationName);
         yield return new WaitForSeconds(0.8f);
         emoji.gameObject.SetActive(false);
+    }
+
+    public object CaptureState()
+    {
+        return (useSwitch, destroyObject);
+    }
+
+    public void RestoreState(object state)
+    {
+        (bool useSwitchState, bool destroyObjectState) = ((bool, bool))state;
+        useSwitch = useSwitchState;
+        destroyObject = destroyObjectState;
+
+        if (useSwitch)
+        {
+            tilemap.SetTile(position, tileChange);
+        }
+        if (destroyObject)
+        {
+            HideWall(wall);
+        }
     }
 }

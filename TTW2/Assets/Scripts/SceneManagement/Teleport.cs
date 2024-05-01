@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 
 public class Teleport : MonoBehaviour
 {
+    [SerializeField] SaveTrigger saveTrigger;
     [SerializeField] Animator fadeTransition;
 
     [Header("In Scene")]

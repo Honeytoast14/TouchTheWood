@@ -11,6 +11,7 @@ public class IsometricPlayerMovementController : MonoBehaviour, ISavable
     float movementSpeed;
     public bool canMove = true;
     public bool isMoving;
+    public bool savePlayerPosition = false;
     public static IsometricPlayerMovementController Instance { get; private set; }
     void Start()
     {
@@ -98,8 +99,12 @@ public class IsometricPlayerMovementController : MonoBehaviour, ISavable
 
     public object CaptureState()
     {
-        float[] position = new float[] { transform.position.x, transform.position.y };
-        return position;
+        if (savePlayerPosition)
+        {
+            float[] position = new float[] { transform.position.x, transform.position.y };
+            return position;
+        }
+        return null;
     }
 
     public void RestoreState(object state)

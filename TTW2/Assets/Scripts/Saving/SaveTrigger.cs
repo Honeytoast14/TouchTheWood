@@ -1,43 +1,45 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using Yarn.Unity;
 
 public class SaveTrigger : MonoBehaviour
 {
-    [SerializeField] DialogueRunner dialogueRunner;
+    DialogueRunner dialogueRunner;
     public bool canSave = false;
-    void Update()
+    public bool isLoad = false;
+
+    void Start()
     {
-        if (canSave)
-        {
-            if (Input.GetKeyDown(KeyCode.S) && SavingSystem.i != null)
-            {
-                SavingSystem.i.Save("saveSlot1");
-                dialogueRunner.SaveStateToPersistentStorage("dialogueSaveTest");
-            }
-        }
-        if (Input.GetKeyDown(KeyCode.L) && SavingSystem.i != null)
-        {
-            SavingSystem.i.Load("saveSlot1");
-            dialogueRunner.LoadStateFromPersistentStorage("dialogueSaveTest");
-        }
+        dialogueRunner = FindObjectOfType<DialogueRunner>();
     }
 
     public void OnTriggerEnter2D(Collider2D collider2D)
     {
-        if (collider2D.gameObject.tag == "Player" && transform.parent.tag == "SaveSpot")
+        if (collider2D.gameObject.tag == "Player")
         {
-            Debug.Log("You can save");
-            canSave = true;
-        }
-    }
-    public void OnTriggerExit2D(Collider2D collider2D)
-    {
-        if (collider2D.gameObject.tag == "Player" && transform.parent.tag == "SaveSpot")
-        {
-            Debug.Log("Ypu cannot save");
-            canSave = false;
+            if (transform.tag == "SaveSpot")
+            {
+                Debug.Log("You can save");
+                if (SavingSystem.i != null)
+                {
+                    SavingSystem.i.Save("saveSlot1");
+                    dialogueRunner.SaveStateToPersistentStorage("dialogueSaveTest");
+                }
+            }
+
+            if (transform.tag == "LoadSpot")
+            {
+                Debug.Log("You can load");
+                isLoad = false;
+                if (SavingSystem.i != null)
+                {
+                    SavingSystem.i.Load("saveSlot1");
+                    dialogueRunner.LoadStateFromPersistentStorage("dialogueSaveTest");
+                }
+            }
         }
     }
 }

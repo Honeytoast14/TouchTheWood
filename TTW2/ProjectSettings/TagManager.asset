@@ -14,6 +14,7 @@ TagManager:
   - FalseSwitch
   - PuzzleTrigger
   - Emoji
+  - LoadSpot
   layers:
   - Default
   - TransparentFX
@@ -59,4 +60,7 @@ TagManager:
     locked: 0
   - name: New Layer 3
     uniqueID: 3249568569
+    locked: 0
+  - name: Player
+    uniqueID: 3286920059
     locked: 0
