@@ -14,6 +14,12 @@ public class SoundPlayer : MonoBehaviour
     public AudioClip buttonClick;
     public AudioClip buttonSelect;
 
+    void Start()
+    {
+        if (bgmMusic != null)
+            PlayerMusic();
+    }
+
     public void PlayerSFX(AudioClip clip)
     {
         sfxAudioSource.PlayOneShot(clip);

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Playables;
 using Yarn.Unity;
@@ -21,6 +22,12 @@ public class TimelineController : MonoBehaviour
             dialogueRunner.AddCommandHandler<string>("StopTimeline", StopTimeline);
             dialogueRunner.AddCommandHandler<string>("ResumeTimeline", ResumeTimeline);
         }
+    }
+
+    void OnTriggerEnter2D(Collider2D collider)
+    {
+        if (collider.gameObject.tag == "Player")
+            StartTimeline();
     }
 
     public void StartTimeline()

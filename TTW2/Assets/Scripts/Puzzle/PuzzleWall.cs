@@ -23,12 +23,18 @@ public class PuzzleWall : MonoBehaviour, ISavable
     public bool destroyObject { get; set; } = false;
     TriggerEvent triggerEvent;
     public bool useSwitch { get; set; } = false;
+    public SoundPlayer soundPlayer;
 
     void Start()
     {
         triggerEvent = FindObjectOfType<TriggerEvent>();
         if (emoji != null)
+        {
             emoji.gameObject.SetActive(false);
+        }
+
+        if (soundPlayer != null)
+            soundPlayer.PlayerMusic();
     }
 
     void Update()
