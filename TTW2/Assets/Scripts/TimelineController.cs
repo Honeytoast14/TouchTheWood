@@ -18,6 +18,8 @@ public class TimelineController : MonoBehaviour
         if (setYarn)
         {
             dialogueRunner.AddCommandHandler<string>("PlayTimeline", StartTimelineByYarn);
+            dialogueRunner.AddCommandHandler<string>("StopTimeline", StopTimeline);
+            dialogueRunner.AddCommandHandler<string>("ResumeTimeline", ResumeTimeline);
         }
     }
 
@@ -34,7 +36,6 @@ public class TimelineController : MonoBehaviour
         {
             PlayableDirector playableDirector = timelineYarn.GetComponent<PlayableDirector>();
             playableDirector.Play();
-            GameController.Instance.state = GameState.Timeline;
         }
     }
 
@@ -47,7 +48,30 @@ public class TimelineController : MonoBehaviour
     {
         GameController.Instance.state = GameState.Timeline;
     }
+    public void SetToDialogue()
+    {
+        GameController.Instance.state = GameState.Dialogue;
+    }
 
+    public void StopTimeline(string timelineObject)
+    {
+        GameObject timelineYarn = GameObject.Find(timelineObject);
+        if (timelineYarn != null)
+        {
+            PlayableDirector playableDirector = timelineYarn.GetComponent<PlayableDirector>();
+            playableDirector.Pause();
+        }
+    }
+
+    public void ResumeTimeline(string timelineObject)
+    {
+        GameObject timelineYarn = GameObject.Find(timelineObject);
+        if (timelineYarn != null)
+        {
+            PlayableDirector playableDirector = timelineYarn.GetComponent<PlayableDirector>();
+            playableDirector.Resume();
+        }
+    }
     // public void SetSprite(Sprite spriteImage)
     // {
     //     SpriteRenderer spriteRenderer = objectSprite.GetComponent<SpriteRenderer>();

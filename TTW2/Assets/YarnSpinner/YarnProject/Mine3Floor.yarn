@@ -1,6 +1,105 @@
 ﻿title: BossLionSheep
 ---
-<<setGroupTalk true>>
+<<if $helpMother is false>>
 BossLion: ดูเหมือนว่าแผนที่รางรถไฟนี่มันแปลก ๆ ชอบกล พอซ่อมตามที่บอกแล้วทำไมถึงไปทางอื่นกันนะ
-BossSheep: นั่นนะสิ ผมว่ามันต้องมีอะไรแปลก ๆ หรือแผนที่มันจะผิดกันนะ
+BossSheep: นั่นนะสิ ผมว่ามันต้องมีอะไรแปลก ๆ หรือแผนที่มันจะผิดกันนะ ถ้ามีใครติดอยู่ในนั้นละก็แย่แน่
+BossLion: เดี๋ยวก่อนนะ แมวตัวนี้มาจากไหน แล้วที่นี่มีแมวแบบเจ้าได้ไง
+BossSheep: เฮ้ย เจ้าหนู หน้าตาแกดูฉลาดนี่หว่า ถ้าแกช่วยแก้แผนที่อันนี้ พวกข้าจะไม่เอาเรื่องละกัน แถมงานพวกข้าก็จะเสร็จไปขึ้นด้วย ฮ่าๆๆ
+<<PlayTimeline Timeline_Railpuzzle>>
+<<elseif $helpMother is true>>
+ฺBossSheep: ฮึ่ม ถ้าซ่อมช้ากว่านี้คงจะแย่แน่
+BossLion: ถึงพวกเราจะชอบรังแกใคร แต่ถ้าคนหายไปคงเหงาแย่
+<<endif>>
+===
+
+title: RestBunny
+---
+Bunny: (อยากต่อยไอ้แกะกับสิงโตนั่นสักหมัดจังเว่ย รังแกกันอยู่ได้ คิดว่าตัวใหญ่ว่าแล้วจะแน่อ่อวะ!)
+===
+
+title: restBeber
+---
+<<if $helpMother is false>>
+Beber: ครอบครัวหนูตรงนั้นดูวุ่นวายจัง
+Beber: จะว่าไปแล้ว ก่อนฉันออกมาเหมือนจะเห็นแม่หนูอยู่ในนั้น
+<<elseif $helpMother is true>>
+Beber: ดีจริง ๆ ที่ออกมาได้
+<<endif>>
+===
+
+title: restKoala
+---
+Koala: ZZZ... ZZZ...
+===
+
+title: restOwl
+---
+Owl: เหนื่อย ๆ แล้วจิบชากำลังดีเลยน้า
+===
+
+title: workingMole
+---
+workingMole: ขอโทษครับ ผ..ผมจะรีบขุดให้เสร็จไว ๆ ครับ!
+workingMole: (ซักวันแกจะต้องโดนดี!)
+===
+
+title: teasingCat
+---
+teasingCat: รีบ ๆ ขุดให้มันเสร็จซะ! ข้าก็อยากไปพักแต่เพราะเจ้าขุดช้า ข้าก็ต้องพักช้าด้วย!
+===
+
+title: FatherMouse
+---
+<<declare $helpMother = false>>
+<<if $helpMother is false>>
+พ่อหนู: ตอนนี้มันช่วงเวลาพัก แล้วภรรยาของฉันหายไปไหนกันนะ...
+<<elseif $helpMother is true>>
+พ่อหนู: ฮืออๆๆๆ แม่จ๋ากลับมาแล้ว ฮืออออๆๆ
+<<endif>>
+===
+
+title: MouseSibling1
+---
+<<if $helpMother is false>>
+แฝดคนพี่: ฮืออออออออออออออออ
+<<elseif $helpMother is true>>
+แฝดคนพี่: ฮืออออออออออออออออออออออ แม่จ๋า ฮือออออออออออออออออออออ
+<<endif>>
+===
+
+title: MouseSibling2
+---
+<<if $helpMother is false>>
+แฝดคนน้อง: เฮ้ เจ้าแมว ถ้าเห็นหนูผู้หญิงช่วยรีบตามกลับมาทีนะ ขอร้องล่ะ! นั่นแม่ฉันเอง แม่ฉันหายไปไหนไม่รู้ ฮืออออออ
+<<elseif $helpMother is true>>
+แฝดคนน้อง: แงงงงง แม่จ๋าหายไปไหนมาา แงงง
+<<endif>>
+===
+
+title: MotherMouse
+---
+แม่หนู: ขอบคุณที่ช่วยฉันนะ ขอบคุณมากจริง ๆ
+แม่หนู: ฉันแอบเปิดประตูให้แล้ว ไปต่อได้เลยนะ
+===
+
+title: MotherMouse_StartQuest
+---
+<<SetBoolPortrait MotherMouse false>>
+แม่หนู: ... หิวจัง...
+===
+
+title: MotherMouse_AfterQuest
+---
+<<SetBoolPortrait MotherMouse true>>
+<<ChangePortrait MotherMouse Portraits/Mine/profile_mom/profile_momboring>>
+<<PlayTimeline Timeline_MotherMouse>>
+<<wait  1.5>>
+<<StopTimeline Timeline_MotherMouse>>
+แม่หนู: น... น..นี่ฉันสลบไปงั้นหรอ ฉันรู้สึกมึนหัวมาก ฉันสลบไปนานแค่ไหนแล้วนะ
+<<ChangePortrait MotherMouse Portraits/Mine/profile_mom/profile_momhappy>>
+แม่หนู: เธอมาช่วยฉันไว้งั้นหรอ
+แม่หนู: จริงสิ นี่มันเวลาพักแล้ว ครอบครัวของฉันคงรออยู่ข้างนอกนานแล้ว
+แม่หนู: เรารีบออกไปจากที่นี่ดีกว่า
+<<ResumeTimeline Timeline_MotherMouse>>
+<<set $helpMother = true>>
 ===

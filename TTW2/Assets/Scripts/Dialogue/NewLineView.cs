@@ -240,24 +240,11 @@ namespace Yarn.Unity
 
             dialogueRunner = FindObjectOfType<DialogueRunner>();
             dialogueRunner.onDialogueComplete.AddListener(setDefault);
+
+            dialogueRunner.AddCommandHandler<string, bool>("SetBoolPortrait", SetPortrait);
+            dialogueRunner.AddCommandHandler<string, string>("ChangePortrait", ChangePathPortrait);
         }
 
-        // public void HandleUpdate()
-        // {
-        //     // StartCoroutine(WaitTheText());
-        //     // UserRequestedViewAdvancement();
-        //     if (trigger.canTalk)
-        //     {
-        //         Debug.Log("can talk is true");
-        //         UserRequestedViewAdvancement();
-        //     }
-        // }
-
-        // private IEnumerator WaitTheText()
-        // {
-        //     yield return new WaitForSeconds(0.2f);
-        //     UserRequestedViewAdvancement();
-        // }
         public void setDefault()
         {
             groupTalk = false;
@@ -273,6 +260,29 @@ namespace Yarn.Unity
             portraitBox.SetActive(false);
             dialoguePanel.GetComponent<HorizontalLayoutGroup>().padding.left = 110;
             lineText.rectTransform.sizeDelta = new Vector2(1200, 259);
+        }
+        public void SetPortrait(string npcDataName, bool setBool)
+        {
+            foreach (NPCData npcData in npcDataList)
+            {
+                if (npcData.name == npcDataName)
+                {
+                    npcData.hasPortrait = setBool;
+                    break;
+                }
+            }
+        }
+
+        public void ChangePathPortrait(string npcDataName, string path)
+        {
+            foreach (NPCData npcData in npcDataList)
+            {
+                if (npcData.name == npcDataName)
+                {
+                    npcData.portraitPath = path;
+                    break;
+                }
+            }
         }
 
         /// <summary>

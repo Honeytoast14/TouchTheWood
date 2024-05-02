@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class RailTrigger : MonoBehaviour
 {
+    [SerializeField] GameObject button;
     bool inZone = false;
     void Update()
     {
@@ -19,6 +20,7 @@ public class RailTrigger : MonoBehaviour
         if (collider.gameObject.tag == "Player")
         {
             inZone = true;
+            button.SetActive(true);
         }
     }
 
@@ -27,6 +29,7 @@ public class RailTrigger : MonoBehaviour
         if (collider.gameObject.tag == "Player")
         {
             inZone = false;
+            button.SetActive(false);
         }
     }
 }
