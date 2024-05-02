@@ -10,6 +10,7 @@ public class SortingPuzzleTrigger : MonoBehaviour
     [SerializeField] List<GameObject> arrows;
     [SerializeField] GameObject doorOpen;
     [SerializeField] GameObject doorClose;
+    [SerializeField] GameObject doorColider;
     // [SerializeField] Texture2D cursor;
     bool inZone = false;
 
@@ -66,6 +67,7 @@ public class SortingPuzzleTrigger : MonoBehaviour
             arrow.SetActive(false);
         }
         doorClose.SetActive(false);
+        doorColider.SetActive(false);
         doorOpen.SetActive(true);
     }
 }
