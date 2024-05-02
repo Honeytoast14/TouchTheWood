@@ -1,0 +1,104 @@
+﻿title: PickUpItem1
+---
+SystemPickUp: คุณจะเก็บสิ่งนี้หรือไม่
+    -> เก็บ
+        <<SetUsePickUp PickupPicturePuzzle1>>
+    -> ไม่เก็บ
+===
+title: PickUpItem2
+---
+SystemPickUp2: คุณจะเก็บสิ่งนี้หรือไม่
+    -> เก็บ
+        <<SetUsePickUp PickupPicturePuzzle2>>
+    -> ไม่เก็บ
+===
+title: PickUpItem3
+---
+SystemPickUp2: คุณจะเก็บสิ่งนี้หรือไม่
+    -> เก็บ
+        <<SetUsePickUp PickupPicturePuzzle3>>
+    -> ไม่เก็บ
+===
+title: PickUpOrePieceRed
+---
+SystemPickUp: คุณจะเก็บสิ่งนี้หรือไม่
+    -> เก็บ
+        <<SetUsePickUp OrePieceRed>>
+    -> ไม่เก็บ
+===
+title: PickUpOrePieceBlue
+---
+SystemPickUp: คุณจะเก็บสิ่งนี้หรือไม่
+    -> เก็บ
+        <<SetUsePickUp OrePieceBlue>>
+    -> ไม่เก็บ
+===
+title: PickUpOrePiecePurple
+---
+SystemPickUp: คุณจะเก็บสิ่งนี้หรือไม่
+    -> เก็บ
+        <<SetUsePickUp OrePiecePurple>>
+    -> ไม่เก็บ
+===
+title: PickUpOrePieceYellow
+---
+SystemPickUp: คุณจะเก็บสิ่งนี้หรือไม่
+    -> เก็บ
+        <<SetUsePickUp OrePieceYellow>>
+    -> ไม่เก็บ
+===
+title: PickUpOrePieceGreen
+---
+SystemPickUp: คุณจะเก็บสิ่งนี้หรือไม่
+    -> เก็บ
+        <<SetUsePickUp OrePieceGreen>>
+    -> ไม่เก็บ
+===
+
+
+title: lever_firstFloor_true
+---
+System: ลองดันคันโยกหรือไม่
+    -> ใช่
+        <<SetEmojiWall Emoji_Surprise lever_firstFloor_true>>
+        <<wait 1>>
+        System: คุณได้ยินเสียงเหมือนเกิดอะไรบางอย่างขึ้น
+    -> ไม่ใช่
+===
+
+title: lever_firstFloor_false
+---
+System: ลองดันคันโยกหรือไม่
+    -> ใช่
+        <<SetEmojiWall Emoji_Shock lever_firstFloor_false>>
+        <<wait 1>>
+        System: ดูเหมือนว่าจะไม่มีอะไรเกิดขึ้น
+    -> ไม่ใช่
+===
+title: lever_firstFloor_false1
+---
+System: ลองดันคันโยกหรือไม่
+    -> ใช่
+        <<SetEmojiWall Emoji_Shock lever_firstFloor_false1>>
+        <<wait 1>>
+        System: ดูเหมือนว่าจะไม่มีอะไรเกิดขึ้น
+    -> ไม่ใช่
+===
+title: lever_firstFloor_false2
+---
+System: ลองดันคันโยกหรือไม่
+    -> ใช่
+        <<SetEmojiWall Emoji_Shock lever_firstFloor_false2>>
+        <<wait 1>>
+        System: ดูเหมือนว่าจะไม่มีอะไรเกิดขึ้น
+    -> ไม่ใช่
+===
+title: lever_firstFloor_false3
+---
+System: ลองดันคันโยกหรือไม่
+    -> ใช่
+        <<SetEmojiWall Emoji_Shock lever_firstFloor_false3>>
+        <<wait 1>>
+        System: ดูเหมือนว่าจะไม่มีอะไรเกิดขึ้น
+    -> ไม่ใช่
+===
