@@ -33,6 +33,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Cave floor3.unity
     guid: bd11bee169182b643b1659cc0c01138d
   - enabled: 1
-    path: Assets/Scenes/Cave floor2.unity
+    path: Assets/Scenes/Cave floor1.unity
     guid: aa7784ad2b4fae54fa3f19f114e85f73
   m_configObjects: {}
