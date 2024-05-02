@@ -5,7 +5,7 @@ using UnityEngine;
 using Yarn.Unity;
 using Debug = UnityEngine.Debug;
 
-public enum GameState { FreeRoam, Menu, Inventory, Dialogue, PuzzlePicture, Setting, RailPuzzle }
+public enum GameState { FreeRoam, Menu, Inventory, Dialogue, PuzzlePicture, Setting, Timeline }
 public class GameController : MonoBehaviour
 {
     [SerializeField] InventoryUI inventoryUI;

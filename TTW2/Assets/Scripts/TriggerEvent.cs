@@ -1,5 +1,7 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Playables;
 using Yarn.Unity;
 
 public class TriggerEvent : MonoBehaviour
@@ -25,12 +27,17 @@ public class TriggerEvent : MonoBehaviour
     public bool canTalk = false;
     private bool interactable = false;
     private bool isCurrentConversation = false;
+    // bool playTimelineBool = false;
+    // public bool setYarn = false;
 
     public static TriggerEvent Instance { get; private set; }
 
     void Awake()
     {
         Instance = this;
+
+        // if (setYarn)
+        //     dialogueRunner.AddCommandHandler("PlayTimeline", PlayTimeline);
     }
 
     void Start()
