@@ -7,6 +7,9 @@ public class SortingPuzzleTrigger : MonoBehaviour
     [SerializeField] GameObject puzzle;
     [SerializeField] Camera puzzleCam;
     [SerializeField] Camera mainCam;
+    [SerializeField] List<GameObject> arrows;
+    [SerializeField] GameObject doorOpen;
+    [SerializeField] GameObject doorClose;
     // [SerializeField] Texture2D cursor;
     bool inZone = false;
 
@@ -54,5 +57,15 @@ public class SortingPuzzleTrigger : MonoBehaviour
         {
             inZone = false;
         }
+    }
+
+    public void CloseSortingPuzzle()
+    {
+        foreach (GameObject arrow in arrows)
+        {
+            arrow.SetActive(false);
+        }
+        doorClose.SetActive(false);
+        doorOpen.SetActive(true);
     }
 }
