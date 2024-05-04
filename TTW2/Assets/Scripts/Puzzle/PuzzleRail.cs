@@ -87,7 +87,7 @@ public class PuzzleRail : MonoBehaviour
 
         foreach (Button pictwoway in twoWayPics)
         {
-            if (pictwoway.transform.rotation.z != 1 && pictwoway.transform.rotation.z != 0)
+            if (pictwoway.transform.rotation.z != 1 && pictwoway.transform.rotation.z != 0 && pictwoway.transform.rotation.z != -1)
             {
                 allZero = false;
                 break;

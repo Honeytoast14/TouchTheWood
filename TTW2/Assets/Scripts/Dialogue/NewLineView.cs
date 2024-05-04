@@ -518,6 +518,7 @@ namespace Yarn.Unity
 
                         if (npcData.hasPortrait)
                         {
+                            Debug.Log($"dialogue name: {npcData.dialogueName} || {npcData.hasPortrait}");
                             portraitBox.SetActive(true);
 
                             Sprite portraitSprite = Resources.Load<Sprite>(npcData.portraitPath);
