@@ -223,7 +223,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 403670d2cf275ba4e9b79e34d5e317de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  npcData: {fileID: 0}
+  npcData: {fileID: 11400000, guid: 38dd0444e73bdf04cbb5563dee5e0ba7, type: 2}
   itemGiver: {fileID: 0}
   pickUp: {fileID: 0}
   questToStart: {fileID: 0}

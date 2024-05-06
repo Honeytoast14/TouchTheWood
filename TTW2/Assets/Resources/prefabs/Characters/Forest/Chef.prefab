@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &2897390357873029001
+--- !u!1 &4957130621228434806
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,40 +8,40 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 8435226708611584338}
-  - component: {fileID: 5957861686973450362}
-  - component: {fileID: 4053684690262805874}
-  - component: {fileID: 3313877409548764362}
+  - component: {fileID: 4462510864566320822}
+  - component: {fileID: 8556281470298643710}
+  - component: {fileID: 5684801167933899182}
+  - component: {fileID: 9183069976062262721}
   m_Layer: 0
-  m_Name: Mamaparrot
+  m_Name: Chef
   m_TagString: NPC
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &8435226708611584338
+--- !u!4 &4462510864566320822
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2897390357873029001}
+  m_GameObject: {fileID: 4957130621228434806}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -12.782, y: -12.118, z: 0}
+  m_LocalPosition: {x: -2.829, y: 2.718, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 2002939502719432634}
+  - {fileID: 4251454200415359301}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &5957861686973450362
+--- !u!212 &8556281470298643710
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2897390357873029001}
+  m_GameObject: {fileID: 4957130621228434806}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 622914139
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -1586195179, guid: 8c30805a6ef033943ad3e1984cf2da39, type: 3}
+  m_Sprite: {fileID: 374401138, guid: 34eff7fa76897e545bdd11ce959617ae, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -87,17 +87,17 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &4053684690262805874
+--- !u!95 &5684801167933899182
 Animator:
   serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2897390357873029001}
+  m_GameObject: {fileID: 4957130621228434806}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: d9d04e33620c202498f17b2471436fbc, type: 2}
+  m_Controller: {fileID: 9100000, guid: eb09c0a5f8f0d4146bbc81f68ac0e9d0, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -108,13 +108,13 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!70 &3313877409548764362
+--- !u!70 &9183069976062262721
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2897390357873029001}
+  m_GameObject: {fileID: 4957130621228434806}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -140,10 +140,10 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.0238384, y: -0.054932177}
-  m_Size: {x: 0.27063584, y: 0.37013566}
+  m_Offset: {x: 0.008227825, y: -0.06673694}
+  m_Size: {x: 0.37212372, y: 0.37212372}
   m_Direction: 0
---- !u!1 &5784530870710756961
+--- !u!1 &6049445582651713813
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -151,9 +151,9 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2002939502719432634}
-  - component: {fileID: 8705954995934588772}
-  - component: {fileID: 1607766276688561725}
+  - component: {fileID: 4251454200415359301}
+  - component: {fileID: 4482132697584285538}
+  - component: {fileID: 5840757215599999328}
   m_Layer: 0
   m_Name: trigger
   m_TagString: Untagged
@@ -161,28 +161,28 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2002939502719432634
+--- !u!4 &4251454200415359301
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5784530870710756961}
+  m_GameObject: {fileID: 6049445582651713813}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 8435226708611584338}
+  m_Father: {fileID: 4462510864566320822}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!70 &8705954995934588772
+--- !u!70 &4482132697584285538
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5784530870710756961}
+  m_GameObject: {fileID: 6049445582651713813}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -208,22 +208,22 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.025911331, y: -0.029020697}
-  m_Size: {x: 0.44817734, y: 0.5771261}
+  m_Offset: {x: 0.013671279, y: -0.021646142}
+  m_Size: {x: 0.45898652, y: 0.55112815}
   m_Direction: 0
---- !u!114 &1607766276688561725
+--- !u!114 &5840757215599999328
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5784530870710756961}
+  m_GameObject: {fileID: 6049445582651713813}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 403670d2cf275ba4e9b79e34d5e317de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  npcData: {fileID: 11400000, guid: 8891f6959316d9b46bb767c62e773b5c, type: 2}
+  npcData: {fileID: 11400000, guid: 85e7ca99c8abd784daa781ce2655314f, type: 2}
   itemGiver: {fileID: 0}
   pickUp: {fileID: 0}
   questToStart: {fileID: 0}
