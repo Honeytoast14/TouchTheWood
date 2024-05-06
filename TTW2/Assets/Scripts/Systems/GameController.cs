@@ -18,12 +18,15 @@ public class GameController : MonoBehaviour
     MenuController menuController;
     TitleGame titleGame;
     OptionSetting optionSetting;
+    IsometricPlayerMovementController playerController;
     void Awake()
     {
         Time.timeScale = 1;
         menuController = GetComponent<MenuController>();
         titleGame = FindObjectOfType<TitleGame>();
         optionSetting = FindObjectOfType<OptionSetting>();
+        optionSetting = FindObjectOfType<OptionSetting>();
+        playerController = FindObjectOfType<IsometricPlayerMovementController>();
 
         if (menuController != null)
         {
@@ -111,6 +114,16 @@ public class GameController : MonoBehaviour
             }
         }
 
+        else if (state == GameState.SortingPuzzle)
+        {
+            playerController.StopMoving();
+
+            Action onBack = () =>
+            {
+                playerController.ResumeMoving();
+            };
+            SortingPuzzleTrigger.Instance.HandleUpdate(onBack);
+        }
         else if (state == GameState.Setting)
         {
             Action onBack = () =>

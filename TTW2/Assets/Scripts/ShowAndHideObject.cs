@@ -1,12 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Yarn;
+using Yarn.Unity;
 
 public class ShowAndHideObject : MonoBehaviour
 {
     [SerializeField] List<GameObject> hideObject;
     [SerializeField] List<GameObject> showObject;
     [SerializeField] GameObject button;
+    [SerializeField] GameObject oneObjectHide;
+    [SerializeField] GameObject oneObjectShow;
+    DialogueRunner dialogueRunner;
+    public bool setYarn = false;
+
+    void Start()
+    {
+        dialogueRunner = FindObjectOfType<DialogueRunner>();
+
+        if (setYarn)
+        {
+            dialogueRunner.AddCommandHandler<string>("HideObject", HideInYarn);
+            dialogueRunner.AddCommandHandler<string>("ShowObject", ShowInYarn);
+        }
+    }
 
     void Update()
     {
@@ -39,4 +56,37 @@ public class ShowAndHideObject : MonoBehaviour
             }
         }
     }
+
+    public void HideInYarn(string objectName)
+    {
+        if (oneObjectHide != null)
+        {
+            if (objectName == oneObjectHide.name)
+            {
+                Debug.Log("Hide");
+                GameObject objectToHide = GameObject.Find(objectName);
+                objectToHide.SetActive(false);
+            }
+        }
+    }
+    public void ShowInYarn(string objectName)
+    {
+        if (oneObjectShow != null)
+        {
+            if (objectName == oneObjectShow.name)
+            {
+                Debug.Log("Show");
+                GameObject objectToShow = GameObject.Find(objectName);
+                if (objectToShow != null)
+                {
+                    objectToShow.SetActive(true);
+                }
+                else
+                {
+                    Debug.LogError("Object not found: " + objectName);
+                }
+            }
+        }
+    }
+
 }

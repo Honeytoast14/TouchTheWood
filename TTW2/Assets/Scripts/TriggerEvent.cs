@@ -19,6 +19,9 @@ public class TriggerEvent : MonoBehaviour
     [SerializeField] QuestData questToStart;
     [SerializeField] QuestData questToComplete;
     [SerializeField] GameObject questAttention;
+
+    [Header("Add Quest In Yarn")]
+    [SerializeField] QuestData questAdd;
     private DialogueRunner dialogueRunner;
     GameController gameController;
     Quest activeQuest;
@@ -27,17 +30,13 @@ public class TriggerEvent : MonoBehaviour
     public bool canTalk = false;
     private bool interactable = false;
     private bool isCurrentConversation = false;
-    // bool playTimelineBool = false;
-    // public bool setYarn = false;
+    public bool setYarn = false;
 
     public static TriggerEvent Instance { get; private set; }
 
     void Awake()
     {
         Instance = this;
-
-        // if (setYarn)
-        //     dialogueRunner.AddCommandHandler("PlayTimeline", PlayTimeline);
     }
 
     void Start()
@@ -47,6 +46,11 @@ public class TriggerEvent : MonoBehaviour
         playerController = FindObjectOfType<IsometricPlayerMovementController>();
 
         dialogueRunner.onDialogueComplete.AddListener(EndDialouge);
+
+        if (setYarn)
+        {
+            dialogueRunner.AddCommandHandler("AddQuest", AddQuestInYarn);
+        }
 
         if (itemGiver != null)
         {
@@ -116,6 +120,14 @@ public class TriggerEvent : MonoBehaviour
         {
             pickUp.GiveItem(playerController);
         }
+
+        if (questToStart != null)
+        {
+            if (questAttention != null)
+            {
+                questAttention.SetActive(true);
+            }
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -157,6 +169,12 @@ public class TriggerEvent : MonoBehaviour
         dialogueRunner.StartDialogue(npcDialogue);
 
         gameController.state = GameState.Dialogue;
+    }
+
+    public void AddQuestInYarn()
+    {
+        if (questAdd != null)
+            questToStart = questAdd;
     }
 }
 

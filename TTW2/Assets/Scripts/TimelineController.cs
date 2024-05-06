@@ -8,6 +8,7 @@ using Yarn.Unity;
 public class TimelineController : MonoBehaviour
 {
     DialogueRunner dialogueRunner;
+    TriggerEvent trigger;
     [SerializeField] PlayableDirector timeline;
     // [SerializeField] GameObject objectSprite;
     public bool setYarn = false;
@@ -15,6 +16,7 @@ public class TimelineController : MonoBehaviour
     void Start()
     {
         dialogueRunner = FindObjectOfType<DialogueRunner>();
+        trigger = FindObjectOfType<TriggerEvent>();
 
         if (setYarn)
         {
@@ -66,7 +68,10 @@ public class TimelineController : MonoBehaviour
         if (timelineYarn != null)
         {
             PlayableDirector playableDirector = timelineYarn.GetComponent<PlayableDirector>();
-            playableDirector.Pause();
+            if (playableDirector != null)
+            {
+                playableDirector.playableGraph.GetRootPlayable(0).SetSpeed(0);
+            }
         }
     }
 
@@ -76,12 +81,25 @@ public class TimelineController : MonoBehaviour
         if (timelineYarn != null)
         {
             PlayableDirector playableDirector = timelineYarn.GetComponent<PlayableDirector>();
-            playableDirector.Resume();
+            if (playableDirector != null)
+            {
+                playableDirector.playableGraph.GetRootPlayable(0).SetSpeed(1);
+            }
         }
     }
-    // public void SetSprite(Sprite spriteImage)
-    // {
-    //     SpriteRenderer spriteRenderer = objectSprite.GetComponent<SpriteRenderer>();
-    //     spriteRenderer.sprite = spriteImage;
-    // }
+
+
+    public void StartDialogueTinmeline(NPCData npcData)
+    {
+        trigger.StartDialogue(npcData.dialogueName);
+    }
+
+    public void SetVarToFirstFloor()
+    {
+        var variableStorage = GameObject.FindObjectOfType<InMemoryVariableStorage>();
+
+        bool beetlePermission;
+        variableStorage.TryGetValue("$beetlePermission", out beetlePermission);
+        variableStorage.SetValue("$beetlePermission", beetlePermission = true);
+    }
 }

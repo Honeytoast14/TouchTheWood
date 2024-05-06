@@ -243,6 +243,7 @@ namespace Yarn.Unity
 
             dialogueRunner.AddCommandHandler<string, bool>("SetBoolPortrait", SetPortrait);
             dialogueRunner.AddCommandHandler<string, string>("ChangePortrait", ChangePathPortrait);
+            dialogueRunner.AddCommandHandler("HidePortraitBox", HidePortrait);
         }
 
         public void setDefault()

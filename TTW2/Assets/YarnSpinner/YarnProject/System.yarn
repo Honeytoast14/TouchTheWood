@@ -54,6 +54,13 @@ SystemPickUp: คุณจะเก็บสิ่งนี้หรือไม
         <<SetUsePickUp OrePieceGreen>>
     -> ไม่เก็บ
 ===
+title: PickUpStatueOre
+---
+SystemPickUp: คุณจะเก็บสิ่งนี้หรือไม่
+    -> เก็บ
+        <<SetUsePickUp StatueOre>>
+    -> ไม่เก็บ
+===
 
 
 title: lever_firstFloor_true
