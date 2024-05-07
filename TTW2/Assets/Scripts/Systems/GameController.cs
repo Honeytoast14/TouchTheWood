@@ -112,6 +112,27 @@ public class GameController : MonoBehaviour
                     PuzzleRail.Instance.HandleUpdate();
                 }
             }
+            if (PuzzleHoneyEasy.Instance != null)
+            {
+                if (PuzzleHoneyEasy.Instance.honeyEasyIsOpen)
+                {
+                    PuzzleHoneyEasy.Instance.HandleUpdate();
+                }
+            }
+            if (PuzzleHoneyMed.Instance != null)
+            {
+                if (PuzzleHoneyMed.Instance.medIsOpen)
+                {
+                    PuzzleHoneyMed.Instance.HandleUpdate();
+                }
+            }
+            if (PuzzleHoneyHard.Instance != null)
+            {
+                if (PuzzleHoneyHard.Instance.hardIsOpen)
+                {
+                    PuzzleHoneyHard.Instance.HandleUpdate();
+                }
+            }
         }
 
         else if (state == GameState.SortingPuzzle)
