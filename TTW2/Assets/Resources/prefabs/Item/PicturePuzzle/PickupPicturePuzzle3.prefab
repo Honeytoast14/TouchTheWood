@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 8654796904743270990}
   - component: {fileID: 2065966970181736378}
   - component: {fileID: 8594041046910149472}
-  - component: {fileID: 5191977434303100875}
   m_Layer: 0
   m_Name: Trigger
   m_TagString: Untagged
@@ -87,7 +86,11 @@ MonoBehaviour:
   pickUp: {fileID: 8594041046910149472}
   questToStart: {fileID: 0}
   questToComplete: {fileID: 0}
+  questAttention: {fileID: 0}
+  questAdd: {fileID: 0}
+  questCompleteAdd: {fileID: 0}
   canTalk: 0
+  setYarn: 0
 --- !u!114 &8594041046910149472
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -102,19 +105,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   item: {fileID: 11400000, guid: 02fb257869d8c2a4090786967b9f4fe2, type: 2}
   count: 1
---- !u!114 &5191977434303100875
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 340970052568619896}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4881f89f8b930e34489bbb86116ccd4d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  uniqueId: 1c494775-517c-47f1-9c81-bc3095123ca9
+  setYarn: 0
 --- !u!1 &1938475363858196784
 GameObject:
   m_ObjectHideFlags: 0
@@ -128,7 +119,6 @@ GameObject:
   - component: {fileID: 3286373434007315513}
   - component: {fileID: 4726881365091959168}
   - component: {fileID: 4903248247180823129}
-  - component: {fileID: 7591840534303890004}
   m_Layer: 0
   m_Name: PickupPicturePuzzle3
   m_TagString: Item
@@ -277,16 +267,3 @@ CapsuleCollider2D:
   m_Offset: {x: 0.010251008, y: -0.007322492}
   m_Size: {x: 0.12961796, y: 0.12961796}
   m_Direction: 1
---- !u!114 &7591840534303890004
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1938475363858196784}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4881f89f8b930e34489bbb86116ccd4d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  uniqueId: 62506f8a-8b78-4777-b52c-81f92d465905

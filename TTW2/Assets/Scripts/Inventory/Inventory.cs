@@ -79,23 +79,6 @@ public class Inventory : MonoBehaviour
 
         return itemSlot != null && itemSlot.Count > 0 ? itemSlot.Count : 0;
     }
-
-    // public object CaptureState()
-    // {
-    //     var saveData = new InventorySaveData()
-    //     {
-    //         items = slots.Select(i => i.GetSaveData()).ToList()
-    //     };
-    //     return saveData;
-    // }
-
-    // public void RestoreState(object state)
-    // {
-    //     var saveData = state as InventorySaveData;
-    //     slots = saveData.items.Select(i => new ItemSlot(i)).ToList();
-
-    //     onUpdated?.Invoke();
-    // }
 }
 
 [Serializable]

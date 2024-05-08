@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 using UnityEngine.UIElements;
 
-public class PuzzleWall : MonoBehaviour, ISavable
+public class PuzzleWall : MonoBehaviour
 {
     [SerializeField] GameObject wall;
     [Header("Tile Change")]
@@ -117,26 +117,5 @@ public class PuzzleWall : MonoBehaviour, ISavable
         emoji.Play(animationName);
         yield return new WaitForSeconds(0.8f);
         emoji.gameObject.SetActive(false);
-    }
-
-    public object CaptureState()
-    {
-        return (useSwitch, destroyObject);
-    }
-
-    public void RestoreState(object state)
-    {
-        (bool useSwitchState, bool destroyObjectState) = ((bool, bool))state;
-        useSwitch = useSwitchState;
-        destroyObject = destroyObjectState;
-
-        if (useSwitch)
-        {
-            tilemap.SetTile(position, tileChange);
-        }
-        if (destroyObject)
-        {
-            HideWall(wall);
-        }
     }
 }

@@ -22,6 +22,7 @@ public class TriggerEvent : MonoBehaviour
 
     [Header("Add Quest In Yarn")]
     [SerializeField] QuestData questAdd;
+    [SerializeField] QuestData questCompleteAdd;
     private DialogueRunner dialogueRunner;
     GameController gameController;
     Quest activeQuest;
@@ -50,6 +51,7 @@ public class TriggerEvent : MonoBehaviour
         if (setYarn)
         {
             dialogueRunner.AddCommandHandler("AddQuest", AddQuestInYarn);
+            dialogueRunner.AddCommandHandler("AddQuestToComplete", AddQuesCompletetInYarn);
         }
 
         if (itemGiver != null)
@@ -90,6 +92,7 @@ public class TriggerEvent : MonoBehaviour
             {
                 var quest = new Quest(questToComplete);
                 quest.CompleteQuest(playerController.transform, npcData.dialogueName + "_AfterQuest");
+                questAttention.SetActive(false);
                 questToComplete = null;
 
                 Debug.Log($"{quest.Base.Name} is complete!");
@@ -122,6 +125,13 @@ public class TriggerEvent : MonoBehaviour
         }
 
         if (questToStart != null)
+        {
+            if (questAttention != null)
+            {
+                questAttention.SetActive(true);
+            }
+        }
+        if (questToComplete != null)
         {
             if (questAttention != null)
             {
@@ -175,6 +185,11 @@ public class TriggerEvent : MonoBehaviour
     {
         if (questAdd != null)
             questToStart = questAdd;
+    }
+    public void AddQuesCompletetInYarn()
+    {
+        if (questCompleteAdd != null)
+            questToComplete = questCompleteAdd;
     }
 }
 

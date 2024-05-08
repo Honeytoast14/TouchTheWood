@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 6707625898948314852}
   - component: {fileID: 4821349545022413722}
   - component: {fileID: 3946729365340407848}
-  - component: {fileID: 8153177186938364737}
   m_Layer: 0
   m_Name: Trigger
   m_TagString: Untagged
@@ -87,7 +86,11 @@ MonoBehaviour:
   pickUp: {fileID: 3946729365340407848}
   questToStart: {fileID: 0}
   questToComplete: {fileID: 0}
+  questAttention: {fileID: 0}
+  questAdd: {fileID: 0}
+  questCompleteAdd: {fileID: 0}
   canTalk: 0
+  setYarn: 0
 --- !u!114 &3946729365340407848
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -102,19 +105,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   item: {fileID: 11400000, guid: 852a612061aed2449a0dfdd6a971af1b, type: 2}
   count: 1
---- !u!114 &8153177186938364737
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1542237326804806}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4881f89f8b930e34489bbb86116ccd4d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  uniqueId: b3401dda-9809-456d-96be-0d0d6d4f38ba
+  setYarn: 0
 --- !u!1 &5718769210834225136
 GameObject:
   m_ObjectHideFlags: 0

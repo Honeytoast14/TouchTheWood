@@ -1,25 +1,67 @@
 ﻿title: papaParrot
 ---
-พ่อนก: ลูก ๆ ของฉันหายไปไหนกันนน!! //หน้าร้องไห้
-//เสร็จเควส
-พ่อนก: ลูก ๆ กลับมาครบแล้ว! //หน้าดีใจ
-พ่อนก: จริงสิ! ฉันเห็นแมวเหมือนกับเธอเดินไปกับใครซักคนด้วยนะ!
+<<if $parrotQuest is false>>
+    <<ChangePortrait PapaParrot Portraits/papa_parrot/papaparrot_sad>>
+    พ่อนก: ลูก ๆ ของฉันหายไปไหนกันนน!! //หน้าร้องไห้
+    พ่อนก: พ่อคิดถึงลูก ๆ !!
+<<elseif $parrotQuest is true>>   
+    //เสร็จเควส
+    <<ChangePortrait PapaParrot Portraits/papa_parrot/papaparrot_happyl>>
+    พ่อนก: ลูก ๆ กลับมาครบแล้ว! ขอบใจเธอมากนะ //หน้าดีใจ
+<<endif>>
+===
+
+title: papaParrot_AfterQuest
+---
+//เศวสให้คุยกับพ่อนกหลังจากคุยกับแม่นก
+<<ChangePortrait PapaParrot Portraits/papa_parrot/papaparrot_happyl>>
+พ่อนก: ขอบใจเธอมาก ๆ เลยนะ ขอนไม้มันขวางทางเธองั้นหรอ เดี๋ยวให้ลูก ๆ ไปยกให้นะ
+//timeline เอาท่อนไม้ออก
+<<ChangePortrait PapaParrot Portraits/papa_parrot/papaparrot_normal>>
+พ่อนก: จริงสิ! ฉันเห็นแมวเหมือนกับเธอสีดำ ๆ เดินไปกับใครซักคนด้วยนะ!
 พ่อนก: เหมือนว่าเขาจะทำกระดาษตกด้วยนะ ไม่แน่ใจว่าจะมีประโยชน์กับเธอรึเปล่า รับไปสิ
+<<SetUseItemGiver Papaparrot>>
 //ให้กระดาษ อย่างละ 1 ชิ้น
 ===
 
 title:mamaParrot
 ---
-//รับเควส
-แม่นก: เธอเห็นลูก ๆ ของฉันบ้างมั้ย
-แม่นก: พวกเค้าเข้าป่าแล้วก็หายไปนานมากแล้ว คงจะเล่นกันเพลินแล้วไม่ยอมกลับบ้านแน่ ๆ เลย
-แม่นก: ช่วงนี้มีเห็ดประหลาด ๆ ขึ้นมาในป่า เป็นเห็ดที่ถ้าไปสะกิดหรือโดนก็จะส่งเสียง //หน้าปกติ
-แม่นก: เธอช่วยไปตามลูก ๆ ของฉันหน่อยได้ไหม
-แม่นก: ลูก ๆ ของฉันมี 20 ตัว ถ้าเธอช่วยเสร็จเดี๋ยวพวกฉันจะเปิดทางให้นะ
-//เสร็จเศวส
-แม่นก: ขอบคุณเธอมากจริง ๆ นะ  ลูก ๆ คงสร้างความลำบากให้แย่เลย เดี๋ยวจะไปเปิดทางให้นะ //หน้าดีใจ
-//timeline เอาท่อนไม้ออก
-แม่นก: จริงสิ! สามีของฉันเหมือนจะมีของให้เธอด้วย!
+<<if $parrotQuest is false>>
+    <<if $MamatQuest is false>>
+        //รับเควส
+        <<ChangePortrait MamaParrot Portraits/mamaparrot/mamaparrot_sadl>>
+        แม่นก: เธอเห็นลูก ๆ ของฉันบ้างมั้ย //หน้าเศร้า
+        <<ChangePortrait MamaParrot Portraits/mamaparrot/mamaparrot_borning>>
+        แม่นก: พวกเค้าเข้าป่าแล้วก็หายไปนานมากแล้ว คงจะเล่นกันเพลินแล้วไม่ยอมกลับบ้านแน่ ๆ เลย
+        <<ChangePortrait MamaParrot Portraits/mamaparrot/mamaparrot_normal>>
+        แม่นก: เพราะช่วงนี้มีเห็ดประหลาด ๆ ขึ้นมาในป่า เป็นเห็ดที่ถ้าไปสะกิดหรือโดนก็จะส่งเสียง คงจะไปเล่นแล้วติดใจนะสิ//หน้าปกติ
+        แม่นก: เธอตามหาแมวหรอ ฉันไม่เห็นเลยนะ บางทีสามีฉันอาจจะเห็นแต่เขาคงเป็นห่วงลูก ๆ จนไม่คิดเรื่องอื่นเลยละ
+        แม่นก: เธอจะไปต่องั้นหรอ ที่จริงแล้วทางไปต่อถูกขอนไม้ขวางเอาไว้
+        แม่นก: ถ้าเธอช่วยพาลูก ๆ กลับมาเรา เราอาจจะช่วยยกขอนไม้ออกได้นะ
+        แม่นก: ลูก ๆ ของฉันมี 20 ตัว ถ้าเธอช่วยเสร็จเดี๋ยวพวกฉันจะเปิดทางให้นะ
+        <<HideManyObject>>
+        <<set $MamatQuest = true>>
+    <<elseif $MamatQuest is true>>
+        <<ChangePortrait MamaParrot Portraits/mamaparrot/mamaparrot_sadl>>
+        แม่นก: ได้โปรดช่วยตามลูก ๆ เถอะนะ ฉันและสามีอยู่ไม่สุขแล้ว
+    <<endif>>
+<<elseif $parrotQuest is true>>
+
+//------------------------------------------------------<< เมื่อเก็บลูกนกครบ 20 ตัวแล้ว ให้ Set $parrotQuest = true >>-----------------------------------------------------
+
+    <<if $MamaGivePapa is false>>
+    //เสร็จเศวส
+        <<ChangePortrait MamaParrot Portraits/mamaparrot/mamaparrot_happyl>>
+        แม่นก: ขอบคุณเธอมากจริง ๆ นะ  ลูก ๆ คงสร้างความลำบากให้แย่เลย //หน้าดีใจ
+        แม่นก: จริงสิ! สามีของฉันเหมือนจะมีของให้เธอด้วย!
+        <<AddQuestToComplete>> // questToComplete ให้พ่อนก
+        <<HideObject quest_0>>
+        
+        <<set $MamaGivePapa = true>>
+    <<elseif $MamaGivePapa is true>>
+        แม่นก: ขอบคุณมากเลยนะ ไม่คิดเลยว่าเธอจะใจดีขนาดนี้
+    <<endif>>
+<<endif>>
 ===
 
 title: merchantFox
@@ -114,4 +156,12 @@ Knight: ถูกต้อง //timeline หลีกทาง
 
 //ผิด
 Knight: ผิด! อย่าหวังว่าจะผ่านไปได้!
+===
+
+
+title: declareForest
+---
+<<declare $parrotQuest = false>>
+<<declare $MamatQuest = false>>
+<<declare $MamaGivePapa = false>>
 ===

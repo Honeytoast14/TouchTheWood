@@ -5,7 +5,7 @@ using UnityEngine;
 using Yarn.Unity;
 using Debug = UnityEngine.Debug;
 
-public enum GameState { FreeRoam, Menu, Inventory, Dialogue, PuzzlePicture, Setting, Timeline, SortingPuzzle }
+public enum GameState { FreeRoam, Menu, Inventory, Dialogue, PuzzlePicture, Timeline, SortingPuzzle }
 public class GameController : MonoBehaviour
 {
     [SerializeField] InventoryUI inventoryUI;
@@ -17,15 +17,12 @@ public class GameController : MonoBehaviour
     public SceneDetails previousScene { get; private set; }
     MenuController menuController;
     TitleGame titleGame;
-    OptionSetting optionSetting;
     IsometricPlayerMovementController playerController;
     void Awake()
     {
         Time.timeScale = 1;
         menuController = GetComponent<MenuController>();
         titleGame = FindObjectOfType<TitleGame>();
-        optionSetting = FindObjectOfType<OptionSetting>();
-        optionSetting = FindObjectOfType<OptionSetting>();
         playerController = FindObjectOfType<IsometricPlayerMovementController>();
 
         if (menuController != null)
@@ -144,19 +141,6 @@ public class GameController : MonoBehaviour
                 playerController.ResumeMoving();
             };
             SortingPuzzleTrigger.Instance.HandleUpdate(onBack);
-        }
-        else if (state == GameState.Setting)
-        {
-            Action onBack = () =>
-            {
-                state = GameState.FreeRoam;
-                titleGame.OpenTitle();
-            };
-            if (optionSetting != null)
-                optionSetting.HandleUpdate(onBack);
-            else
-                Debug.LogError("Can't find OptionSetting");
-
         }
     }
 

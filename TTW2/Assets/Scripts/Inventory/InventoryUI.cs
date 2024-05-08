@@ -98,11 +98,20 @@ public class InventoryUI : MonoBehaviour
             {
                 Debug.Log("Select item that can use");
                 if (slot.Item.name == "PicturePuzzle1")
-                    PuzzleRotatePicFirst.Instance.OpenPicturePuzzle();
+                {
+                    if (PuzzleRotatePicFirst.Instance != null)
+                        PuzzleRotatePicFirst.Instance.OpenPicturePuzzle();
+                }
                 if (slot.Item.name == "PicturePuzzle2")
-                    PuzzleRotatePicSecond.Instance.OpenPicturePuzzle();
+                {
+                    if (PuzzleRotatePicSecond.Instance != null)
+                        PuzzleRotatePicSecond.Instance.OpenPicturePuzzle();
+                }
                 if (slot.Item.name == "PicturePuzzle3")
-                    PuzzleRotatePicThird.Instance.OpenPicturePuzzle();
+                {
+                    if (PuzzleRotatePicThird.Instance != null)
+                        PuzzleRotatePicThird.Instance.OpenPicturePuzzle();
+                }
             }
         }
 

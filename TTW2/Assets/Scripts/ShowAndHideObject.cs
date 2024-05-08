@@ -22,6 +22,7 @@ public class ShowAndHideObject : MonoBehaviour
         {
             dialogueRunner.AddCommandHandler<string>("HideObject", HideInYarn);
             dialogueRunner.AddCommandHandler<string>("ShowObject", ShowInYarn);
+            dialogueRunner.AddCommandHandler("HideManyObject", HideManyObject);
         }
     }
 
@@ -75,16 +76,37 @@ public class ShowAndHideObject : MonoBehaviour
         {
             if (objectName == oneObjectShow.name)
             {
-                Debug.Log("Show");
+                Debug.Log("Object to show exists in oneObjectShow.");
                 GameObject objectToShow = GameObject.Find(objectName);
                 if (objectToShow != null)
                 {
+                    Debug.Log("Found object to show: " + objectName);
                     objectToShow.SetActive(true);
                 }
                 else
                 {
-                    Debug.LogError("Object not found: " + objectName);
+                    Debug.LogWarning("Failed to find object: " + objectName);
                 }
+            }
+            else
+            {
+                Debug.LogWarning("Object name does not match oneObjectShow.");
+            }
+        }
+        else
+        {
+            Debug.LogWarning("oneObjectShow is null.");
+        }
+    }
+
+    public void HideManyObject()
+    {
+        if (hideObject != null)
+        {
+            foreach (GameObject game in hideObject)
+            {
+                game.SetActive(false);
+                Debug.Log($"Hide {game.name}");
             }
         }
     }
