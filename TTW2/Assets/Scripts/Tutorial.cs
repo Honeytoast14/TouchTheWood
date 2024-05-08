@@ -5,16 +5,42 @@ using UnityEngine;
 public class Tutorial : MonoBehaviour
 {
     public GameObject panel;
+    bool inZone = false;
     void Start()
     {
-        StartCoroutine(SetTutorial());
+        panel.SetActive(false);
     }
-    IEnumerator SetTutorial()
+
+    void Update()
     {
-        panel.SetActive(false);
-        yield return new WaitForSeconds(2f);
-        panel.SetActive(true);
-        yield return new WaitForSeconds(4f);
-        panel.SetActive(false);
+
+        if (inZone)
+        {
+            if (Input.GetKeyDown(KeyCode.Z))
+                panel.SetActive(true);
+
+            if (Input.GetKeyDown(KeyCode.X))
+                panel.SetActive(false);
+        }
+        else
+        {
+
+            panel.SetActive(false);
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D collider)
+    {
+        if (collider.gameObject.tag == "Player")
+        {
+            inZone = true;
+        }
+    }
+    void OnTriggerExit2D(Collider2D collider)
+    {
+        if (collider.gameObject.tag == "Player")
+        {
+            inZone = false;
+        }
     }
 }
