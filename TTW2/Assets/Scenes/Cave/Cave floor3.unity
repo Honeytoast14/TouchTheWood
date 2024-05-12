@@ -378,6 +378,7 @@ MonoBehaviour:
   questToComplete: {fileID: 0}
   questAttention: {fileID: 0}
   questAdd: {fileID: 0}
+  questCompleteAdd: {fileID: 0}
   canTalk: 0
   setYarn: 0
 --- !u!1 &47804978
@@ -1093,6 +1094,7 @@ MonoBehaviour:
   questToComplete: {fileID: 0}
   questAttention: {fileID: 0}
   questAdd: {fileID: 0}
+  questCompleteAdd: {fileID: 0}
   canTalk: 0
   setYarn: 0
 --- !u!1 &203246050
@@ -1218,6 +1220,7 @@ MonoBehaviour:
   questToComplete: {fileID: 0}
   questAttention: {fileID: 0}
   questAdd: {fileID: 0}
+  questCompleteAdd: {fileID: 0}
   canTalk: 0
   setYarn: 0
 --- !u!95 &214536319
@@ -2308,8 +2311,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 1.5639, y: -0.12189999, z: 0}
-    m_Extent: {x: 0.78520006, y: 0.6021, z: 0}
+    m_Center: {x: 1.55465, y: -0.11325, z: 0}
+    m_Extent: {x: 0.78185, y: 0.60345, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -3553,8 +3556,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 1.5602499, y: -0.12175001, z: 0}
-    m_Extent: {x: 0.78765, y: 0.60245, z: 0}
+    m_Center: {x: 1.5620999, y: -0.10730001, z: 0}
+    m_Extent: {x: 0.78, y: 0.604, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -3849,6 +3852,7 @@ MonoBehaviour:
   questToComplete: {fileID: 0}
   questAttention: {fileID: 0}
   questAdd: {fileID: 0}
+  questCompleteAdd: {fileID: 0}
   canTalk: 0
   setYarn: 0
 --- !u!1 &667207889
@@ -4441,6 +4445,7 @@ MonoBehaviour:
   questToComplete: {fileID: 0}
   questAttention: {fileID: 0}
   questAdd: {fileID: 0}
+  questCompleteAdd: {fileID: 0}
   canTalk: 0
   setYarn: 0
 --- !u!1 &714564342
@@ -14425,8 +14430,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.15580001, y: -0.35930002, z: 0}
-    m_Extent: {x: 0.70710003, y: 0.7271, z: 0}
+    m_Center: {x: 0.1568, y: -0.3565, z: 0}
+    m_Extent: {x: 0.7085, y: 0.7312, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -14673,6 +14678,7 @@ MonoBehaviour:
   questToComplete: {fileID: 0}
   questAttention: {fileID: 1444592421}
   questAdd: {fileID: 0}
+  questCompleteAdd: {fileID: 0}
   canTalk: 0
   setYarn: 0
 --- !u!1 &1095315101
@@ -14762,6 +14768,7 @@ MonoBehaviour:
   questToComplete: {fileID: 0}
   questAttention: {fileID: 0}
   questAdd: {fileID: 0}
+  questCompleteAdd: {fileID: 0}
   canTalk: 0
   setYarn: 0
 --- !u!1001 &1099777091
@@ -25735,6 +25742,7 @@ MonoBehaviour:
   questToComplete: {fileID: 0}
   questAttention: {fileID: 0}
   questAdd: {fileID: 0}
+  questCompleteAdd: {fileID: 0}
   canTalk: 0
   setYarn: 0
 --- !u!1 &1746712206
@@ -26213,6 +26221,7 @@ MonoBehaviour:
   questToComplete: {fileID: 0}
   questAttention: {fileID: 0}
   questAdd: {fileID: 0}
+  questCompleteAdd: {fileID: 0}
   canTalk: 0
   setYarn: 0
 --- !u!1001 &1784905480
@@ -26425,6 +26434,7 @@ MonoBehaviour:
   questToComplete: {fileID: 0}
   questAttention: {fileID: 0}
   questAdd: {fileID: 0}
+  questCompleteAdd: {fileID: 0}
   canTalk: 0
   setYarn: 0
 --- !u!1 &1809821974
@@ -26601,6 +26611,7 @@ MonoBehaviour:
   questToComplete: {fileID: 0}
   questAttention: {fileID: 0}
   questAdd: {fileID: 0}
+  questCompleteAdd: {fileID: 0}
   canTalk: 0
   setYarn: 0
 --- !u!1 &1863193045 stripped
@@ -26721,7 +26732,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeline: {fileID: 0}
-  setYarn: 1
+  setYarn: 0
 --- !u!1 &1915201738
 GameObject:
   m_ObjectHideFlags: 0

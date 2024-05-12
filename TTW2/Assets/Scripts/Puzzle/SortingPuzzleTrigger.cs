@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Animations;
 using UnityEngine.UI;
 using Yarn;
 using Yarn.Unity;
@@ -10,7 +11,7 @@ public class SortingPuzzleTrigger : MonoBehaviour
 {
     [SerializeField] GameObject puzzle;
     [SerializeField] Camera puzzleCam;
-    [SerializeField] Camera mainCam;
+    Camera mainCam;
     [SerializeField] List<GameObject> objectGroup;
     [SerializeField] GameObject doorOpen;
     [SerializeField] GameObject doorClose;
@@ -19,7 +20,6 @@ public class SortingPuzzleTrigger : MonoBehaviour
     // [SerializeField] Texture2D cursor;
     bool inZone = false;
     public static SortingPuzzleTrigger Instance { get; private set; }
-    TimelineController timelineController;
     IsometricPlayerMovementController playerController;
     void Awake()
     {
@@ -30,7 +30,7 @@ public class SortingPuzzleTrigger : MonoBehaviour
         puzzleCam.enabled = false;
 
         playerController = FindObjectOfType<IsometricPlayerMovementController>();
-        timelineController = FindObjectOfType<TimelineController>();
+        mainCam = Camera.main;
     }
 
     void Update()
