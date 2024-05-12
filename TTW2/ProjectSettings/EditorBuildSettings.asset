@@ -18,11 +18,11 @@ EditorBuildSettings:
     path: Assets/Scenes/Puzzles/PicturePuzzle2.unity
     guid: 6bb60098a18e8964e95ff4af3fb11c41
   - enabled: 1
-    path: Assets/Scenes/Puzzles/PuzzleHoneyEasy.unity
-    guid: 735c076130319f847bfb679dd85a3a6c
-  - enabled: 1
     path: Assets/Scenes/Puzzles/PicturePuzzle3.unity
     guid: 54056f10e4888ba4cb76320ccf15c632
+  - enabled: 1
+    path: Assets/Scenes/Puzzles/PuzzleHoneyEasy.unity
+    guid: 735c076130319f847bfb679dd85a3a6c
   - enabled: 1
     path: Assets/Scenes/Cave/Cave floor5.unity
     guid: 88d0d77f3c726de45933ad6bcb2a0dcb
@@ -39,12 +39,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Cave/Cave floor1.unity
     guid: aa7784ad2b4fae54fa3f19f114e85f73
   - enabled: 1
-    path: Assets/Ball Sort Puzzle kit/DemoScenes/Demo_01.unity
-    guid: 2b5801bf76c65714fbe0fd1ee86fdfb3
+    path: Assets/Scenes/Forest0.unity
+    guid: 72b9d93ead803234d8df4ee499ebecc6
   - enabled: 1
-    path: Assets/Ball Sort Puzzle kit/DemoScenes/Demo_02.unity
-    guid: 1d70df314c9b5b04faa7b5f1c85ce210
-  - enabled: 1
-    path: Assets/Ball Sort Puzzle kit/DemoScenes/Demo_03.unity
-    guid: 214bfb118e9d98f41a70b7342d10c533
+    path: Assets/Scenes/Forest1.unity
+    guid: 7caf90d27ed951f428c1541a3e7ef195
   m_configObjects: {}
