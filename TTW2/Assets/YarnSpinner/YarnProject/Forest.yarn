@@ -16,7 +16,9 @@ title: papaParrot_AfterQuest
 //เศวสให้คุยกับพ่อนกหลังจากคุยกับแม่นก
 <<ChangePortrait PapaParrot Portraits/papa_parrot/papaparrot_happyl>>
 พ่อนก: ขอบใจเธอมาก ๆ เลยนะ ขอนไม้มันขวางทางเธองั้นหรอ เดี๋ยวให้ลูก ๆ ไปยกให้นะ
-//timeline เอาท่อนไม้ออก
+<<PlayTimeline Timeline-EndForest0>>
+<<wait 3.2>> //timeline เอาท่อนไม้ออก
+พ่อนก: เรียบร้อยแล้วละ!
 <<ChangePortrait PapaParrot Portraits/papa_parrot/papaparrot_normal>>
 พ่อนก: จริงสิ! ฉันเห็นแมวเหมือนกับเธอสีดำ ๆ เดินไปกับใครซักคนด้วยนะ!
 พ่อนก: เหมือนว่าเขาจะทำกระดาษตกด้วยนะ ไม่แน่ใจว่าจะมีประโยชน์กับเธอรึเปล่า รับไปสิ

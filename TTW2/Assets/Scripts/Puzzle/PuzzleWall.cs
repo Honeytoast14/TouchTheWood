@@ -25,20 +25,23 @@ public class PuzzleWall : MonoBehaviour
     public bool useSwitch { get; set; } = false;
     public SoundPlayer soundPlayer;
 
-    void Start()
+    void Awake()
     {
-        triggerEvent = FindObjectOfType<TriggerEvent>();
         GameObject emojis = GameObject.FindGameObjectWithTag("Emoji");
 
         if (emojis != null)
         {
+            emojis.SetActive(false);
             emoji = emojis.GetComponent<Animator>();
             if (emoji != null)
             {
                 Debug.Log("Find Emoji");
-                emoji.gameObject.SetActive(false);
             }
         }
+    }
+    void Start()
+    {
+        triggerEvent = FindObjectOfType<TriggerEvent>();
 
         if (soundPlayer != null)
             soundPlayer.PlayerMusic();

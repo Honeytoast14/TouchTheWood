@@ -7,6 +7,7 @@ using Yarn.Unity;
 
 public class TimelineController : MonoBehaviour
 {
+    IsometricPlayerMovementController playerController;
     DialogueRunner dialogueRunner;
     TriggerEvent trigger;
     [SerializeField] PlayableDirector timeline;
@@ -17,6 +18,7 @@ public class TimelineController : MonoBehaviour
     {
         dialogueRunner = FindObjectOfType<DialogueRunner>();
         trigger = FindObjectOfType<TriggerEvent>();
+        playerController = FindObjectOfType<IsometricPlayerMovementController>();
 
         if (setYarn)
         {
@@ -51,11 +53,13 @@ public class TimelineController : MonoBehaviour
     public void SetToFreeRoam()
     {
         GameController.Instance.state = GameState.FreeRoam;
+        playerController.ResumeMoving();
     }
 
     public void SetToTimeline()
     {
         GameController.Instance.state = GameState.Timeline;
+        playerController.StopMoving();
     }
     public void SetToDialogue()
     {
