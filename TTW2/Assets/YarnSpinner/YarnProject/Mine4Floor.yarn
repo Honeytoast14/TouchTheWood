@@ -39,6 +39,7 @@ Bear Boss:(เจ้าตุ่นนี้มันมาทำอะไร...
 
 title: oldmole_StartQuest
 ---
+<<ChangePortrait OldMole Portraits/Mine/oldman_profile/oldman_normal>>
 ตุ่นแก่: เจ้าหนู เจ้าช่วยอะไรข้าหน่อยได้ไหม
 ตุ่นแก่: เจ้าช่วยไปหาเศษแร่มา 5 อันให้ข้าหน่อยได้ไหม เป็นแร่สีน้ำเงินน่ะ ข้าขนแร่ไปทั่วถ้ำเลย
 ตุ่นแก่: บางทีมันคงหล่นหายไปตอนที่ข้าขน
@@ -52,15 +53,20 @@ title: oldmole_ProgressQuest
 
 title: oldmole_AfterQuest
 ---
+<<ChangePortrait OldMole Portraits/Mine/oldman_profile/oldman_happy>>
 ตุ่นแก่: ขอบใจเจ้ามากนะ เอาล่ะเจ้าต้องการอะไร
 ตุ่นแก่: ทางออกงั้นหรอ ข้าพาเจ้าไปได้นะ แต่เหมือนตอนนี้ทางออกจะปิดอยู่
 ตุ่นแก่: งั้นข้าจะไปคุยกับหัวหน้างานให้ก็แล้วกัน
+ตุ่นแก่: อ้อใช่ รับแซนด์วิชนี่ไปสิ เผือเธอจะหิวกลางทาง
+ตุ่นแก่: งั้นข้าไปก่อนละ
+<<SetUseItemGiver oldmen_front-Sheet_0>>
 <<set $finishThridFloor = true>>
 <<PlayTimeline Timeline_OldMole>>
 ===
 
 title: oldmole
 ---
+<<ChangePortrait OldMole Portraits/Mine/oldman_profile/oldman_normal>>
 <<declare $endQuest = false>>
 <<if $endQuest is false>>
 ตุ่นแก่: หัวหน้าครับ ช่วยเปิดทางให้ได้ไหมครับ
@@ -71,8 +77,10 @@ Bear Boss: ช่วยไม่ได้คงต้องระเบิดห
     <<set $endQuest = true>>
     <<PlayTimeline Timeline_ToThridFloor>> 
 <<elseif $endQuest is true>>
+<<ChangePortrait OldMole Portraits/Mine/oldman_profile/oldman_happy>>
 ตุ่นแก่: ดูเหมือนว่าทางจะเปิดแล้ว เจ้าขึ้นไปข้างบนได้เลย
 ตุ่นแก่: ขอบคุณที่ช่วยข้านะ
+<<ChangePortrait OldMole Portraits/Mine/oldman_profile/oldman_normal>>
 ตุ่นแก่: หัวหน้างั้นหรอ? คงขี้นไปทำงานอื่นแล้วล่ะ
 <<endif>>
 ===

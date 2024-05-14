@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using MyApp.MyBSP;
 using UnityEngine;
 using UnityEngine.Animations;
 using UnityEngine.UI;
@@ -17,16 +18,21 @@ public class SortingPuzzleTrigger : MonoBehaviour
     bool inZone = false;
     public static SortingPuzzleTrigger Instance { get; private set; }
     IsometricPlayerMovementController playerController;
+    CapsuleCollider2D capColider;
+    BSPGameManager bSPGameManager;
     void Awake()
     {
         Instance = this;
     }
     void Start()
     {
-        puzzleCam.enabled = false;
-
         playerController = FindObjectOfType<IsometricPlayerMovementController>();
+        capColider = GetComponent<CapsuleCollider2D>();
+        bSPGameManager = FindObjectOfType<BSPGameManager>();
+
+        puzzleCam.enabled = false;
         mainCam = Camera.main;
+        capColider.enabled = false;
     }
 
     void Update()
@@ -56,6 +62,7 @@ public class SortingPuzzleTrigger : MonoBehaviour
 
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
+            // bSPGameManager.RestartGame();
 
             onBack?.Invoke();
         }

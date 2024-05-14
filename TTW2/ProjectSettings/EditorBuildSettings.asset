@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Menu/TitleGame.unity
     guid: f15b9be7dd4f26646a47dcbc79b43701
   - enabled: 1
+    path: Assets/Scenes/Puzzles/RailPuzzle.unity
+    guid: 71e367393570a6248be3e99939246e7b
+  - enabled: 1
     path: Assets/Scenes/Puzzles/PicturePuzzle1.unity
     guid: 82c1afe9b90890d44ac99b7dfe8e39b9
   - enabled: 1
