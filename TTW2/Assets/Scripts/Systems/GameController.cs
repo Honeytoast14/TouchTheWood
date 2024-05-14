@@ -5,7 +5,7 @@ using UnityEngine;
 using Yarn.Unity;
 using Debug = UnityEngine.Debug;
 
-public enum GameState { FreeRoam, Menu, Inventory, Dialogue, PuzzlePicture, Timeline, SortingPuzzle }
+public enum GameState { FreeRoam, Menu, Inventory, Dialogue, PuzzlePicture, Timeline, SortingPuzzle, Passcode, ItemReward }
 public class GameController : MonoBehaviour
 {
     [SerializeField] InventoryUI inventoryUI;
@@ -141,6 +141,26 @@ public class GameController : MonoBehaviour
                 playerController.ResumeMoving();
             };
             SortingPuzzleTrigger.Instance.HandleUpdate(onBack);
+        }
+
+        else if (state == GameState.Passcode)
+        {
+            playerController.StopMoving();
+
+            Action onBack = () =>
+            {
+                playerController.ResumeMoving();
+            };
+            Passcode.Instance.HandleUpdate(onBack);
+        }
+
+        else if (state == GameState.ItemReward)
+        {
+            if (Input.GetKeyDown(KeyCode.X) || Input.GetKeyDown(KeyCode.Escape))
+            {
+                state = GameState.Inventory;
+                inventoryUI.HideImageReward();
+            }
         }
     }
 

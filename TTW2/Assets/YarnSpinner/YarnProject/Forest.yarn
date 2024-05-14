@@ -66,36 +66,58 @@ title:mamaParrot
 
 title: merchantFox
 ---
+<<if $FoxQuest is false>>
+<<if $FoxInProgress is false>>
 //รับเศวสแยกแร่
+<<ChangePortrait FoxMerchant Portraits/foxtea_normal/foxtea_happy>>
 พ่อค้าเล่ห์เหลี่ยม: ว่าไงเจ้าหนู อยากได้เศษกระดาษไหมละ //หน้าhappy
-    //แสดง emoji ตกใจของเรา
+<<SetEmojiWall Emoji_Surprise no>> //แสดง emoji ตกใจของเรา
+<<wait  1>>
 พ่อค้าเล่ห์เหลี่ยม: ตกใจละสิ ว่าทำไมฉันรู้
 พ่อค้าเล่ห์เหลี่ยม: พ่อค้าน่ะ มีเส้นสายกับทุกที่นั่นแหละ
-    //แสดง emoji จุดจุดจุด
-    //เรากำลังจะเดินหนี
+<<SetEmojiWall Emoji_Shock no>> //แสดง emoji จุดจุดจุด
+<<wait  1>>
+<<ChangePortrait FoxMerchant Portraits/foxtea_normal/foxtea_sad>>
 พ่อค้าเล่ห์เหลี่ยม: เดี๋ยว! เดี๋ยวก่อน! ฉันไม่ใช่คนน่าสงสัยซะหน่อย! //หน้าsad
 พ่อค้าเล่ห์เหลี่ยม: ที่จริงแค่อยากได้ความช่วยเหลือ แต่มันติดนิสัยพ่อค้าน่ะ
+<<ChangePortrait FoxMerchant Portraits/foxtea_normal/foxtea_normal>>
 พ่อค้าเล่ห์เหลี่ยม: แค่อยากให้ช่วยแยกแร่หน่อยน่ะ ตอนขนมาเผลอตกร่องแล้วของในรถกระจายหมดเลย ฉันก็จัดไปบ้างแล้วแหละแต่ตอนนี้กำลังพักอยู่ //หน้า normal
 พ่อค้าเล่ห์เหลี่ยม: ถ้าเธอช่วยก็จะให้กระดาษนะ
+<<set $FoxInProgress = true>>
+<<PlayTimeline FoxShowSort>>
 
+<<elseif $FoxInProgress is true>>
 //ระหว่างเศวส
+<<ChangePortrait FoxMerchant Portraits/foxtea_normal/foxtea_happy>>
 พ่อค้าเล่ห์เหลี่ยม: ช่วยกันเถอะนะเจ้าหนู วิน ๆ กันทั้งสองฝ่าย //หน้าhappy
+<<endif>>
 
-//จบเศวส
-พ่อค้าเล่ห์เหลี่ยม: ว้าว จัดเร็วดีนี่ //หน้าhappy
-พ่อค้าเล่ห์เหลี่ยม: ตามข้อตกลง เอาเศษกระดาษไปเลย //ให้กระดาษ
-พ่อค้าเล่ห์เหลี่ยม: ! เดี๋ยวก่อน!
-พ่อค้าเล่ห์เหลี่ยม: ในกระเป่าเจ้ามีอะไรอยู่
-    //แสดง emoji จุดจุดจุด
-พ่อค้าเล่ห์เหลี่ยม: ไม่เอาน่า ฉันเห็นหมดแล้วละ นั่นนะคือแร่ที่สุดจะหายากเลยนะ
-พ่อค้าเล่ห์เหลี่ยม: ที่จริงฉันมีเศษกระดาษอีกใบนึง
-    //แสดง emoji ตกใจของเรา
-พ่อค้าเล่ห์เหลี่ยม: ว่าไง แลกกันไหม
-    //คัทซีน text ดำ: ทั้งสองได้แลกของกัน
-พ่อค้าเล่ห์เหลี่ยม: ฮ่ะ ๆ ขอบใจมากนะเพื่อน!
-
+<<elseif $FoxQuest is true>>
 //หลังจบเศวส
 พ่อค้าเล่ห์เหลี่ยม: ไว้มาเจอกันอีกนะเจ้าหนู!
+<<endif>>
+===
+
+title:merchantFox_AfterQuest
+---
+//จบเศวส
+<<SetUseItemGiver FoxMerChant>>
+<<ChangePortrait FoxMerchant Portraits/foxtea_normal/foxtea_happy>>
+พ่อค้าเล่ห์เหลี่ยม: ว้าว จัดเร็วดีนี่ //หน้าhappy
+พ่อค้าเล่ห์เหลี่ยม: ตามข้อตกลง เอาเศษกระดาษไปเลย //ให้กระดาษ
+พ่อค้าเล่ห์เหลี่ยม: !!!  เดี๋ยวก่อน!
+พ่อค้าเล่ห์เหลี่ยม: ในกระเป่าเจ้ามีอะไรอยู่
+<<SetEmojiWall Emoji_Shock no>> //แสดง emoji จุดจุดจุด
+<<wait  1>>
+พ่อค้าเล่ห์เหลี่ยม: ไม่เอาน่า ฉันเห็นหมดแล้วละ นั่นนะคือแร่ที่สุดจะหายากเลยนะ
+พ่อค้าเล่ห์เหลี่ยม: ที่จริงฉันมีเศษกระดาษอีกใบนึง
+<<SetEmojiWall Emoji_Surprise no>> //แสดง emoji ตกใจของเรา
+<<wait  1>>
+พ่อค้าเล่ห์เหลี่ยม: ว่าไง แลกกันไหม
+<<PlayTimeline FoxChanging>> //คัทซีน text ดำ: ทั้งสองได้แลกของกัน
+<<wait 3.2>>
+พ่อค้าเล่ห์เหลี่ยม: ฮ่ะ ๆ ขอบใจมากนะเพื่อน!
+<<set $FoxQuest = true>>
 ===
 
 title: bearHoney
@@ -126,26 +148,46 @@ ChefCat: ฉันมาช่วยดูเฉย ๆ น่ะ
 
 title: knightPass1
 ---
-Knight: บอกรหัสมา
-//รับรหัส
+<<if $CodeOne is false>>
+    Knight: บอกรหัสมา
+    <<OpenPassCode CodeOne>>
+<<elseif $CodeOne is true>>
+    Knight: ...
+    Knight: อย่าชวนคุย ฉันกำลังตั้งใจทำงาน
+<<endif>>
+===
 
-//ถูก
-Knight: ถูกต้อง //timeline หลีกทาง
-
-//ผิด
+title: knightPass1_correct
+---
+Knight: ถูกต้อง
+<<PlayTimeline ToForest2>>
+===
+title: knightPass1_incorrect
+---
 Knight: ผิด! อย่าหวังว่าจะผ่านไปได้!
 ===
+
 title: knightPass2
 ---
-Knight: บอกรหัสมา
-//รับรหัส
-
-//ถูก
-Knight: ถูกต้อง //timeline หลีกทาง
-
-//ผิด
-Knight: ผิด! อย่าหวังว่าจะผ่านไปได้!
+<<if $CodeTwo is false>>
+    Knight: บอกรหัสมา
+    <<OpenPassCode CodeTwo>>
+<<elseif $CodeTwo is true>>
+    Knight: ...
+    Knight: มีอะไร?
+<<endif>>
 ===
+
+title: knightPass2_correct
+---
+Knight: ถูกต้อง
+<<PlayTimeline ToForest3>>
+===
+title: knightPass2_incorrect
+---
+Knight: ห้ามเดารหัสมั่วนะ!
+===
+
 title: knightPass3
 ---
 Knight: บอกรหัสมา
@@ -164,4 +206,11 @@ title: declareForest
 <<declare $parrotQuest = false>>
 <<declare $MamatQuest = false>>
 <<declare $MamaGivePapa = false>>
+//PassCode
+<<declare $CodeOne = false>>
+<<declare $CodeTwo = false>>
+<<declare $CodeThree = false>>
+//FoxMerchant
+<<declare $FoxQuest = false>>
+<<declare $FoxInProgress = false>>
 ===

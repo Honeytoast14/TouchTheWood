@@ -21,6 +21,10 @@ public class InventoryUI : MonoBehaviour
     [SerializeField] TMP_Text description;
     [Header("")]
     [SerializeField] public Image cover;
+    [Header("Reward Image")]
+    [SerializeField] GameObject rewardOne;
+    [SerializeField] GameObject rewardTwo;
+    [SerializeField] GameObject rewardThree;
     Inventory inventory;
     RectTransform itemListRect;
     List<ItemSlotUI> slotUIList = new List<ItemSlotUI>();
@@ -97,6 +101,7 @@ public class InventoryUI : MonoBehaviour
             if (slot.Item == inventory.CanUseItem(slot.Item))
             {
                 Debug.Log("Select item that can use");
+                //Pictue Puzzle
                 if (slot.Item.name == "PicturePuzzle1")
                 {
                     if (PuzzleRotatePicFirst.Instance != null)
@@ -111,6 +116,22 @@ public class InventoryUI : MonoBehaviour
                 {
                     if (PuzzleRotatePicThird.Instance != null)
                         PuzzleRotatePicThird.Instance.OpenPicturePuzzle();
+                }
+                //Reward Image
+                if (slot.Item.name == "PaperReward1")
+                {
+                    rewardOne.SetActive(true);
+                    GameController.Instance.state = GameState.ItemReward;
+                }
+                if (slot.Item.name == "PaperReward2")
+                {
+                    rewardTwo.SetActive(true);
+                    GameController.Instance.state = GameState.ItemReward;
+                }
+                if (slot.Item.name == "PaperReward3")
+                {
+                    rewardThree.SetActive(true);
+                    GameController.Instance.state = GameState.ItemReward;
                 }
             }
         }
@@ -182,5 +203,12 @@ public class InventoryUI : MonoBehaviour
     {
         float scrollPos = Mathf.Clamp(selectedItem - itemInViewPort / 2, 0, inventory.Slots.Count - 1) * slotUIList[0].Height;
         itemListRect.localPosition = new Vector2(itemListRect.localPosition.x, scrollPos);
+    }
+
+    public void HideImageReward()
+    {
+        rewardOne.SetActive(false);
+        rewardTwo.SetActive(false);
+        rewardThree.SetActive(false);
     }
 }

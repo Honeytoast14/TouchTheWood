@@ -175,7 +175,8 @@ namespace UnityEngine.EventSystems
 					SendSubmitEventToSelectedObject();
 			}
 
-			/*ProcessMouseEvent();*/
+			//---------------------------------------------------- disable Mouse------------------------------------------------------------------
+			ProcessMouseEvent();
 		}
 
 		/// <summary>
@@ -318,12 +319,12 @@ namespace UnityEngine.EventSystems
 				pointerEvent.pressPosition = pointerEvent.position;
 				pointerEvent.pointerPressRaycast = pointerEvent.pointerCurrentRaycast;
 
-                DeselectIfSelectionChanged(currentOverGo, pointerEvent);
+				// DeselectIfSelectionChanged(currentOverGo, pointerEvent); //------------------------------------------------deselect--------------------
 
-                // search for the control that will receive the press
-                // if we can't find a press handler set the press
-                // handler to be what would receive a click.
-                var newPressed = ExecuteEvents.ExecuteHierarchy(currentOverGo, pointerEvent, ExecuteEvents.pointerDownHandler);
+				// search for the control that will receive the press
+				// if we can't find a press handler set the press
+				// handler to be what would receive a click.
+				var newPressed = ExecuteEvents.ExecuteHierarchy(currentOverGo, pointerEvent, ExecuteEvents.pointerDownHandler);
 
 				// didnt find a press handler... search for a click handler
 				if (newPressed == null)

@@ -18,7 +18,7 @@ public class PuzzleWall : MonoBehaviour
     [SerializeField] NPCData npcData;
 
     [Header("Animator")]
-    public Animator emoji;
+    Animator emoji;
     bool interactable = false;
     public bool destroyObject { get; set; } = false;
     TriggerEvent triggerEvent;
@@ -28,9 +28,16 @@ public class PuzzleWall : MonoBehaviour
     void Start()
     {
         triggerEvent = FindObjectOfType<TriggerEvent>();
-        if (emoji != null)
+        GameObject emojis = GameObject.FindGameObjectWithTag("Emoji");
+
+        if (emojis != null)
         {
-            emoji.gameObject.SetActive(false);
+            emoji = emojis.GetComponent<Animator>();
+            if (emoji != null)
+            {
+                Debug.Log("Find Emoji");
+                emoji.gameObject.SetActive(false);
+            }
         }
 
         if (soundPlayer != null)
@@ -100,14 +107,6 @@ public class PuzzleWall : MonoBehaviour
                 if (wall != null)
                     puzzleWall.destroyObject = true;
             }
-            else
-            {
-                Debug.LogError("PuzzleWall component not found on GameObject: " + objectName);
-            }
-        }
-        else
-        {
-            Debug.LogError("GameObject not found: " + objectName);
         }
     }
 

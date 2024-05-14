@@ -15,6 +15,7 @@ TagManager:
   - PuzzleTrigger
   - Emoji
   - LoadSpot
+  - ImageReward
   layers:
   - Default
   - TransparentFX

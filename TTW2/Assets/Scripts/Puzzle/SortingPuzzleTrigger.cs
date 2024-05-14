@@ -12,10 +12,6 @@ public class SortingPuzzleTrigger : MonoBehaviour
     [SerializeField] GameObject puzzle;
     [SerializeField] Camera puzzleCam;
     Camera mainCam;
-    [SerializeField] List<GameObject> objectGroup;
-    [SerializeField] GameObject doorOpen;
-    [SerializeField] GameObject doorClose;
-    [SerializeField] GameObject doorColider;
     [SerializeField] GameObject button;
     // [SerializeField] Texture2D cursor;
     bool inZone = false;
@@ -51,7 +47,7 @@ public class SortingPuzzleTrigger : MonoBehaviour
 
     public void HandleUpdate(Action onBack)
     {
-        if (inZone && Input.GetKeyDown(KeyCode.X) && GameController.Instance.state == GameState.SortingPuzzle)
+        if (inZone && Input.GetKeyDown(KeyCode.X) || Input.GetKeyDown(KeyCode.Escape) && GameController.Instance.state == GameState.SortingPuzzle)
         {
             button.gameObject.SetActive(false);
             puzzleCam.enabled = false;
