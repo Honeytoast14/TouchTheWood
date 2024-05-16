@@ -59,7 +59,6 @@ title: oldmole_AfterQuest
 ตุ่นแก่: งั้นข้าจะไปคุยกับหัวหน้างานให้ก็แล้วกัน
 ตุ่นแก่: อ้อใช่ รับแซนด์วิชนี่ไปสิ เผือเธอจะหิวกลางทาง
 ตุ่นแก่: งั้นข้าไปก่อนละ
-<<SetUseItemGiver oldmen_front-Sheet_0>>
 <<set $finishThridFloor = true>>
 <<PlayTimeline Timeline_OldMole>>
 ===

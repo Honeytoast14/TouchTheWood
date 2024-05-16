@@ -28982,6 +28982,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   passCodePanel: {fileID: 568249376}
   UiText: {fileID: 1136556692}
+  setYarn: 1
 --- !u!1 &1201545490
 GameObject:
   m_ObjectHideFlags: 0
@@ -82738,6 +82739,10 @@ PrefabInstance:
     - target: {fileID: 4044130140300458121, guid: de7be90469e96b944887ae06027bb384, type: 3}
       propertyPath: m_Name
       value: PickupPicturePuzzle1_1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5340736419755857218, guid: de7be90469e96b944887ae06027bb384, type: 3}
+      propertyPath: setYarn
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

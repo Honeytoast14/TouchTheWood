@@ -17,6 +17,7 @@ public class Passcode : MonoBehaviour
     [SerializeField] GameObject passCodePanel;
     [SerializeField] TMP_Text UiText;
     public static Passcode Instance { get; private set; }
+    public bool setYarn = false;
     void Awake()
     {
         Instance = this;
@@ -28,7 +29,8 @@ public class Passcode : MonoBehaviour
 
         passCodePanel.SetActive(false);
 
-        dialogueRunner.AddCommandHandler<string>("OpenPassCode", OpenPassCode);
+        if (setYarn)
+            dialogueRunner.AddCommandHandler<string>("OpenPassCode", OpenPassCode);
     }
     public void HandleUpdate(Action onBack)
     {
