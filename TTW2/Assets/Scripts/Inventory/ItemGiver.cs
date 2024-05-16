@@ -17,7 +17,8 @@ public class ItemGiver : MonoBehaviour
     {
         dialogueRunner = FindObjectOfType<DialogueRunner>();
 
-        dialogueRunner.AddCommandHandler<string>("SetUseItemGiver", SetUsedInYarn);
+        if (setYarn)
+            dialogueRunner.AddCommandHandler<string>("SetUseItemGiver", SetUsedInYarn);
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {

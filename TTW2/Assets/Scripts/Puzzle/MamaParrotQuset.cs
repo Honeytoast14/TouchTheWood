@@ -16,7 +16,7 @@ public class MamaParrotQuset : MonoBehaviour
     {
         if (AllPuzzlesCompleted())
         {
-            Debug.Log("All puzzles are completed!");
+            // Debug.Log("All puzzles are completed!");
             var variableStorage = GameObject.FindObjectOfType<InMemoryVariableStorage>();
 
             bool parrotQuest;

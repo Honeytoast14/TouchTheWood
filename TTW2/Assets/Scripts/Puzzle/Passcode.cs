@@ -7,6 +7,7 @@ using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Yarn.Unity;
+
 public class Passcode : MonoBehaviour
 {
     DialogueRunner dialogueRunner;
@@ -18,23 +19,38 @@ public class Passcode : MonoBehaviour
     [SerializeField] TMP_Text UiText;
     public static Passcode Instance { get; private set; }
     public bool setYarn = false;
+    bool isOpen = false;
+
     void Awake()
     {
         Instance = this;
     }
+
     void Start()
     {
         dialogueRunner = FindObjectOfType<DialogueRunner>();
         triggerEvent = GetComponent<TriggerEvent>();
 
-        passCodePanel.SetActive(false);
+        if (passCodePanel != null)
+            passCodePanel.SetActive(false);
 
         if (setYarn)
             dialogueRunner.AddCommandHandler<string>("OpenPassCode", OpenPassCode);
     }
+
+    void Update()
+    {
+        HandleUpdate(null);
+    }
+
     public void HandleUpdate(Action onBack)
     {
-        if (Input.GetKeyDown(KeyCode.X) && GameController.Instance.state == GameState.Passcode)
+        if (isOpen && Input.GetMouseButtonDown(0))
+        {
+            Debug.Log("Pressed left-click.");
+        }
+
+        if ((Input.GetKeyDown(KeyCode.X) || Input.GetKeyDown(KeyCode.Escape)) && GameController.Instance.state == GameState.Passcode)
         {
             GameController.Instance.state = GameState.FreeRoam;
 
@@ -46,9 +62,12 @@ public class Passcode : MonoBehaviour
 
             passCodePanel.SetActive(false);
 
+            isOpen = false;
+
             onBack?.Invoke();
         }
     }
+
     public void CodeFunction(string Numbers)
     {
         NrIndex++;
@@ -56,6 +75,7 @@ public class Passcode : MonoBehaviour
         UiText.text = Nr;
         Debug.Log(Numbers);
     }
+
     public void Enter(string Code)
     {
         if (Nr == Code)
@@ -79,26 +99,37 @@ public class Passcode : MonoBehaviour
             UiText.text = "รหัสผ่าน";
         }
     }
+
     public void Delete()
     {
         NrIndex++;
         Nr = null;
         UiText.text = "รหัสผ่าน";
     }
+
     public void OpenPassCode(string name)
     {
-        StartCoroutine(OpenPass());
+        StartCoroutine(OpenPass(name));
     }
 
-    IEnumerator OpenPass()
+    IEnumerator OpenPass(string parentName)
     {
-        yield return new WaitForSeconds(0.01f);
-        GameController.Instance.state = GameState.Passcode;
-        passCodePanel.SetActive(true);
+        GameObject open = GameObject.Find(parentName);
+        Passcode pass = open.GetComponentInChildren<Passcode>();
+        if (pass != null)
+        {
+            yield return new WaitForSeconds(0.01f);
+            GameController.Instance.state = GameState.Passcode;
+            pass.passCodePanel.SetActive(true);
 
-        codeNumber = name;
+            codeNumber = name;
 
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+
+            isOpen = true;
+
+            Debug.Log($"{transform.parent.name} is open");
+        }
     }
 }

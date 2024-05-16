@@ -41,7 +41,7 @@ title:mamaParrot
         แม่นก: เธอจะไปต่องั้นหรอ ที่จริงแล้วทางไปต่อถูกขอนไม้ขวางเอาไว้
         แม่นก: ถ้าเธอช่วยพาลูก ๆ กลับมาเรา เราอาจจะช่วยยกขอนไม้ออกได้นะ
         แม่นก: ลูก ๆ ของฉันมี 20 ตัว ถ้าเธอช่วยเสร็จเดี๋ยวพวกฉันจะเปิดทางให้นะ
-        <<HideManyObject>>
+        <<HideManyObject Mamaparrot>>
         <<set $MamatQuest = true>>
     <<elseif $MamatQuest is true>>
         <<ChangePortrait MamaParrot Portraits/mamaparrot/mamaparrot_sadl>>
@@ -56,8 +56,8 @@ title:mamaParrot
         <<ChangePortrait MamaParrot Portraits/mamaparrot/mamaparrot_happyl>>
         แม่นก: ขอบคุณเธอมากจริง ๆ นะ  ลูก ๆ คงสร้างความลำบากให้แย่เลย //หน้าดีใจ
         แม่นก: จริงสิ! สามีของฉันเหมือนจะมีของให้เธอด้วย!
-        <<AddQuestToComplete>> // questToComplete ให้พ่อนก
-        <<HideObject quest_0>>
+        <<AddQuestToComplete Papaparrot>> // questToComplete ให้พ่อนก
+        <<HideObject Mamaparrot>>
         
         <<set $MamaGivePapa = true>>
     <<elseif $MamaGivePapa is true>>
@@ -152,7 +152,7 @@ title: knightPass1
 ---
 <<if $CodeOne is false>>
     Knight: บอกรหัสมา
-    <<OpenPassCode CodeOne>>
+    <<OpenPassCode GuardCode1>>
 <<elseif $CodeOne is true>>
     Knight: ...
     Knight: อย่าชวนคุย ฉันกำลังตั้งใจทำงาน
@@ -173,7 +173,7 @@ title: knightPass2
 ---
 <<if $CodeTwo is false>>
     Knight: บอกรหัสมา
-    <<OpenPassCode CodeTwo>>
+    <<OpenPassCode GuardCode2>>
 <<elseif $CodeTwo is true>>
     Knight: ...
     Knight: มีอะไร?

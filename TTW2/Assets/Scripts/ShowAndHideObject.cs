@@ -22,7 +22,7 @@ public class ShowAndHideObject : MonoBehaviour
         {
             dialogueRunner.AddCommandHandler<string>("HideObject", HideInYarn);
             dialogueRunner.AddCommandHandler<string>("ShowObject", ShowInYarn);
-            dialogueRunner.AddCommandHandler("HideManyObject", HideManyObject);
+            dialogueRunner.AddCommandHandler<string>("HideManyObject", HideManyObject);
         }
     }
 
@@ -58,18 +58,18 @@ public class ShowAndHideObject : MonoBehaviour
         }
     }
 
-    public void HideInYarn(string objectName)
+    public void HideInYarn(string objectParentName)
     {
-        if (oneObjectHide != null)
+        GameObject objectToHide = GameObject.Find(objectParentName);
+        ShowAndHideObject hideScript = objectToHide.GetComponentInChildren<ShowAndHideObject>();
+        if (hideScript.oneObjectHide != null)
         {
-            if (objectName == oneObjectHide.name)
-            {
-                Debug.Log("Hide");
-                GameObject objectToHide = GameObject.Find(objectName);
-                objectToHide.SetActive(false);
-            }
+            hideScript.oneObjectHide.SetActive(false);
+            Debug.Log($"Successfully hid: {objectParentName}");
+
         }
     }
+
     public void ShowInYarn(string objectName)
     {
         if (oneObjectShow != null)
@@ -83,27 +83,17 @@ public class ShowAndHideObject : MonoBehaviour
                     Debug.Log("Found object to show: " + objectName);
                     objectToShow.SetActive(true);
                 }
-                else
-                {
-                    Debug.LogWarning("Failed to find object: " + objectName);
-                }
             }
-            else
-            {
-                Debug.LogWarning("Object name does not match oneObjectShow.");
-            }
-        }
-        else
-        {
-            Debug.LogWarning("oneObjectShow is null.");
         }
     }
 
-    public void HideManyObject()
+    public void HideManyObject(string objectParentName)
     {
-        if (hideObject != null)
+        GameObject objectToHide = GameObject.Find(objectParentName);
+        ShowAndHideObject hideScript = objectToHide.GetComponentInChildren<ShowAndHideObject>();
+        if (hideScript.hideObject != null)
         {
-            foreach (GameObject game in hideObject)
+            foreach (GameObject game in hideScript.hideObject)
             {
                 game.SetActive(false);
                 Debug.Log($"Hide {game.name}");

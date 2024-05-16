@@ -51,7 +51,7 @@ public class TriggerEvent : MonoBehaviour
         if (setYarn)
         {
             dialogueRunner.AddCommandHandler("AddQuest", AddQuestInYarn);
-            dialogueRunner.AddCommandHandler("AddQuestToComplete", AddQuesCompletetInYarn);
+            dialogueRunner.AddCommandHandler<string>("AddQuestToComplete", AddQuesCompletetInYarn);
         }
 
         if (itemGiver != null)
@@ -62,6 +62,11 @@ public class TriggerEvent : MonoBehaviour
         if (pickUp != null)
         {
             pickUp.enabled = false;
+        }
+
+        if (questCompleteAdd != null)
+        {
+            Debug.Log($"{transform.parent.name} has questComplete to Add");
         }
     }
 
@@ -186,10 +191,20 @@ public class TriggerEvent : MonoBehaviour
         if (questAdd != null)
             questToStart = questAdd;
     }
-    public void AddQuesCompletetInYarn()
+    public void AddQuesCompletetInYarn(string objectParentName)
     {
-        if (questCompleteAdd != null)
-            questToComplete = questCompleteAdd;
+        GameObject addQuest = GameObject.Find(objectParentName);
+        if (addQuest != null)
+        {
+            TriggerEvent triggerEvents = addQuest.GetComponentInChildren<TriggerEvent>();
+            if (triggerEvents != null)
+            {
+                if (triggerEvents.questCompleteAdd != null)
+                {
+                    triggerEvents.questToComplete = triggerEvents.questCompleteAdd;
+                }
+            }
+        }
     }
 }
 

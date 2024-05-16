@@ -1,0 +1,138 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2538573811496689612
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4410738873060129348}
+  - component: {fileID: 4077271903734020368}
+  - component: {fileID: 4591881490323533067}
+  - component: {fileID: 7666120516266050587}
+  - component: {fileID: 5983970406293438142}
+  - component: {fileID: 4304276336431544437}
+  - component: {fileID: 7581485937454005980}
+  m_Layer: 0
+  m_Name: SetUp
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4410738873060129348
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2538573811496689612}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.6191561, y: -7.213568, z: 0.03451805}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4077271903734020368
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2538573811496689612}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 403670d2cf275ba4e9b79e34d5e317de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  npcData: {fileID: 0}
+  itemGiver: {fileID: 0}
+  pickUp: {fileID: 0}
+  questToStart: {fileID: 0}
+  questToComplete: {fileID: 0}
+  questAttention: {fileID: 0}
+  questAdd: {fileID: 0}
+  questCompleteAdd: {fileID: 0}
+  canTalk: 0
+  setYarn: 1
+--- !u!114 &4591881490323533067
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2538573811496689612}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86376a06d87fa2d4483a6e9fb4b0e77a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemDataLists: []
+  used: 0
+  setYarn: 1
+--- !u!114 &7666120516266050587
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2538573811496689612}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff353dd49a6b44641995872afb51399b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item: {fileID: 0}
+  count: 1
+  setYarn: 1
+--- !u!114 &5983970406293438142
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2538573811496689612}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b267da86510fbb5478fa25832c4865a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hideObject: []
+  showObject: []
+  button: {fileID: 0}
+  oneObjectHide: {fileID: 0}
+  oneObjectShow: {fileID: 0}
+  setYarn: 1
+--- !u!114 &4304276336431544437
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2538573811496689612}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38621674f30b1164fa90cdae048ff80a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  passCodePanel: {fileID: 0}
+  UiText: {fileID: 0}
+  setYarn: 1
+--- !u!114 &7581485937454005980
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2538573811496689612}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8390f5da4b2aa14c939c934ebe3add5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeline: {fileID: 0}
+  setYarn: 1

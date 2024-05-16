@@ -160,7 +160,7 @@ System: ว่าแต่อีกส่วนมันอยู่ไหนก
 <<wait  1.2>>
 System: !!
 System: นั่นเสียงอะไรรีบออกไปดูเร็วเข้า!
-<<PlayTimeline Timeline-Villain>>
+<<PlayTimeline Timeline-Villain>> //ใส่ซาวน์ให้ตกใจตอนพุ่งเข้ามา
 <<wait  0.5>>
 // <<ResumeTimeline Timeline_Run>>
 System: นั่น! เจ้าแมวสีขาว!
