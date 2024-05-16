@@ -19,8 +19,6 @@ public class Passcode : MonoBehaviour
     [SerializeField] TMP_Text UiText;
     public static Passcode Instance { get; private set; }
     public bool setYarn = false;
-    bool isOpen = false;
-
     void Awake()
     {
         Instance = this;
@@ -45,11 +43,6 @@ public class Passcode : MonoBehaviour
 
     public void HandleUpdate(Action onBack)
     {
-        if (isOpen && Input.GetMouseButtonDown(0))
-        {
-            Debug.Log("Pressed left-click.");
-        }
-
         if ((Input.GetKeyDown(KeyCode.X) || Input.GetKeyDown(KeyCode.Escape)) && GameController.Instance.state == GameState.Passcode)
         {
             GameController.Instance.state = GameState.FreeRoam;
@@ -61,8 +54,6 @@ public class Passcode : MonoBehaviour
             UiText.text = "รหัสผ่าน";
 
             passCodePanel.SetActive(false);
-
-            isOpen = false;
 
             onBack?.Invoke();
         }
@@ -87,6 +78,9 @@ public class Passcode : MonoBehaviour
             bool codeBool;
             variableStorage.TryGetValue("$" + codeNumber, out codeBool);
             variableStorage.SetValue("$" + codeNumber, codeBool = true);
+
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
         }
         else
         {
@@ -126,10 +120,6 @@ public class Passcode : MonoBehaviour
 
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
-
-            isOpen = true;
-
-            Debug.Log($"{transform.parent.name} is open");
         }
     }
 }

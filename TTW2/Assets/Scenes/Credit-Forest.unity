@@ -175,14 +175,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: CreditForest
       objectReference: {fileID: 0}
-    - target: {fileID: 7531496484272323967, guid: 2db1e4ccd095bec41b51fecf63bd1eb7, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.017223358
-      objectReference: {fileID: 0}
-    - target: {fileID: 7531496484272323967, guid: 2db1e4ccd095bec41b51fecf63bd1eb7, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.4229965
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

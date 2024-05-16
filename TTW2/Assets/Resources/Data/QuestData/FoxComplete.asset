@@ -19,5 +19,5 @@ MonoBehaviour:
   dialogueNodeComplete: 
   requiredItem: {fileID: 0}
   requiredCount: 0
-  rewardItem: {fileID: 0}
-  rewardCount: 0
+  rewardItem: {fileID: 11400000, guid: a46aa5ecb060cf84890164e842887bf0, type: 2}
+  rewardCount: 2

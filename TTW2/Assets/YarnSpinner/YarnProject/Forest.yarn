@@ -103,7 +103,6 @@ title: merchantFox
 title:merchantFox_AfterQuest
 ---
 //จบเศวส
-<<SetUseItemGiver FoxMerChant>>
 <<ChangePortrait FoxMerchant Portraits/foxtea_normal/foxtea_happy>>
 พ่อค้าเล่ห์เหลี่ยม: ว้าว จัดเร็วดีนี่ //หน้าhappy
 พ่อค้าเล่ห์เหลี่ยม: ตามข้อตกลง เอาเศษกระดาษไปเลย //ให้กระดาษ
@@ -192,16 +191,23 @@ Knight: ห้ามเดารหัสมั่วนะ!
 
 title: knightPass3
 ---
-Knight: บอกรหัสมา
-//รับรหัส
-
-//ถูก
-Knight: ถูกต้อง //timeline หลีกทาง
-
-//ผิด
-Knight: ผิด! อย่าหวังว่าจะผ่านไปได้!
+<<if $CodeTwo is false>>
+    Knight: บอกรหัสมา
+    <<OpenPassCode GuardCode2>>
+<<elseif $CodeTwo is true>>
+    Knight: ...
+    Knight: เจ้าดูหน้าไม่คุ้นเลย แต่ถ้าบอกรหัสถูกก็คงต้องปล่อยให้เข้าไปละนะ
+<<endif>>
 ===
-
+title: knightPass3_correct
+---
+Knight: ถูกต้อง
+<<PlayTimeline ToForest3>>
+===
+title: knightPass3_incorrect
+---
+Knight: เจ้า! อยากลองดีนักใช่มั้ย!
+===
 
 title: declareForest
 ---
