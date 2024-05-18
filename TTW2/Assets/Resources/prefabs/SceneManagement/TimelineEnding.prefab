@@ -35,7 +35,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 960, y: -2586.8918}
+  m_AnchoredPosition: {x: 960, y: -900.78564}
   m_SizeDelta: {x: 1538.1174, y: 372.8713}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &39237757312741810
@@ -325,7 +325,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 960, y: -1575.2283}
+  m_AnchoredPosition: {x: 960, y: -900.78564}
   m_SizeDelta: {x: 1463.0251, y: 372.8713}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4688597082035142540
@@ -482,7 +482,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 960, y: -1912.4496}
+  m_AnchoredPosition: {x: 960, y: -900.78564}
   m_SizeDelta: {x: 1463.0251, y: 372.8713}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5242141087412467773
@@ -639,7 +639,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 960, y: -1238.007}
+  m_AnchoredPosition: {x: 960, y: -900.78564}
   m_SizeDelta: {x: 1463.0251, y: 372.8713}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4236911620446355061
@@ -795,7 +795,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 960, y: -3598.5554}
+  m_AnchoredPosition: {x: 960, y: -900.78564}
   m_SizeDelta: {x: 1538.1174, y: 372.8713}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3304657200605086435
@@ -1150,7 +1150,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 960, y: -2924.113}
+  m_AnchoredPosition: {x: 960, y: -900.78564}
   m_SizeDelta: {x: 1538.1174, y: 372.8713}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6393743882638044095
@@ -1463,7 +1463,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 960, y: -2249.6707}
+  m_AnchoredPosition: {x: 960, y: -900.78564}
   m_SizeDelta: {x: 1509.9578, y: 372.8713}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3401449907976032154
@@ -1620,7 +1620,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 960, y: -3261.3342}
+  m_AnchoredPosition: {x: 960, y: -900.78564}
   m_SizeDelta: {x: 1538.1174, y: 372.8713}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5406804013322015756
@@ -1835,8 +1835,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Events:
-    m_Signals: []
-    m_Events: []
+    m_Signals:
+    - {fileID: 11400000, guid: fb215f11df2e08746bfa811349930feb, type: 2}
+    m_Events:
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 7070479392356006994}
+          m_TargetAssemblyTypeName: TimelineController, Assembly-CSharp
+          m_MethodName: SetToTimeline
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!114 &7070479392356006994
 MonoBehaviour:
   m_ObjectHideFlags: 0

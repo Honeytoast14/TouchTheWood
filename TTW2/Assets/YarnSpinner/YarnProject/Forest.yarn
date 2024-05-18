@@ -123,20 +123,36 @@ title:merchantFox_AfterQuest
 
 title: bearHoney
 ---
-//รับเศวส
-BearChef: สวัสดีเจ้าแมวน้อย มาทำอะไรที่นี่อย่างนั้นหรอ
-BearChef: หาแมว? งั้นหรอ ไม่เห็นเลยล่ะ
-BearChef: ฉันกำลังทำอะไรหรอ? กำลังวางท่อเก็บน้ำผึ้งอยู่นะสิ
-BearChef: เห็นแบบนี้แต่ฉันก็เป็นเชฟนะ ฉันอยากออกมาหาวัตถุดิบเองนะสิ
-BearChef: เธอสนใจมาช่วยฉันไหม ฉันมีของตอบแทนด้วยนะ
-//ขึ้น quest attention 3 อันที่ต้นไม้ 3 ต้น
+<<if $HoneyQuest is false>>
+    <<if $HoneyInProgress is false>>
+    //รับเศวส
+    BearChef: สวัสดีเจ้าแมวน้อย มาทำอะไรที่นี่อย่างนั้นหรอ
+    BearChef: หาแมว? นั่นพี่น้องเธอเองหรอ!
+    BearChef: 
+    BearChef: ฉันกำลังทำอะไรหรอ? กำลังวางท่อเก็บน้ำผึ้งอยู่นะสิ
+    BearChef: เห็นแบบนี้แต่ฉันก็เป็นเชฟนะ ฉันอยากออกมาหาวัตถุดิบเองนะสิ
+    BearChef: ถ้าเธอมาช่วยฉัน ฉันจะบอกที่ซ่อนเศษกระดาษให้นะ
+    <<set $HoneyInProgress = true>>
+    <<PlayTimeline Honey>>
+    //ขึ้น quest attention 3 อันที่ต้นไม้ 3 ต้น
+    <<elseif $HoneyInProgress is true>>
+        //ระหว่างเศวส
+        BearChef: วางรางน้ำผึ้งนี่มันยากจริง ๆ
+    <<endif>>
+<<elseif $HoneyQuest is true>>
+    //หลังเศวส
+    ฺBearChef: เดินทางปลอดภัยนะเจ้าหนู!
+<<endif>>
+===
 
-//ระหว่างเศวส
-Bear: วางรางน้ำผึ้งนี่มันยากจริง ๆ
-
+title: bearHoney_AfterQuest
+---
 //เสร็จเศวส
-Bear: โอ้! วางท่อเก็บน้ำผึ้งเสร็จแล้วหรอ
-Bear: ขอบใจมากนะ รับสิ่งนี่ไปสิ
+BearChef: โอ้! วางท่อเก็บน้ำผึ้งเสร็จแล้วหรอ
+BearChef: ขอบใจมากนะ รับสิ่งนี่ไปสิ เศษกระดาษฉันเก็บได้ตอนเจ้าแมวน้ำนั่นเดินผ่านพอดี
+BearChef: แล้วก็ทางด้านขวาของเขาวงกตเหมือนจะมีคนเอาไปซ่อนไว้นะ แต่จำไม่ได้แล้วสิว่าซ่อนตรงไหน
+BearChef: ลองไปเดินหาดูนะ ฉันจะรอเก็บน้ำผึ้งต่อ
+<<set $HoneyQuest = true>>
 //ให้เศษกระดาษ
 ===
 
@@ -144,8 +160,6 @@ title: chefCat
 ---
 ChefCat: ฉันมาช่วยดูเฉย ๆ น่ะ
 ===
-
-
 
 title: knightPass1
 ---
@@ -193,16 +207,15 @@ title: knightPass3
 ---
 <<if $CodeTwo is false>>
     Knight: บอกรหัสมา
-    <<OpenPassCode GuardCode2>>
+    <<OpenPassCode GuardCode3>>
 <<elseif $CodeTwo is true>>
-    Knight: ...
     Knight: เจ้าดูหน้าไม่คุ้นเลย แต่ถ้าบอกรหัสถูกก็คงต้องปล่อยให้เข้าไปละนะ
 <<endif>>
 ===
 title: knightPass3_correct
 ---
 Knight: ถูกต้อง
-<<PlayTimeline ToForest3>>
+<<PlayTimeline ToSecretBase>>
 ===
 title: knightPass3_incorrect
 ---
@@ -221,4 +234,7 @@ title: declareForest
 //FoxMerchant
 <<declare $FoxQuest = false>>
 <<declare $FoxInProgress = false>>
+//Honey
+<<declare $HoneyQuest = false>>
+<<declare $HoneyInProgress = false>>
 ===

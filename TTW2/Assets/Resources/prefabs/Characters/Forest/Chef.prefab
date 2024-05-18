@@ -230,5 +230,6 @@ MonoBehaviour:
   questToComplete: {fileID: 0}
   questAttention: {fileID: 0}
   questAdd: {fileID: 0}
+  questCompleteAdd: {fileID: 0}
   canTalk: 0
   setYarn: 0

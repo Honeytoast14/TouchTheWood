@@ -124,7 +124,7 @@ title: BeetleLeader
         ด้วงตัวแม่: พนักงานใหม่ก็ไม่น่าจะใช่...
         ด้วงตัวแม่: หล่อนอยากขึ้นไปอย่างนั้นเรอะ เหอะ จะให้พาขึ้นก็ต้องช่วยอะไรก่อนสิ ของฟรีน่ะ ไม่มีในโลกหรอกนะ
         ด้วงตัวแม่: ที่จริงถ้าหล่อนช่วยแยกแร่ในห้องด้านซ้ายนั่นจนเสร็จ เดี๋ยวเดี๊ยนจะพาขึ้นไปก็แล้วกัน
-        <<AddQuest>>
+        <<AddQuest Penguin_SecondFloor>>
         <<set $sortingQuest = true>>
     <<elseif $sortingQuest is true>>
     <<ChangePortrait BeetleBoss Portraits/Mine/beetleboss_profile/beetleboss_angry>>

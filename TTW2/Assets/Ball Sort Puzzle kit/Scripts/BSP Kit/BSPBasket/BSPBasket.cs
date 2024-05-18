@@ -7,6 +7,8 @@
     public class BSPBasket : MonoBehaviour
     {
         #region variables
+        //--------------------------------------------------[AddCode]---------------------------------------------------
+        SoundPlayer soundPlayer;
         public bool isEnable = true;
         [Min(1)]
         public int Capacity = 1;
@@ -27,6 +29,10 @@
 #endif
         #endregion
         #region Functions
+        void Awake()
+        {
+            soundPlayer = FindObjectOfType<SoundPlayer>();
+        }
         public void OnValidate()
         {
             _bSPBasketUI = GetComponent<BSPBasketUI>();
@@ -111,8 +117,11 @@
         }
         public bool isFullAndSameCluster()
         {
+            //--------------------------------------------------------------AddSound--------------------------------------------------------------
+            soundPlayer.PlaySFX(soundPlayer.sortingOre);
             return GetBallsCount() == Capacity && isAllBallsHaveSameCluster();
         }
+
         public bool isAllBallsHaveSameCluster()
         {
             if (balls == null || balls.Count == 0) return false;

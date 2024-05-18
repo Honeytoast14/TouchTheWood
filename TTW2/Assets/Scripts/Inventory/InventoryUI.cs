@@ -26,6 +26,7 @@ public class InventoryUI : MonoBehaviour
     [SerializeField] GameObject rewardTwo;
     [SerializeField] GameObject rewardThree;
     Inventory inventory;
+    SoundPlayer soundPlayer;
     RectTransform itemListRect;
     List<ItemSlotUI> slotUIList = new List<ItemSlotUI>();
     private int selectedItem = 0;
@@ -35,6 +36,7 @@ public class InventoryUI : MonoBehaviour
     {
         inventory = Inventory.GetInventory();
         itemListRect = itemList.GetComponent<RectTransform>();
+        soundPlayer = FindObjectOfType<SoundPlayer>();
     }
 
     private void Start()
@@ -100,6 +102,7 @@ public class InventoryUI : MonoBehaviour
         {
             if (slot.Item == inventory.CanUseItem(slot.Item))
             {
+                soundPlayer.PlaySFX(soundPlayer.buttonSelect);
                 Debug.Log("Select item that can use");
                 //Pictue Puzzle
                 if (slot.Item.name == "PicturePuzzle1")
@@ -142,17 +145,21 @@ public class InventoryUI : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
             ++selectedItem;
+            soundPlayer.PlaySFX(soundPlayer.buttonClick);
         }
         else if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
+            soundPlayer.PlaySFX(soundPlayer.buttonClick);
             --selectedItem;
         }
         if (Input.GetKeyDown(KeyCode.UpArrow) && selectedItem >= rowSize)
         {
+            soundPlayer.PlaySFX(soundPlayer.buttonClick);
             selectedItem -= rowSize;
         }
         else if (Input.GetKeyDown(KeyCode.DownArrow) && selectedItem + rowSize < inventory.Slots.Count)
         {
+            soundPlayer.PlaySFX(soundPlayer.buttonClick);
             selectedItem += rowSize;
         }
 

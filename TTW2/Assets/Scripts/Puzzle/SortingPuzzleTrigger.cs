@@ -10,6 +10,7 @@ using Yarn.Unity;
 
 public class SortingPuzzleTrigger : MonoBehaviour
 {
+    [SerializeField] List<AudioSource> audioSources;
     [SerializeField] GameObject puzzle;
     [SerializeField] Camera puzzleCam;
     Camera mainCam;
@@ -20,6 +21,7 @@ public class SortingPuzzleTrigger : MonoBehaviour
     IsometricPlayerMovementController playerController;
     CapsuleCollider2D capColider;
     BSPGameManager bSPGameManager;
+    SoundPlayer soundPlayer;
     void Awake()
     {
         Instance = this;
@@ -29,6 +31,7 @@ public class SortingPuzzleTrigger : MonoBehaviour
         playerController = FindObjectOfType<IsometricPlayerMovementController>();
         capColider = GetComponent<CapsuleCollider2D>();
         bSPGameManager = FindObjectOfType<BSPGameManager>();
+        soundPlayer = FindObjectOfType<SoundPlayer>();
 
         puzzleCam.enabled = false;
         mainCam = Camera.main;
@@ -45,6 +48,12 @@ public class SortingPuzzleTrigger : MonoBehaviour
             mainCam.enabled = false;
             GameController.Instance.state = GameState.SortingPuzzle;
 
+            if (audioSources != null)
+                foreach (AudioSource aud in audioSources)
+                {
+                    aud.enabled = false;
+                }
+
             // Cursor.SetCursor(cursor, Vector2.zero, CursorMode.ForceSoftware);
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
@@ -59,6 +68,12 @@ public class SortingPuzzleTrigger : MonoBehaviour
             puzzleCam.enabled = false;
             mainCam.enabled = true;
             GameController.Instance.state = GameState.FreeRoam;
+
+            if (audioSources != null)
+                foreach (AudioSource aud in audioSources)
+                {
+                    aud.enabled = true;
+                }
 
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
@@ -90,6 +105,12 @@ public class SortingPuzzleTrigger : MonoBehaviour
         button.gameObject.SetActive(false);
         puzzleCam.enabled = false;
         mainCam.enabled = true;
+
+        if (audioSources != null)
+            foreach (AudioSource aud in audioSources)
+            {
+                aud.enabled = true;
+            }
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;

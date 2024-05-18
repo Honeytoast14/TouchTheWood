@@ -10,6 +10,7 @@ using Yarn.Unity;
 
 public class Passcode : MonoBehaviour
 {
+    SoundPlayer soundPlayer;
     DialogueRunner dialogueRunner;
     TriggerEvent triggerEvent;
     string Nr = null;
@@ -26,6 +27,7 @@ public class Passcode : MonoBehaviour
 
     void Start()
     {
+        soundPlayer = FindObjectOfType<SoundPlayer>();
         dialogueRunner = FindObjectOfType<DialogueRunner>();
         triggerEvent = GetComponent<TriggerEvent>();
 
@@ -65,6 +67,8 @@ public class Passcode : MonoBehaviour
         Nr = Nr + Numbers;
         UiText.text = Nr;
         Debug.Log(Numbers);
+
+        soundPlayer.PlaySFX(soundPlayer.buttonClick);
     }
 
     public void Enter(string Code)

@@ -9,6 +9,7 @@ public class TrueFalseSwitch : MonoBehaviour
     public bool switchActivated { get; private set; } = false;
     private bool propagateReset = true;
     private bool inputEnabled = true;
+    SoundPlayer soundPlayer;
 
     [Header("Switch")]
     [SerializeField] List<TrueFalseSwitch> connectedSwitches;
@@ -18,6 +19,10 @@ public class TrueFalseSwitch : MonoBehaviour
     [SerializeField] Tilemap tilemap;
     [SerializeField] Vector3Int position;
 
+    void Start()
+    {
+        soundPlayer = FindObjectOfType<SoundPlayer>();
+    }
 
     void Update()
     {
@@ -46,7 +51,7 @@ public class TrueFalseSwitch : MonoBehaviour
             switchActivated = !switchActivated;
 
             tilemap.SetTile(position, switchActivated ? tileChange : initialTile);
-            // Debug.Log($"{transform.parent.name} is activate || switchActivated is {IsSwitchActivated()}");
+            soundPlayer.PlaySFX(soundPlayer.switchUsed);
 
             if (propagateReset)
             {
@@ -68,7 +73,7 @@ public class TrueFalseSwitch : MonoBehaviour
             switchActivated = !switchActivated;
 
             tilemap.SetTile(position, initialTile);
-
+            soundPlayer.PlaySFX(soundPlayer.switchUsed);
             if (propagateReset)
             {
                 foreach (TrueFalseSwitch switchScript in connectedSwitches)

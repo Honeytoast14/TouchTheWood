@@ -18,6 +18,7 @@ public class PuzzleRotatePicFirst : MonoBehaviour
     [Header("Reward Item")]
     [SerializeField] ItemData rewardItem;
     [SerializeField] int rewardCount;
+    SoundPlayer soundPlayer;
 
     public bool win { get; private set; }
     int selectedPicture = 0;
@@ -34,6 +35,7 @@ public class PuzzleRotatePicFirst : MonoBehaviour
         win = false;
         gameObject.SetActive(false);
         cover.SetActive(false);
+        soundPlayer = FindObjectOfType<SoundPlayer>();
     }
     public void HandleUpdate(Action onBack)
     {
@@ -43,18 +45,22 @@ public class PuzzleRotatePicFirst : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
+            soundPlayer.PlaySFX(soundPlayer.buttonClick);
             ++selectedPicture;
         }
         else if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
+            soundPlayer.PlaySFX(soundPlayer.buttonClick);
             --selectedPicture;
         }
         if (Input.GetKeyDown(KeyCode.UpArrow) && selectedPicture >= rowSize)
         {
+            soundPlayer.PlaySFX(soundPlayer.buttonClick);
             selectedPicture -= rowSize;
         }
         else if (Input.GetKeyDown(KeyCode.DownArrow) && selectedPicture + rowSize < pictures.Count)
         {
+            soundPlayer.PlaySFX(soundPlayer.buttonClick);
             selectedPicture += rowSize;
         }
 
@@ -67,7 +73,10 @@ public class PuzzleRotatePicFirst : MonoBehaviour
 
         var pic = pictures[selectedPicture];
         if (Input.GetKeyDown(KeyCode.Z) && !win)
+        {
+            soundPlayer.PlaySFX(soundPlayer.paperSound);
             pic.transform.Rotate(0, 0, 90);
+        }
 
         if (Input.GetKeyDown(KeyCode.X) || Input.GetKeyDown(KeyCode.Escape))
         {

@@ -15,7 +15,7 @@ public class PuzzleHoneyEasy : MonoBehaviour
     public bool win { get; private set; }
     int selectedPicture = 0;
     public bool honeyEasyIsOpen = false;
-
+    SoundPlayer soundPlayer;
     public static PuzzleHoneyEasy Instance { get; private set; }
 
     void Awake()
@@ -31,6 +31,8 @@ public class PuzzleHoneyEasy : MonoBehaviour
         {
             child.SetActive(false);
         }
+
+        soundPlayer = FindObjectOfType<SoundPlayer>();
     }
     public void HandleUpdate()
     {
@@ -40,18 +42,22 @@ public class PuzzleHoneyEasy : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
+            soundPlayer.PlaySFX(soundPlayer.buttonClick);
             ++selectedPicture;
         }
         else if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
+            soundPlayer.PlaySFX(soundPlayer.buttonClick);
             --selectedPicture;
         }
         if (Input.GetKeyDown(KeyCode.UpArrow) && selectedPicture >= rowSize)
         {
+            soundPlayer.PlaySFX(soundPlayer.buttonClick);
             selectedPicture -= rowSize;
         }
         else if (Input.GetKeyDown(KeyCode.DownArrow) && selectedPicture + rowSize < pictures.Count)
         {
+            soundPlayer.PlaySFX(soundPlayer.buttonClick);
             selectedPicture += rowSize;
         }
 
@@ -65,6 +71,7 @@ public class PuzzleHoneyEasy : MonoBehaviour
         var pic = pictures[selectedPicture];
         if (Input.GetKeyDown(KeyCode.Z) && !win)
         {
+            soundPlayer.PlaySFX(soundPlayer.switchUsed);
             pic.transform.Rotate(0, 0, 90);
             Debug.Log(pic.transform.name + pic.transform.rotation.z);
         }
@@ -100,6 +107,7 @@ public class PuzzleHoneyEasy : MonoBehaviour
 
         if (allZero)
         {
+            soundPlayer.PlaySFX(soundPlayer.correct);
             win = true;
             UpdatedPictureSelection();
         }

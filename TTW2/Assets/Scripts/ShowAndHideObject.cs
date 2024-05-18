@@ -31,10 +31,13 @@ public class ShowAndHideObject : MonoBehaviour
         if (PuzzleRail.Instance != null)
             if (PuzzleRail.Instance.win)
             {
-                HideObject();
-                ShowObject();
-                button.SetActive(false);
-                gameObject.SetActive(false);
+                if (!setYarn)
+                {
+                    HideObject();
+                    ShowObject();
+                    button.SetActive(false);
+                    gameObject.SetActive(false);
+                }
             }
     }
 

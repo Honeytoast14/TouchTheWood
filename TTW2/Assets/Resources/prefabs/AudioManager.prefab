@@ -48,9 +48,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bgmAudioSource: {fileID: 4082142155733793762}
   sfxAudioSource: {fileID: 223042586843595282}
-  bgmMusic: {fileID: 0}
+  CaveMusic: {fileID: 0}
+  ForestMusic: {fileID: 0}
   buttonClick: {fileID: 8300000, guid: 255607d69d77c7045b88b51b8b7b95f9, type: 3}
   buttonSelect: {fileID: 8300000, guid: fab61e5a062d6c64f80aa06341ce170b, type: 3}
+  switchUsed: {fileID: 8300000, guid: bd25eb74697725d45bf956d6c6137747, type: 3}
+  paperSound: {fileID: 8300000, guid: 5bd738d0d599d3040bd1b04e6fe83d25, type: 3}
+  getItem: {fileID: 8300000, guid: a1da2236dc0e1634d99fb8cd34bc8155, type: 3}
+  sortingOre: {fileID: 8300000, guid: d64bfa1984ddabe47a53ee9726e5cfe6, type: 3}
 --- !u!1 &5816448253441372080
 GameObject:
   m_ObjectHideFlags: 0
@@ -95,7 +100,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: -3830284189090682855, guid: 381bde9dc44b56d4a99c2c81ac8a9786, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.6
   m_Pitch: 1
   Loop: 1
   Mute: 0

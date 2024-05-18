@@ -1,10 +1,6 @@
 using System.Collections;
-using System.Collections.Generic;
-using System.Data.Common;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Tilemaps;
-using UnityEngine.UIElements;
 
 public class PuzzleWall : MonoBehaviour
 {
@@ -19,11 +15,16 @@ public class PuzzleWall : MonoBehaviour
 
     [Header("Animator")]
     Animator emoji;
+    [Header("Sound Wall Hide")]
+    [SerializeField] AudioClip soundWall;
     bool interactable = false;
     public bool destroyObject { get; set; } = false;
     TriggerEvent triggerEvent;
+    SoundPlayer soundPlayer;
+    SpriteRenderer emojiSprite;
     public bool useSwitch { get; set; } = false;
-    public SoundPlayer soundPlayer;
+
+    private bool isSoundPlaying = false;
 
     void Awake()
     {
@@ -31,7 +32,8 @@ public class PuzzleWall : MonoBehaviour
 
         if (emojis != null)
         {
-            emojis.SetActive(false);
+            emojiSprite = emojis.GetComponent<SpriteRenderer>();
+            emojiSprite.enabled = false;
             emoji = emojis.GetComponent<Animator>();
             if (emoji != null)
             {
@@ -39,12 +41,11 @@ public class PuzzleWall : MonoBehaviour
             }
         }
     }
+
     void Start()
     {
         triggerEvent = FindObjectOfType<TriggerEvent>();
-
-        if (soundPlayer != null)
-            soundPlayer.PlayerMusic();
+        soundPlayer = FindObjectOfType<SoundPlayer>();
     }
 
     void Update()
@@ -59,7 +60,6 @@ public class PuzzleWall : MonoBehaviour
                     {
                         triggerEvent.StartDialogue(npcData.dialogueName);
                     }
-                    // useSwitch = true;
                 }
             }
 
@@ -75,11 +75,9 @@ public class PuzzleWall : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D colision)
     {
-        // TriggerEvent.Instance.StartDialogue("test");
         if (colision.gameObject.tag == "Player")
         {
             interactable = true;
-            // Debug.Log("can interact");
         }
     }
 
@@ -88,13 +86,16 @@ public class PuzzleWall : MonoBehaviour
         if (colision.gameObject.tag == "Player")
         {
             interactable = false;
-            // Debug.Log("cannot interact");
         }
     }
 
     void HideWall(GameObject gameObject)
     {
         gameObject.SetActive(false);
+        if (!isSoundPlaying)
+        {
+            StartCoroutine(PlayWallSound());
+        }
     }
 
     public void SetEmoji(string animationName, string objectName)
@@ -106,6 +107,7 @@ public class PuzzleWall : MonoBehaviour
             PuzzleWall puzzleWall = puzzleGameObject.GetComponent<PuzzleWall>();
             if (puzzleWall != null)
             {
+                soundPlayer.PlaySFX(soundPlayer.switchUsed);
                 puzzleWall.useSwitch = true;
                 if (wall != null)
                     puzzleWall.destroyObject = true;
@@ -115,9 +117,21 @@ public class PuzzleWall : MonoBehaviour
 
     private IEnumerator SetEmojiTime(string animationName)
     {
-        emoji.gameObject.SetActive(true);
+        emojiSprite.enabled = true;
         emoji.Play(animationName);
         yield return new WaitForSeconds(0.8f);
-        emoji.gameObject.SetActive(false);
+        emojiSprite.enabled = false;
+    }
+
+    private IEnumerator PlayWallSound()
+    {
+        isSoundPlaying = true;
+        if (soundWall != null)
+        {
+            soundPlayer.PlaySFX(soundWall);
+            destroyObject = false;
+        }
+        yield return new WaitForSeconds(soundWall.length);
+        isSoundPlaying = false;
     }
 }

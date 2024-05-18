@@ -980,6 +980,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66700905a177d154a8fe3df2577df331, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  paperSound: {fileID: 8300000, guid: 5bd738d0d599d3040bd1b04e6fe83d25, type: 3}
   cover: {fileID: 1128656050}
   rowSize: 8
   pictures:

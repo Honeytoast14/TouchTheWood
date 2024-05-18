@@ -144,3 +144,30 @@ title: signForest
 ---
 System: คำ..ตือน!....ข้างหน้า...พิศวง...ดอกไม้.....ทางเดิน!
 ===
+
+title: SwitchMaze
+---
+System: ลองดันคันโยกหรือไม่
+    -> ใช่
+        <<jump SwitchMaze2>>
+    -> ไม่ใช่
+===
+title: SwitchMaze2
+---
+System: แน่ใจนะว่าจะดัน
+    -> ใช่
+        <<jump SwitchMaze3>>
+    -> ไม่ใช่
+===
+title: SwitchMaze3
+---
+System: ให้คิดอีกที
+    -> ใช่
+        <<SetEmojiWall Emoji_Surprise switchTrigger>>
+    -> ไม่ใช่
+===
+
+title: SignMaze
+---
+System: เข้ามาที่นี่ได้ยังไงเนี่ย!
+===

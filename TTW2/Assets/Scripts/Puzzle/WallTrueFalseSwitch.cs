@@ -6,8 +6,20 @@ public class WallTrueFalseSwitch : MonoBehaviour
 {
     [Header("All Switches")]
     [SerializeField] List<TrueFalseSwitch> trueFalseSwitches;
+
     [Header("Wall")]
     [SerializeField] List<GameObject> hideObjects;
+
+    [Header("Sound Wall")]
+    [SerializeField] AudioClip sfx;
+
+    SoundPlayer soundPlayer;
+    bool soundPlayed = false;
+
+    void Start()
+    {
+        soundPlayer = FindObjectOfType<SoundPlayer>();
+    }
 
     void Update()
     {
@@ -26,17 +38,20 @@ public class WallTrueFalseSwitch : MonoBehaviour
             }
         }
 
-        if (allSwitchesActivated)
+        if (allSwitchesActivated && !soundPlayed)
         {
             foreach (TrueFalseSwitch trueFalseSwitch in trueFalseSwitches)
             {
-                trueFalseSwitch.SetInputEnabled(false); // Disable input for all switches
+                trueFalseSwitch.SetInputEnabled(false);
             }
 
             foreach (GameObject hideObject in hideObjects)
             {
                 hideObject.SetActive(false);
             }
+
+            soundPlayer.PlaySFX(sfx);
+            soundPlayed = true;
         }
     }
 }

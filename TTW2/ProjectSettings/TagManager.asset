@@ -16,6 +16,7 @@ TagManager:
   - Emoji
   - LoadSpot
   - ImageReward
+  - Pushable
   layers:
   - Default
   - TransparentFX

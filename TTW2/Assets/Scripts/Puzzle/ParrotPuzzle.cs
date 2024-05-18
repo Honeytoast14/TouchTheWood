@@ -27,7 +27,7 @@ public class ParrotPuzzle : MonoBehaviour
     {
         if (canInteract && Input.GetKeyDown(KeyCode.Z) && inZone && GameController.Instance.state == GameState.FreeRoam)
         {
-            soundPlayer.PlayerSFX(bouceSound);
+            soundPlayer.PlaySFX(bouceSound);
             parrotManager.RegisterInteraction(orderNumber);
             ChangeTile();
             parrotManager.AddInteractedPuzzle(this);

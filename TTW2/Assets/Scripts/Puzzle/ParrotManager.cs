@@ -37,13 +37,13 @@ public class ParrotManager : MonoBehaviour
             if (interactionOrder[i] != correctOrder[i])
             {
                 Debug.Log("Incorrect Order");
-                soundPlayer.PlayerSFX(incorrect);
+                soundPlayer.PlaySFX(incorrect);
                 StartCoroutine(ResetPuzzle());
                 return;
             }
         }
         Debug.Log("Puzzle Completed!");
-        soundPlayer.PlayerSFX(correct);
+        soundPlayer.PlaySFX(correct);
         StartCoroutine(PlayTimeline());
         puzzleCompleted = true;
         DisableInteractedPuzzles();

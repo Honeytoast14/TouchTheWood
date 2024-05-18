@@ -881,6 +881,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6d0dccffd7672144a039be8f1f55776, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sfx: {fileID: 8300000, guid: b8a8c0231b756ae43819f51b81b4c40d, type: 3}
   bgAndPic:
   - {fileID: 294899634}
   - {fileID: 638086925}

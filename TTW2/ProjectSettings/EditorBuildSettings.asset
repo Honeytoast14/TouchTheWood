@@ -27,6 +27,12 @@ EditorBuildSettings:
     path: Assets/Scenes/Puzzles/PuzzleHoneyEasy.unity
     guid: 735c076130319f847bfb679dd85a3a6c
   - enabled: 1
+    path: Assets/Scenes/Puzzles/PuzzleHoneyHard.unity
+    guid: e4998026d68f2ed448e3aca5271e6c33
+  - enabled: 1
+    path: Assets/Scenes/Puzzles/PuzzleHoneyMid.unity
+    guid: 0669ce10a9158f74aa22c973aabb68e4
+  - enabled: 1
     path: Assets/Scenes/Cave/Cave floor5.unity
     guid: 88d0d77f3c726de45933ad6bcb2a0dcb
   - enabled: 1
@@ -59,4 +65,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Credit-Cave.unity
     guid: 06b7e64d70dbafe438e70257a9c0d87a
+  - enabled: 1
+    path: Assets/Scenes/AllEndCredit.unity
+    guid: aad56a1a63241474c97a7a8934209c9a
   m_configObjects: {}

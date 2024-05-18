@@ -2,32 +2,59 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Yarn;
+using Yarn.Unity;
 
 public class SoundPlayer : MonoBehaviour
 {
     [Header("Audio Source")]
-    [SerializeField] AudioSource bgmAudioSource;
-    [SerializeField] AudioSource sfxAudioSource;
+    [SerializeField] public AudioSource bgmAudioSource;
+    [SerializeField] public AudioSource sfxAudioSource;
 
     [Header("Audio Clip")]
-    public AudioClip bgmMusic;
+    public AudioClip CaveMusic;
+    public AudioClip ForestMusic;
     public AudioClip buttonClick;
     public AudioClip buttonSelect;
+    public AudioClip switchUsed;
+    public AudioClip paperSound;
+    public AudioClip getItem;
+    public AudioClip sortingOre;
+    public AudioClip correct;
 
     void Start()
     {
-        if (bgmMusic != null)
-            PlayerMusic();
+        if (CaveMusic != null)
+        {
+            PlayMusic(CaveMusic);
+        }
+
+        if (ForestMusic != null)
+        {
+            PlayMusic(ForestMusic);
+        }
     }
 
-    public void PlayerSFX(AudioClip clip)
+    public void PlaySFX(AudioClip clip, bool loop = false)
     {
-        sfxAudioSource.PlayOneShot(clip);
+        Debug.Log("Playing SFX: " + clip.name);
+        sfxAudioSource.clip = clip;
+        sfxAudioSource.loop = loop;
+        sfxAudioSource.Play();
     }
 
-    public void PlayerMusic()
+    public void StopSFX()
     {
-        bgmAudioSource.clip = bgmMusic;
+        sfxAudioSource.Stop();
+    }
+
+    public void PlayMusic(AudioClip clip)
+    {
+        if (bgmAudioSource.isPlaying)
+        {
+            bgmAudioSource.Stop();
+        }
+        Debug.Log("Playing BGM: " + clip.name);
+        bgmAudioSource.clip = clip;
         bgmAudioSource.Play();
     }
 }
