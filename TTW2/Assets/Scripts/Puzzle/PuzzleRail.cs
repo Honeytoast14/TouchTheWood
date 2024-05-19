@@ -105,6 +105,8 @@ public class PuzzleRail : MonoBehaviour
         {
             win = true;
             UpdatedPictureSelection();
+            HidePuzzlePage();
+            GameController.Instance.state = GameState.FreeRoam;
         }
     }
 

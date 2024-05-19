@@ -43,6 +43,7 @@ public class GameController : MonoBehaviour
     {
         if (state == GameState.FreeRoam)
         {
+            playerController.ResumeMoving();
             if (menuController != null)
             {
                 if (Input.GetKeyDown(KeyCode.Escape))
