@@ -22,11 +22,12 @@ public class TriggerEvent : MonoBehaviour
 
     [Header("Add Quest In Yarn")]
     [SerializeField] QuestData questAdd;
+    [SerializeField] QuestData questCompleteAdd;
     private DialogueRunner dialogueRunner;
     GameController gameController;
     Quest activeQuest;
+    SoundPlayer soundPlayer;
     IsometricPlayerMovementController playerController;
-
     public bool canTalk = false;
     private bool interactable = false;
     private bool isCurrentConversation = false;
@@ -44,12 +45,15 @@ public class TriggerEvent : MonoBehaviour
         dialogueRunner = FindObjectOfType<DialogueRunner>();
         gameController = FindObjectOfType<GameController>();
         playerController = FindObjectOfType<IsometricPlayerMovementController>();
+        soundPlayer = FindObjectOfType<SoundPlayer>();
+
 
         dialogueRunner.onDialogueComplete.AddListener(EndDialouge);
 
         if (setYarn)
         {
-            dialogueRunner.AddCommandHandler("AddQuest", AddQuestInYarn);
+            dialogueRunner.AddCommandHandler<string>("AddQuest", AddQuestInYarn);
+            dialogueRunner.AddCommandHandler<string>("AddQuestToComplete", AddQuesCompletetInYarn);
         }
 
         if (itemGiver != null)
@@ -90,13 +94,13 @@ public class TriggerEvent : MonoBehaviour
             {
                 var quest = new Quest(questToComplete);
                 quest.CompleteQuest(playerController.transform, npcData.dialogueName + "_AfterQuest");
+                questAttention.SetActive(false);
                 questToComplete = null;
 
                 Debug.Log($"{quest.Base.Name} is complete!");
             }
             else
             {
-                //Debug.Log("Z is pressed from triggerEvent");
                 StartDialogue(npcData.dialogueName);
             }
 
@@ -113,15 +117,28 @@ public class TriggerEvent : MonoBehaviour
 
         if (itemGiver != null && interactable && itemGiver.CanBeGiven())
         {
+            soundPlayer.sfxAudioSource.volume = 0.5f;
+            soundPlayer.PlaySFX(soundPlayer.getItem);
             itemGiver.GiveItem(playerController);
+            soundPlayer.sfxAudioSource.volume = 1f;
         }
 
         if (pickUp != null && interactable && pickUp.CanBeGiven())
         {
+            soundPlayer.sfxAudioSource.volume = 0.5f;
+            soundPlayer.PlaySFX(soundPlayer.getItem);
             pickUp.GiveItem(playerController);
+            soundPlayer.sfxAudioSource.volume = 1f;
         }
 
         if (questToStart != null)
+        {
+            if (questAttention != null)
+            {
+                questAttention.SetActive(true);
+            }
+        }
+        if (questToComplete != null)
         {
             if (questAttention != null)
             {
@@ -171,10 +188,35 @@ public class TriggerEvent : MonoBehaviour
         gameController.state = GameState.Dialogue;
     }
 
-    public void AddQuestInYarn()
+    public void AddQuestInYarn(string objectParentName)
     {
-        if (questAdd != null)
-            questToStart = questAdd;
+        GameObject addQuest = GameObject.Find(objectParentName);
+        if (addQuest != null)
+        {
+            TriggerEvent triggerEvents = addQuest.GetComponentInChildren<TriggerEvent>();
+            if (triggerEvents != null)
+            {
+                if (triggerEvents.questAdd != null)
+                {
+                    triggerEvents.questToStart = triggerEvents.questAdd;
+                }
+            }
+        }
+    }
+    public void AddQuesCompletetInYarn(string objectParentName)
+    {
+        GameObject addQuest = GameObject.Find(objectParentName);
+        if (addQuest != null)
+        {
+            TriggerEvent triggerEvents = addQuest.GetComponentInChildren<TriggerEvent>();
+            if (triggerEvents != null)
+            {
+                if (triggerEvents.questCompleteAdd != null)
+                {
+                    triggerEvents.questToComplete = triggerEvents.questCompleteAdd;
+                }
+            }
+        }
     }
 }
 

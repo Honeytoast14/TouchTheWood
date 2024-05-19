@@ -14,27 +14,31 @@ public class MenuController : MonoBehaviour
     public event Action onBack;
     List<Button> menuButtons;
     IsometricPlayerMovementController playerController;
+    SoundPlayer soundPlayer;
     int selectedItem = 0;
+    void Awake()
+    {
+        menuButtons = GameObject.Find("Button Group").GetComponentsInChildren<Button>().ToList();
+        playerController = FindObjectOfType<IsometricPlayerMovementController>();
+        soundPlayer = playerController.GetComponentInChildren<SoundPlayer>();
+    }
     private void Start()
     {
         MenuPage.SetActive(false);
     }
 
-    private void Awake()
-    {
-        menuButtons = GameObject.Find("Button Group").GetComponentsInChildren<Button>().ToList();
-        playerController = FindObjectOfType<IsometricPlayerMovementController>();
-    }
     public void HandleUpdate()
     {
         int preSelection = selectedItem;
 
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
+            soundPlayer.PlaySFX(soundPlayer.buttonClick);
             --selectedItem;
         }
         else if (Input.GetKeyDown(KeyCode.DownArrow))
         {
+            soundPlayer.PlaySFX(soundPlayer.buttonClick);
             ++selectedItem;
         }
 
@@ -46,6 +50,7 @@ public class MenuController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Z))
         {
+            soundPlayer.PlaySFX(soundPlayer.buttonSelect);
             onMenuSelected?.Invoke(selectedItem);
         }
 

@@ -1,36 +1,41 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using MyApp.MyBSP;
 using UnityEngine;
+using UnityEngine.Animations;
 using UnityEngine.UI;
 using Yarn;
 using Yarn.Unity;
 
 public class SortingPuzzleTrigger : MonoBehaviour
 {
+    [SerializeField] List<AudioSource> audioSources;
     [SerializeField] GameObject puzzle;
     [SerializeField] Camera puzzleCam;
-    [SerializeField] Camera mainCam;
-    [SerializeField] List<GameObject> objectGroup;
-    [SerializeField] GameObject doorOpen;
-    [SerializeField] GameObject doorClose;
-    [SerializeField] GameObject doorColider;
+    Camera mainCam;
     [SerializeField] GameObject button;
     // [SerializeField] Texture2D cursor;
     bool inZone = false;
     public static SortingPuzzleTrigger Instance { get; private set; }
-    TimelineController timelineController;
     IsometricPlayerMovementController playerController;
+    CapsuleCollider2D capColider;
+    BSPGameManager bSPGameManager;
+    SoundPlayer soundPlayer;
     void Awake()
     {
         Instance = this;
     }
     void Start()
     {
-        puzzleCam.enabled = false;
-
         playerController = FindObjectOfType<IsometricPlayerMovementController>();
-        timelineController = FindObjectOfType<TimelineController>();
+        capColider = GetComponent<CapsuleCollider2D>();
+        bSPGameManager = FindObjectOfType<BSPGameManager>();
+        soundPlayer = FindObjectOfType<SoundPlayer>();
+
+        puzzleCam.enabled = false;
+        mainCam = Camera.main;
+        capColider.enabled = false;
     }
 
     void Update()
@@ -43,6 +48,12 @@ public class SortingPuzzleTrigger : MonoBehaviour
             mainCam.enabled = false;
             GameController.Instance.state = GameState.SortingPuzzle;
 
+            if (audioSources != null)
+                foreach (AudioSource aud in audioSources)
+                {
+                    aud.enabled = false;
+                }
+
             // Cursor.SetCursor(cursor, Vector2.zero, CursorMode.ForceSoftware);
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
@@ -51,15 +62,22 @@ public class SortingPuzzleTrigger : MonoBehaviour
 
     public void HandleUpdate(Action onBack)
     {
-        if (inZone && Input.GetKeyDown(KeyCode.X) && GameController.Instance.state == GameState.SortingPuzzle)
+        if (inZone && Input.GetKeyDown(KeyCode.X) || Input.GetKeyDown(KeyCode.Escape) && GameController.Instance.state == GameState.SortingPuzzle)
         {
             button.gameObject.SetActive(false);
             puzzleCam.enabled = false;
             mainCam.enabled = true;
             GameController.Instance.state = GameState.FreeRoam;
 
+            if (audioSources != null)
+                foreach (AudioSource aud in audioSources)
+                {
+                    aud.enabled = true;
+                }
+
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
+            // bSPGameManager.RestartGame();
 
             onBack?.Invoke();
         }
@@ -87,6 +105,12 @@ public class SortingPuzzleTrigger : MonoBehaviour
         button.gameObject.SetActive(false);
         puzzleCam.enabled = false;
         mainCam.enabled = true;
+
+        if (audioSources != null)
+            foreach (AudioSource aud in audioSources)
+            {
+                aud.enabled = true;
+            }
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;

@@ -35,7 +35,7 @@ public class HighlightFix : MonoBehaviour, IDeselectHandler, ISelectHandler
             border.SetActive(false);
             if (soundPlayer != null)
             {
-                soundPlayer.PlayerSFX(soundPlayer.buttonClick);
+                soundPlayer.PlaySFX(soundPlayer.buttonClick);
             }
         }
     }

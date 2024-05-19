@@ -1,0 +1,242 @@
+﻿title: papaParrot
+---
+<<if $parrotQuest is false>>
+    <<ChangePortrait PapaParrot Portraits/papa_parrot/papaparrot_sad>>
+    พ่อนก: ลูก ๆ ของฉันหายไปไหนกันนน!! //หน้าร้องไห้
+    พ่อนก: พ่อคิดถึงลูก ๆ !!
+<<elseif $parrotQuest is true>>   
+    //เสร็จเควส
+    <<ChangePortrait PapaParrot Portraits/papa_parrot/papaparrot_happyl>>
+    พ่อนก: ลูก ๆ กลับมาครบแล้ว! ขอบใจเธอมากนะ //หน้าดีใจ
+<<endif>>
+===
+
+title: papaParrot_AfterQuest
+---
+//เศวสให้คุยกับพ่อนกหลังจากคุยกับแม่นก
+<<ChangePortrait PapaParrot Portraits/papa_parrot/papaparrot_happyl>>
+พ่อนก: ขอบใจเธอมาก ๆ เลยนะ ขอนไม้มันขวางทางเธองั้นหรอ เดี๋ยวให้ลูก ๆ ไปยกให้นะ
+<<PlayTimeline Timeline-EndForest0>>
+<<wait 3.2>> //timeline เอาท่อนไม้ออก
+พ่อนก: เรียบร้อยแล้วละ!
+<<ChangePortrait PapaParrot Portraits/papa_parrot/papaparrot_normal>>
+พ่อนก: จริงสิ! ฉันเห็นแมวเหมือนกับเธอสีดำ ๆ เดินไปกับใครซักคนด้วยนะ!
+พ่อนก: เหมือนว่าเขาจะทำกระดาษตกด้วยนะ ไม่แน่ใจว่าจะมีประโยชน์กับเธอรึเปล่า รับไปสิ
+<<SetUseItemGiver Papaparrot>>
+//ให้กระดาษ อย่างละ 1 ชิ้น
+===
+
+title:mamaParrot
+---
+<<if $parrotQuest is false>>
+    <<if $MamatQuest is false>>
+        //รับเควส
+        <<ChangePortrait MamaParrot Portraits/mamaparrot/mamaparrot_sadl>>
+        แม่นก: เธอเห็นลูก ๆ ของฉันบ้างมั้ย //หน้าเศร้า
+        <<ChangePortrait MamaParrot Portraits/mamaparrot/mamaparrot_borning>>
+        แม่นก: พวกเค้าเข้าป่าแล้วก็หายไปนานมากแล้ว คงจะเล่นกันเพลินแล้วไม่ยอมกลับบ้านแน่ ๆ เลย
+        <<ChangePortrait MamaParrot Portraits/mamaparrot/mamaparrot_normal>>
+        แม่นก: เพราะช่วงนี้มีเห็ดประหลาด ๆ ขึ้นมาในป่า เป็นเห็ดที่ถ้าไปสะกิดหรือโดนก็จะส่งเสียง คงจะไปเล่นแล้วติดใจนะสิ//หน้าปกติ
+        แม่นก: เธอตามหาแมวหรอ ฉันไม่เห็นเลยนะ บางทีสามีฉันอาจจะเห็นแต่เขาคงเป็นห่วงลูก ๆ จนไม่คิดเรื่องอื่นเลยละ
+        แม่นก: เธอจะไปต่องั้นหรอ ที่จริงแล้วทางไปต่อถูกขอนไม้ขวางเอาไว้
+        แม่นก: ถ้าเธอช่วยพาลูก ๆ กลับมาเรา เราอาจจะช่วยยกขอนไม้ออกได้นะ
+        แม่นก: ลูก ๆ ของฉันมี 20 ตัว ถ้าเธอช่วยเสร็จเดี๋ยวพวกฉันจะเปิดทางให้นะ
+        <<HideManyObject Mamaparrot>>
+        <<set $MamatQuest = true>>
+    <<elseif $MamatQuest is true>>
+        <<ChangePortrait MamaParrot Portraits/mamaparrot/mamaparrot_sadl>>
+        แม่นก: ได้โปรดช่วยตามลูก ๆ เถอะนะ ฉันและสามีอยู่ไม่สุขแล้ว
+    <<endif>>
+<<elseif $parrotQuest is true>>
+
+//------------------------------------------------------<< เมื่อเก็บลูกนกครบ 20 ตัวแล้ว ให้ Set $parrotQuest = true >>-----------------------------------------------------
+
+    <<if $MamaGivePapa is false>>
+    //เสร็จเศวส
+        <<ChangePortrait MamaParrot Portraits/mamaparrot/mamaparrot_happyl>>
+        แม่นก: ขอบคุณเธอมากจริง ๆ นะ  ลูก ๆ คงสร้างความลำบากให้แย่เลย //หน้าดีใจ
+        แม่นก: จริงสิ! สามีของฉันเหมือนจะมีของให้เธอด้วย!
+        <<AddQuestToComplete Papaparrot>> // questToComplete ให้พ่อนก
+        <<HideObject Mamaparrot>>
+        
+        <<set $MamaGivePapa = true>>
+    <<elseif $MamaGivePapa is true>>
+        แม่นก: ขอบคุณมากเลยนะ ไม่คิดเลยว่าเธอจะใจดีขนาดนี้
+    <<endif>>
+<<endif>>
+===
+
+title: merchantFox
+---
+<<if $FoxQuest is false>>
+<<if $FoxInProgress is false>>
+//รับเศวสแยกแร่
+<<ChangePortrait FoxMerchant Portraits/foxtea_normal/foxtea_happy>>
+จิ้งจอกสุดหล่อ: ว่าไงเจ้าหนู อยากได้เศษกระดาษไหมละ //หน้าhappy
+<<SetEmoji Emoji_Surprise PuzzleWall>> //แสดง emoji ตกใจของเรา
+<<wait  1>>
+จิ้งจอกสุดหล่อ: ตกใจละสิ ว่าทำไมฉันรู้
+จิ้งจอกสุดหล่อ: พ่อค้าน่ะ มีเส้นสายกับทุกที่นั่นแหละ
+<<SetEmoji Emoji_Shock PuzzleWall>> //แสดง emoji จุดจุดจุด
+<<wait  1>>
+<<ChangePortrait FoxMerchant Portraits/foxtea_normal/foxtea_sad>>
+จิ้งจอกสุดหล่อ: เดี๋ยว! เดี๋ยวก่อน! ฉันไม่ใช่คนน่าสงสัยซะหน่อย! //หน้าsad
+จิ้งจอกสุดหล่อ: ที่จริงแค่อยากได้ความช่วยเหลือ แต่มันติดนิสัยพ่อค้าน่ะ
+<<ChangePortrait FoxMerchant Portraits/foxtea_normal/foxtea_normal>>
+จิ้งจอกสุดหล่อ: แค่อยากให้ช่วยแยกแร่หน่อยน่ะ ตอนขนมาเผลอตกร่องแล้วของในรถกระจายหมดเลย ฉันก็จัดไปบ้างแล้วแหละแต่ตอนนี้กำลังพักอยู่ //หน้า normal
+จิ้งจอกสุดหล่อ: ถ้าเธอช่วยก็จะให้กระดาษนะ
+<<set $FoxInProgress = true>>
+<<PlayTimeline FoxShowSort>>
+
+<<elseif $FoxInProgress is true>>
+//ระหว่างเศวส
+<<ChangePortrait FoxMerchant Portraits/foxtea_normal/foxtea_happy>>
+จิ้งจอกสุดหล่อ: ช่วยกันเถอะนะเจ้าหนู วิน ๆ กันทั้งสองฝ่าย //หน้าhappy
+<<endif>>
+
+<<elseif $FoxQuest is true>>
+//หลังจบเศวส
+จิ้งจอกสุดหล่อ: ไว้มาเจอกันอีกนะเจ้าหนู!
+<<endif>>
+===
+
+title:merchantFox_AfterQuest
+---
+//จบเศวส
+<<ChangePortrait FoxMerchant Portraits/foxtea_normal/foxtea_happy>>
+จิ้งจอกสุดหล่อ: ว้าว จัดเร็วดีนี่ //หน้าhappy
+จิ้งจอกสุดหล่อ: ตามข้อตกลง เอาเศษกระดาษไปเลย //ให้กระดาษ
+จิ้งจอกสุดหล่อ: !!!  เดี๋ยวก่อน!
+จิ้งจอกสุดหล่อ: ในกระเป่าเจ้ามีอะไรอยู่
+<<SetEmoji Emoji_Shock PuzzleWall>> //แสดง emoji จุดจุดจุด
+<<wait  1>>
+จิ้งจอกสุดหล่อ: ไม่เอาน่า ฉันเห็นหมดแล้วละ นั่นนะคือแร่ที่สุดจะหายากเลยนะ
+จิ้งจอกสุดหล่อ: ที่จริงฉันมีเศษกระดาษอีกใบนึง
+<<SetEmoji Emoji_Surprise PuzzleWall>> //แสดง emoji ตกใจของเรา
+<<wait  1>>
+จิ้งจอกสุดหล่อ: ว่าไง แลกกันไหม
+<<PlayTimeline FoxChanging>> //คัทซีน text ดำ: ทั้งสองได้แลกของกัน
+<<wait 3.2>>
+จิ้งจอกสุดหล่อ: ฮ่ะ ๆ ขอบใจมากนะเพื่อน!
+<<set $FoxQuest = true>>
+===
+
+title: bearHoney
+---
+<<if $HoneyQuest is false>>
+    <<if $HoneyInProgress is false>>
+    //รับเศวส
+    BearChef: สวัสดีเจ้าแมวน้อย มาทำอะไรที่นี่อย่างนั้นหรอ
+    BearChef: หาแมว? นั่นพี่น้องเธอเองหรอ!
+    BearChef: ฉันกำลังทำอะไรหรอ? กำลังวางท่อเก็บน้ำผึ้งอยู่นะสิ
+    BearChef: เห็นแบบนี้แต่ฉันก็เป็นเชฟนะ ฉันอยากออกมาหาวัตถุดิบเองนะสิ
+    BearChef: ถ้าเธอมาช่วยฉัน ฉันจะบอกที่ซ่อนเศษกระดาษให้นะ
+    <<set $HoneyInProgress = true>>
+    <<PlayTimeline Honey>>
+    //ขึ้น quest attention 3 อันที่ต้นไม้ 3 ต้น
+    <<elseif $HoneyInProgress is true>>
+        //ระหว่างเศวส
+        BearChef: วางรางน้ำผึ้งนี่มันยากจริง ๆ
+    <<endif>>
+<<elseif $HoneyQuest is true>>
+    //หลังเศวส
+    ฺBearChef: เดินทางปลอดภัยนะเจ้าหนู!
+<<endif>>
+===
+
+title: bearHoney_AfterQuest
+---
+//เสร็จเศวส
+BearChef: โอ้! วางท่อเก็บน้ำผึ้งเสร็จแล้วหรอ
+BearChef: ขอบใจมากนะ รับสิ่งนี่ไปสิ เศษกระดาษฉันเก็บได้ตอนเจ้าแมวน้ำนั่นเดินผ่านพอดี
+BearChef: แล้วก็ทางด้านขวาของเขาวงกตเหมือนจะมีคนเอาไปซ่อนไว้นะ แต่จำไม่ได้แล้วสิว่าซ่อนตรงไหน
+BearChef: ลองไปเดินหาดูนะ ฉันจะรอเก็บน้ำผึ้งต่อ
+<<set $HoneyQuest = true>>
+//ให้เศษกระดาษ
+===
+
+title: chefCat
+---
+ChefCat: ฉันมาช่วยดูเฉย ๆ น่ะ
+===
+
+title: knightPass1
+---
+<<if $CodeOne is false>>
+    Knight: บอกรหัสมา
+    <<OpenPassCode GuardCode1>>
+<<elseif $CodeOne is true>>
+    Knight: ...
+    Knight: อย่าชวนคุย ฉันกำลังตั้งใจทำงาน
+<<endif>>
+===
+
+title: knightPass1_correct
+---
+Knight: ถูกต้อง
+<<set $CodeOne = true>>
+<<PlayTimeline ToForest2>>
+===
+title: knightPass1_incorrect
+---
+Knight: ผิด! อย่าหวังว่าจะผ่านไปได้!
+===
+
+title: knightPass2
+---
+<<if $CodeTwo is false>>
+    Knight: บอกรหัสมา
+    <<OpenPassCode GuardCode2>>
+<<elseif $CodeTwo is true>>
+    Knight: ...
+    Knight: มีอะไร?
+<<endif>>
+===
+
+title: knightPass2_correct
+---
+Knight: ถูกต้อง
+<<set $CodeTwo = true>>
+<<PlayTimeline ToForest3>>
+===
+title: knightPass2_incorrect
+---
+Knight: ห้ามเดารหัสมั่วนะ!
+===
+
+title: knightPass3
+---
+<<if $CodeThree is false>>
+    Knight: บอกรหัสมา
+    <<OpenPassCode GuardCode3>>
+<<elseif $CodeThree is true>>
+    Knight: เจ้าดูหน้าไม่คุ้นเลย แต่ถ้าบอกรหัสถูกก็คงต้องปล่อยให้เข้าไปละนะ
+<<endif>>
+===
+title: knightPass3_correct
+---
+Knight: ถูกต้อง
+<<set $CodeThree = true>>
+<<PlayTimeline ToSecretBase>>
+===
+title: knightPass3_incorrect
+---
+Knight: เจ้า! อยากลองดีนักใช่มั้ย!
+===
+
+title: declareForest
+---
+<<declare $parrotQuest = false>>
+<<declare $MamatQuest = false>>
+<<declare $MamaGivePapa = false>>
+//PassCode
+<<declare $CodeOne = false>>
+<<declare $CodeTwo = false>>
+<<declare $CodeThree = false>>
+//FoxMerchant
+<<declare $FoxQuest = false>>
+<<declare $FoxInProgress = false>>
+//Honey
+<<declare $HoneyQuest = false>>
+<<declare $HoneyInProgress = false>>
+===

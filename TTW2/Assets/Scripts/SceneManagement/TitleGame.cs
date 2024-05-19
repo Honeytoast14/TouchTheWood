@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class TitleGame : MonoBehaviour
 {
-    [SerializeField] List<Button> disableButtons;
+    [SerializeField] AudioClip bgm;
     [SerializeField] Animator fadeTransition;
     public GameObject loadingScene;
     public Slider loadingBar;
@@ -16,14 +16,9 @@ public class TitleGame : MonoBehaviour
     {
         soundPlayer = FindObjectOfType<SoundPlayer>();
 
-        foreach (Button button in disableButtons)
-        {
-            button.interactable = false;
-        }
-
         if (title = GameObject.Find("ButtonGroup"))
         {
-            soundPlayer.PlayerMusic();
+            soundPlayer.PlayMusic(bgm);
         }
 
         Cursor.lockState = CursorLockMode.Locked;

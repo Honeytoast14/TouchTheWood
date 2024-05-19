@@ -1,6 +1,7 @@
+using System.Collections.Generic;
 using UnityEngine;
 
-public class IsometricPlayerMovementController : MonoBehaviour, ISavable
+public class IsometricPlayerMovementController : MonoBehaviour
 {
     public Rigidbody2D rb;
     public Vector2 moveDirection;
@@ -10,16 +11,36 @@ public class IsometricPlayerMovementController : MonoBehaviour, ISavable
     float verticalInput;
     float movementSpeed;
     public bool canMove = true;
-    public bool isMoving;
-    public bool savePlayerPosition = false;
+    public LayerMask pushableLayer;
+    [SerializeField] List<AudioClip> walk;
+    AudioSource walkAudioSource;
+    float walkSoundTimer = 0f;
+    float walkSoundInterval = 0.67f;
+
     public static IsometricPlayerMovementController Instance { get; private set; }
+
+    void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
     void Start()
     {
+        walkAudioSource = GetComponent<AudioSource>();
+        walkAudioSource.loop = true;
+
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
 
-    public void Update()
+    void Update()
     {
         if (GameController.Instance.state == GameState.FreeRoam)
         {
@@ -30,15 +51,19 @@ public class IsometricPlayerMovementController : MonoBehaviour, ISavable
         if (!canMove)
         {
             animator.SetFloat("Speed", 0f);
+            if (walkAudioSource.isPlaying)
+            {
+                walkAudioSource.Stop();
+            }
         }
-        // if (Input.GetKeyDown(KeyCode.Z))
-        // {
-        //     Debug.Log("call interact");
-        //     Interact();
-        // }
+
+        if (walkAudioSource.isPlaying)
+        {
+            walkSoundTimer += Time.deltaTime;
+        }
     }
 
-    public void Move()
+    void Move()
     {
         if (canMove)
         {
@@ -47,9 +72,25 @@ public class IsometricPlayerMovementController : MonoBehaviour, ISavable
 
             rb.velocity = new Vector2(horizontalInput, verticalInput) * moveSpeed;
 
-
             moveDirection = new Vector2(horizontalInput, verticalInput);
             movementSpeed = Mathf.Clamp(moveDirection.magnitude, 0.0f, 1.0f);
+
+            if (moveDirection != Vector2.zero)
+            {
+                if (!walkAudioSource.isPlaying || walkSoundTimer >= walkSoundInterval)
+                {
+                    PlayRandomWalkClip();
+                    walkAudioSource.Play();
+                    walkSoundTimer = 0f;
+                }
+            }
+            else
+            {
+                if (walkAudioSource.isPlaying)
+                {
+                    walkAudioSource.Stop();
+                }
+            }
         }
         else
         {
@@ -68,12 +109,24 @@ public class IsometricPlayerMovementController : MonoBehaviour, ISavable
         animator.SetFloat("Speed", movementSpeed);
     }
 
+    void PlayRandomWalkClip()
+    {
+        if (walk.Count > 0)
+        {
+            walkAudioSource.clip = walk[Random.Range(0, walk.Count)];
+        }
+    }
+
     public void StopMoving()
     {
         canMove = false;
         rb.constraints = RigidbodyConstraints2D.FreezeAll;
         moveDirection = Vector2.zero;
-        // Debug.Log("Stop player from moving");
+
+        if (walkAudioSource.isPlaying)
+        {
+            walkAudioSource.Stop();
+        }
     }
 
     public void ResumeMoving()
@@ -81,35 +134,5 @@ public class IsometricPlayerMovementController : MonoBehaviour, ISavable
         canMove = true;
         rb.constraints = RigidbodyConstraints2D.None;
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
-        // Debug.Log("Player can move now");
-    }
-
-    void Interact()
-    {
-        var facingDir = new Vector3(animator.GetFloat("Horizontal"), animator.GetFloat("Vertical"));
-
-        Debug.Log("Facing Direction: " + facingDir);
-
-        var InteractPos = transform.position + facingDir * 2.0f;
-
-        Debug.DrawLine(transform.position, InteractPos, Color.red, 0.3f);
-
-        Debug.Log("Interact method called");
-    }
-
-    public object CaptureState()
-    {
-        if (savePlayerPosition)
-        {
-            float[] position = new float[] { transform.position.x, transform.position.y };
-            return position;
-        }
-        return null;
-    }
-
-    public void RestoreState(object state)
-    {
-        var position = (float[])state;
-        transform.position = new Vector3(position[0], position[1]);
     }
 }

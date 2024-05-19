@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70c90f1e3f5e52c4ab678d4ab5e83cde, type: 3}
+  m_Name: FoxComplete
+  m_EditorClassIdentifier: 
+  name: 
+  description: 
+  dialogueNodeStart: 
+  dialogueNodeInprogress: 
+  dialogueNodeComplete: 
+  requiredItem: {fileID: 11400000, guid: 134dee69257e73b419943c3c83b145a9, type: 2}
+  requiredCount: 1
+  rewardItem: {fileID: 11400000, guid: a46aa5ecb060cf84890164e842887bf0, type: 2}
+  rewardCount: 2

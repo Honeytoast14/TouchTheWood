@@ -21,16 +21,24 @@ public class InventoryUI : MonoBehaviour
     [SerializeField] TMP_Text description;
     [Header("")]
     [SerializeField] public Image cover;
+    [Header("Reward Image")]
+    [SerializeField] GameObject rewardOne;
+    [SerializeField] GameObject rewardTwo;
+    [SerializeField] GameObject rewardThree;
     Inventory inventory;
-    RectTransform itemListRect;
+    SoundPlayer soundPlayer; RectTransform itemListRect;
     List<ItemSlotUI> slotUIList = new List<ItemSlotUI>();
+    GameObject player;
     private int selectedItem = 0;
     public bool openInventory = false;
 
     private void Awake()
     {
+        player = GameObject.Find("Player");
+
         inventory = Inventory.GetInventory();
         itemListRect = itemList.GetComponent<RectTransform>();
+        soundPlayer = player.GetComponentInChildren<SoundPlayer>();
     }
 
     private void Start()
@@ -96,13 +104,40 @@ public class InventoryUI : MonoBehaviour
         {
             if (slot.Item == inventory.CanUseItem(slot.Item))
             {
+                soundPlayer.PlaySFX(soundPlayer.buttonSelect);
                 Debug.Log("Select item that can use");
+                //Pictue Puzzle
                 if (slot.Item.name == "PicturePuzzle1")
-                    PuzzleRotatePicFirst.Instance.OpenPicturePuzzle();
+                {
+                    if (PuzzleRotatePicFirst.Instance != null)
+                        PuzzleRotatePicFirst.Instance.OpenPicturePuzzle();
+                }
                 if (slot.Item.name == "PicturePuzzle2")
-                    PuzzleRotatePicSecond.Instance.OpenPicturePuzzle();
+                {
+                    if (PuzzleRotatePicSecond.Instance != null)
+                        PuzzleRotatePicSecond.Instance.OpenPicturePuzzle();
+                }
                 if (slot.Item.name == "PicturePuzzle3")
-                    PuzzleRotatePicThird.Instance.OpenPicturePuzzle();
+                {
+                    if (PuzzleRotatePicThird.Instance != null)
+                        PuzzleRotatePicThird.Instance.OpenPicturePuzzle();
+                }
+                //Reward Image
+                if (slot.Item.name == "PaperReward1")
+                {
+                    rewardOne.SetActive(true);
+                    GameController.Instance.state = GameState.ItemReward;
+                }
+                if (slot.Item.name == "PaperReward2")
+                {
+                    rewardTwo.SetActive(true);
+                    GameController.Instance.state = GameState.ItemReward;
+                }
+                if (slot.Item.name == "PaperReward3")
+                {
+                    rewardThree.SetActive(true);
+                    GameController.Instance.state = GameState.ItemReward;
+                }
             }
         }
 
@@ -112,17 +147,21 @@ public class InventoryUI : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
             ++selectedItem;
+            soundPlayer.PlaySFX(soundPlayer.buttonClick);
         }
         else if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
+            soundPlayer.PlaySFX(soundPlayer.buttonClick);
             --selectedItem;
         }
         if (Input.GetKeyDown(KeyCode.UpArrow) && selectedItem >= rowSize)
         {
+            soundPlayer.PlaySFX(soundPlayer.buttonClick);
             selectedItem -= rowSize;
         }
         else if (Input.GetKeyDown(KeyCode.DownArrow) && selectedItem + rowSize < inventory.Slots.Count)
         {
+            soundPlayer.PlaySFX(soundPlayer.buttonClick);
             selectedItem += rowSize;
         }
 
@@ -173,5 +212,12 @@ public class InventoryUI : MonoBehaviour
     {
         float scrollPos = Mathf.Clamp(selectedItem - itemInViewPort / 2, 0, inventory.Slots.Count - 1) * slotUIList[0].Height;
         itemListRect.localPosition = new Vector2(itemListRect.localPosition.x, scrollPos);
+    }
+
+    public void HideImageReward()
+    {
+        rewardOne.SetActive(false);
+        rewardTwo.SetActive(false);
+        rewardThree.SetActive(false);
     }
 }

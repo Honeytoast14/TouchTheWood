@@ -11098,6 +11098,9 @@ MonoBehaviour:
   itemTitle: {fileID: 2731540029648874307}
   description: {fileID: 8396859177776766511}
   cover: {fileID: 2893673918971850896}
+  rewardOne: {fileID: 0}
+  rewardTwo: {fileID: 0}
+  rewardThree: {fileID: 0}
   openInventory: 0
 --- !u!1 &9096882219700541353
 GameObject:
