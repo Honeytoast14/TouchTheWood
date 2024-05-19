@@ -215,7 +215,7 @@ title: knightPass3
 ===
 title: knightPass3_correct
 ---
-Knight: ถูกต้อง
+Knight: ถูกต้อง เดินผ่านไปได้เลย
 <<set $CodeThree = true>>
 <<PlayTimeline ToSecretBase>>
 ===
