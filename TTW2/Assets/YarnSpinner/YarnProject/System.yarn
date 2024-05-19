@@ -1,22 +1,52 @@
-﻿title: PickUpItem1
+﻿title: Picture1_1
 ---
 SystemPickUp: คุณจะเก็บสิ่งนี้หรือไม่
     -> เก็บ
-        <<SetUsePickUp PickupPicturePuzzle1>>
+        <<SetUsePickUp PickupPicturePuzzle1_1>>
     -> ไม่เก็บ
 ===
-title: PickUpItem2
+title: Picture1_2
+---
+SystemPickUp: คุณจะเก็บสิ่งนี้หรือไม่
+    -> เก็บ
+        <<SetUsePickUp PickupPicturePuzzle1_2>>
+    -> ไม่เก็บ
+===
+title: Picture1_3
+---
+SystemPickUp: คุณจะเก็บสิ่งนี้หรือไม่
+    -> เก็บ
+        <<SetUsePickUp PickupPicturePuzzle1_3>>
+    -> ไม่เก็บ
+===
+
+title: Picture2_1
 ---
 SystemPickUp2: คุณจะเก็บสิ่งนี้หรือไม่
     -> เก็บ
-        <<SetUsePickUp PickupPicturePuzzle2>>
+        <<SetUsePickUp PickupPicturePuzzle2_1>>
     -> ไม่เก็บ
 ===
-title: PickUpItem3
+
+title: Picture3_1
 ---
-SystemPickUp2: คุณจะเก็บสิ่งนี้หรือไม่
+SystemPickUp3: คุณจะเก็บสิ่งนี้หรือไม่
     -> เก็บ
-        <<SetUsePickUp PickupPicturePuzzle3>>
+        <<SetUsePickUp PickupPicturePuzzle3_1>>
+    -> ไม่เก็บ
+===
+title: Picture3_2
+---
+SystemPickUp3: คุณจะเก็บสิ่งนี้หรือไม่
+    -> เก็บ
+        <<SetUsePickUp PickupPicturePuzzle3_2>>
+    -> ไม่เก็บ
+===
+title: Picture3_3
+---
+SystemPickUp3: คุณจะเก็บสิ่งนี้หรือไม่
+    -> เก็บ
+        <<SetUsePickUp PickupPicturePuzzle3_3>>
     -> ไม่เก็บ
 ===
 title: PickUpOrePieceRed
@@ -108,4 +138,41 @@ System: ลองดันคันโยกหรือไม่
         <<wait 1>>
         System: ดูเหมือนว่าจะไม่มีอะไรเกิดขึ้น
     -> ไม่ใช่
+===
+
+title: signForest
+---
+System: คำ..ตือน!....ข้างหน้า...พิศวง...ดอกไม้.....ทางเดิน!
+===
+
+title: SwitchMaze
+---
+System: ลองดันคันโยกหรือไม่
+    -> ใช่
+        // <<SetEmojiWall Emoji_Surprise switchBushZZ>>
+        <<jump SwitchMaze2>>
+    -> ไม่ใช่
+===
+title: SwitchMaze2
+---
+System: แน่ใจนะว่าจะดัน
+    -> ใช่
+        <<jump switchBushZZ>>
+    -> ไม่ใช่
+===
+title: switchBushZZ
+---
+System: ให้คิดอีกที
+    -> ใช่
+        <<SetEmojiWall Emoji_Surprise switchBushZZ>>
+    -> ไม่ใช่
+===
+
+title: SignMaze
+---
+System: เข้ามาที่นี่ได้ยังไงเนี่ย!
+===
+title: trollButton
+---
+System: เหยียบทำไม
 ===

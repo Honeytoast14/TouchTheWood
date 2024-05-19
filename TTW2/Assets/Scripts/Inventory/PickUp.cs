@@ -1,7 +1,7 @@
 using UnityEngine;
 using Yarn.Unity;
 
-public class PickUp : MonoBehaviour, ISavable
+public class PickUp : MonoBehaviour
 {
     [SerializeField] ItemData item;
     [SerializeField] int count = 1;
@@ -74,24 +74,5 @@ public class PickUp : MonoBehaviour, ISavable
         pickUp.canPick = true;
 
         Debug.Log($"Give {item} x{count}.");
-    }
-
-    public object CaptureState()
-    {
-        return Used;
-    }
-
-    public void RestoreState(object state)
-    {
-        Used = (bool)state;
-
-        if (Used)
-        {
-            transform.parent.GetComponent<CapsuleCollider2D>().enabled = false;
-            transform.parent.GetComponent<SpriteRenderer>().enabled = false;
-            GetComponent<CapsuleCollider2D>().enabled = false;
-            GetComponent<TriggerEvent>().enabled = false;
-            GetComponent<PickUp>().enabled = false;
-        }
     }
 }

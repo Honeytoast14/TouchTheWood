@@ -26,9 +26,10 @@ Penguin: เอาละ! วิธีคัดแยกแร่นั้นง
 <<wait  6.5>>
 Penguin: เป็นไง ง่ายใช่มั้ยละมิ้ว!
 Penguin: ตรงนั้นมีแร่ให้เจ้าคัดแยกอยู่นะมิ้ว! สู้ ๆ มิ้ว!
-<<PlayTimeline Timeline-ShowAndHideColider>>
-<<wait  0.6>>
-<<StopTimeline Timeline-ShowAndHideColider>>
+Penguin: จริงสิ รับนี่ไปสิมิ้ว~!
+// <<PlayTimeline Timeline-ShowAndHideColider>>
+// <<wait  0.6>>
+// <<StopTimeline Timeline-ShowAndHideColider>>
 ===
 
 title: workingDog
@@ -54,7 +55,7 @@ title: greenRabbit
 Green: สีน้ำเงินนี่คือ Sappire สินะ
 Green: แล้วสีเขียวคือ Peridot รึเปล่านะ
 Green: แต่ช่างเถอะ จะสีไหนก็สวยเหมือนกันหมด!!
-Green: (ไม่น่าละ เจ้ากระต่ายสีเทานั่นถึงของเอาแร่มาให้)
+Green: (ไม่น่าละ เจ้ากระต่ายสีเทานั่นถึงชอบเอาแร่มาให้)
 ===
 
 title: Bat
@@ -72,8 +73,11 @@ title: sortingRabbit
 <<if $correct is false>>
     <<if $question is false>>
         Rabbit: ว่าไงเจ้าหนู จะเข้าไปหยิบของงั้นเรอะ
-        Rabbit: ถ้าจะเข้าไปต้องตอบคำถามให้ได้ก่อนนา ไม่งั้นเดี๋ยวได้เข้าไปหยิบมั่วซั่วพอดี
-        Rabbit: เอาละ คำถามแรก
+        Rabbit: ก่อนจะเข้าไปช่วยอะไรฉันหน่อยสิ
+        Rabbit: เธอช่วยสะกดชื่อแร่เป็นภาษาอังกฤษให้หน่อย ฉันกำลังเขียนชื่อแร่อยู่น่ะ
+        Rabbit: ให้เขียนเป็นภาษาไทยงั้นเรอะ
+        Rabbit: ไม่เอา! อยากเขียนภาษาอังกฤษ! ช่วยฉันหน่อยเถอะ
+        Rabbit: เอาละ คำแรก
         <<set $question = true>>
         <<jump firstQuestion>>
         <<elseif $question is true>>
@@ -88,7 +92,7 @@ title: sortingRabbit
 
 title: firstQuestion
 ---
-Rabbit: แร่สีเขียวชื่ออะไร
+Rabbit: เพริดอต
     -> Perridot
         Rabbit: ถูกต้อง!
         Rabbit: เอาละ ต่อไปข้อที่สอง
@@ -99,17 +103,28 @@ Rabbit: แร่สีเขียวชื่ออะไร
 ===
 title: secondQuestion
 ---
-Rabbit: แร่สีฟ้าชื่ออะไร
+Rabbit: แซฟไฟร์
     -> Sappire
      Rabbit: ถูกต้อง!
-     <<jump correctAnswer>>
+     <<jump thirddQuestion>>
     -> Sapire
     Rabbit: ตอบผิดนะเจ้าหนู เจ้าต้องตอบใหม่ตั้งแต่แรกนะ
+===
+
+title: thirddQuestion
+---
+Rabbit: รูบี้
+    -> Rubuay
+        Rabbit: ตอบผิดนะเจ้าหนู เจ้าต้องตอบใหม่ตั้งแต่แรกนะ
+    -> Ruby
+        Rabbit: ถูกต้อง!
+        <<jump correctAnswer>>
 ===
 
 title: correctAnswer
 ---
 Rabbit: ในฐานะที่ตอบถูก จะหลบทางให้ก็แล้วกัน
+<<set $correct = true>>
 <<PlayTimeline Timeline-MoveSorting>>
 ===
 
@@ -117,22 +132,26 @@ title: BeetleLeader
 ---
 <<if $beetlePermission is false>>
     <<if $sortingQuest is false>>
+    <<ChangePortrait BeetleBoss Portraits/Mine/beetleboss_profile/beetleboss_normal>>
         ด้วงตัวแม่: นี่ หล่อนน่ะเป็นใคร ทำไมถึงไม่เคยเห็นหน้าเลยนะ
         ด้วงตัวแม่: พนักงานใหม่ก็ไม่น่าจะใช่...
         ด้วงตัวแม่: หล่อนอยากขึ้นไปอย่างนั้นเรอะ เหอะ จะให้พาขึ้นก็ต้องช่วยอะไรก่อนสิ ของฟรีน่ะ ไม่มีในโลกหรอกนะ
         ด้วงตัวแม่: ที่จริงถ้าหล่อนช่วยแยกแร่ในห้องด้านซ้ายนั่นจนเสร็จ เดี๋ยวเดี๊ยนจะพาขึ้นไปก็แล้วกัน
-        <<AddQuest>>
+        <<AddQuest Penguin_SecondFloor>>
         <<set $sortingQuest = true>>
     <<elseif $sortingQuest is true>>
+    <<ChangePortrait BeetleBoss Portraits/Mine/beetleboss_profile/beetleboss_angry>>
         ด้วงตัวแม่: อยากรีบขึ้น ก็รีบไปแยกแร่สิยะ!! มายืนทำไรตรงนี้ละ!!
     <<endif>>
 <<elseif $beetlePermission is true>>
     <<if $playOpenDoor is false>>
+        <<ChangePortrait BeetleBoss Portraits/Mine/beetleboss_profile/beetleboss_normal>>
         ด้วงตัวแม่: ทำงานเสร็จไวดีนี่
         ด้วงตัวแม่: เดี๋ยวจะเปิดประตูให้ก็แล้วกัน
         <<PlayTimeline Timeline-OpenDoor>>
         <<set $playOpenDoor = true>>
     <<elseif $playOpenDoor is true>>
+        <<ChangePortrait BeetleBoss Portraits/Mine/beetleboss_profile/beetleboss_happy>>
         ด้วงตัวแม่: เดินทางปลอดภัยนะยัยหนู
     <<endif>>
 <<endif>>
@@ -146,16 +165,18 @@ title: Running
 <<HidePortraitBox>>
 // System: *คุณได้ยินเสียงเหมือนคนกำลังคุยกัน*
 System: เหมือนว่าเจ้าแมวสีดำนั่น จะถูกพาตัวไปแล้วสินะ
-System: ถ้าถึงเมืองหลวงเร็ว ๆ ก็คงจะดีสินะ
+System: ถ้าถึงฐานลับเร็ว ๆ ก็คงจะดีสินะ
 System: นั่นสิ ถ้าท่านผู้นั้นได้พลังจากผลึกประหลาดนั่น พวกเราคงจะสบายเป็นชาติ ฮ่าาๆๆๆ
 System: ว่าแต่อีกส่วนมันอยู่ไหนกันนะ
-<<wait  1>>
 //เล่นเสียง
+<<PlayTimeline TimelinePlaysound>>
+<<wait  1.2>>
 System: !!
 System: นั่นเสียงอะไรรีบออกไปดูเร็วเข้า!
-<<PlayTimeline Timeline-Villain>>
+<<PlayTimeline Timeline-Villain>> //ใส่ซาวน์ให้ตกใจตอนพุ่งเข้ามา
 <<wait  0.5>>
 // <<ResumeTimeline Timeline_Run>>
+System: นั่น! เจ้าแมวสีขาว!
 System: บ้าเอ้ย! ประตูติด!
 ===
 

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Cinemachine;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Windows;
@@ -20,7 +21,7 @@ public class PuzzleRotatePicSecond : MonoBehaviour
     public bool win { get; private set; }
     int selectedPicture = 0;
     public bool secondIsOpen = false;
-
+    SoundPlayer soundPlayer;
     public static PuzzleRotatePicSecond Instance { get; private set; }
 
     void Awake()
@@ -32,6 +33,7 @@ public class PuzzleRotatePicSecond : MonoBehaviour
         win = false;
         gameObject.SetActive(false);
         cover.SetActive(false);
+        soundPlayer = FindObjectOfType<SoundPlayer>();
     }
     public void HandleUpdate(Action onBack)
     {
@@ -41,18 +43,22 @@ public class PuzzleRotatePicSecond : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
+            soundPlayer.PlaySFX(soundPlayer.buttonClick);
             ++selectedPicture;
         }
         else if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
+            soundPlayer.PlaySFX(soundPlayer.buttonClick);
             --selectedPicture;
         }
         if (Input.GetKeyDown(KeyCode.UpArrow) && selectedPicture >= rowSize)
         {
+            soundPlayer.PlaySFX(soundPlayer.buttonClick);
             selectedPicture -= rowSize;
         }
         else if (Input.GetKeyDown(KeyCode.DownArrow) && selectedPicture + rowSize < pictures.Count)
         {
+            soundPlayer.PlaySFX(soundPlayer.buttonClick);
             selectedPicture += rowSize;
         }
 
@@ -65,7 +71,10 @@ public class PuzzleRotatePicSecond : MonoBehaviour
 
         var pic = pictures[selectedPicture];
         if (Input.GetKeyDown(KeyCode.Z) && !win)
+        {
+            soundPlayer.PlaySFX(soundPlayer.paperSound);
             pic.transform.Rotate(0, 0, 90);
+        }
 
         if (Input.GetKeyDown(KeyCode.X) || Input.GetKeyDown(KeyCode.Escape))
         {

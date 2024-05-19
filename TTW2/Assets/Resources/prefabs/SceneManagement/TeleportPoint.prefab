@@ -97,16 +97,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fadeTransition: {fileID: 0}
   inDestination: {fileID: 0}
-  outDestination: {fileID: 0}
-  playerFaceTo: {fileID: 0}
+  outDestination: 
+  positionToGo: {fileID: 0}
   left: 0
   right: 0
-  front: 0
-  back: 0
-  leftFront: 0
-  rightFront: 0
-  leftBack: 0
-  rightBack: 0
+  up: 0
+  down: 0
+  leftDown: 0
+  rightDown: 0
+  leftUp: 0
+  rightUp: 0
 --- !u!1 &5449868128260102127
 GameObject:
   m_ObjectHideFlags: 0

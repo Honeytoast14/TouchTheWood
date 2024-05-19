@@ -5,12 +5,12 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Scenes/SampleScene.unity
-    guid: 8c9cfa26abfee488c85f1582747f6a02
   - enabled: 1
     path: Assets/Scenes/Menu/TitleGame.unity
     guid: f15b9be7dd4f26646a47dcbc79b43701
+  - enabled: 1
+    path: Assets/Scenes/Puzzles/RailPuzzle.unity
+    guid: 71e367393570a6248be3e99939246e7b
   - enabled: 1
     path: Assets/Scenes/Puzzles/PicturePuzzle1.unity
     guid: 82c1afe9b90890d44ac99b7dfe8e39b9
@@ -18,33 +18,51 @@ EditorBuildSettings:
     path: Assets/Scenes/Puzzles/PicturePuzzle2.unity
     guid: 6bb60098a18e8964e95ff4af3fb11c41
   - enabled: 1
-    path: Assets/Scenes/Puzzles/RailPuzzle.unity
-    guid: 735c076130319f847bfb679dd85a3a6c
-  - enabled: 1
     path: Assets/Scenes/Puzzles/PicturePuzzle3.unity
     guid: 54056f10e4888ba4cb76320ccf15c632
   - enabled: 1
-    path: Assets/Scenes/Cave floor5.unity
+    path: Assets/Scenes/Puzzles/PuzzleHoneyEasy.unity
+    guid: 735c076130319f847bfb679dd85a3a6c
+  - enabled: 1
+    path: Assets/Scenes/Puzzles/PuzzleHoneyHard.unity
+    guid: e4998026d68f2ed448e3aca5271e6c33
+  - enabled: 1
+    path: Assets/Scenes/Puzzles/PuzzleHoneyMid.unity
+    guid: 0669ce10a9158f74aa22c973aabb68e4
+  - enabled: 1
+    path: Assets/Scenes/Cave/Cave floor5.unity
     guid: 88d0d77f3c726de45933ad6bcb2a0dcb
   - enabled: 1
-    path: Assets/Scenes/Cave floor4.unity
+    path: Assets/Scenes/Cave/Cave floor4.unity
     guid: f4ed0dc5b7e6d0e499f381a9d24421d0
   - enabled: 1
-    path: Assets/Scenes/Cave floor3.unity
+    path: Assets/Scenes/Cave/Cave floor3.unity
     guid: bd11bee169182b643b1659cc0c01138d
   - enabled: 1
-    path: Assets/Scenes/Cave floor2.unity
+    path: Assets/Scenes/Cave/Cave floor2.unity
     guid: 30ecd656d9c0bfb429ddaa8854584b37
   - enabled: 1
-    path: Assets/Scenes/Cave floor1.unity
+    path: Assets/Scenes/Cave/Cave floor1.unity
     guid: aa7784ad2b4fae54fa3f19f114e85f73
   - enabled: 1
-    path: Assets/Ball Sort Puzzle kit/DemoScenes/Demo_01.unity
-    guid: 2b5801bf76c65714fbe0fd1ee86fdfb3
+    path: Assets/Scenes/Forest0.unity
+    guid: 72b9d93ead803234d8df4ee499ebecc6
   - enabled: 1
-    path: Assets/Ball Sort Puzzle kit/DemoScenes/Demo_02.unity
-    guid: 1d70df314c9b5b04faa7b5f1c85ce210
+    path: Assets/Scenes/Forest1.unity
+    guid: 7caf90d27ed951f428c1541a3e7ef195
   - enabled: 1
-    path: Assets/Ball Sort Puzzle kit/DemoScenes/Demo_03.unity
-    guid: 214bfb118e9d98f41a70b7342d10c533
+    path: Assets/Scenes/Forest2.unity
+    guid: a1b23fa8a49a6d5448e32b9370b6fac3
+  - enabled: 1
+    path: Assets/Scenes/Forest3.unity
+    guid: 4dca24f6215ac0043ab20906c3fe8a14
+  - enabled: 1
+    path: Assets/Scenes/Credit-Forest.unity
+    guid: 59046dba8a086834196235c61337e3a3
+  - enabled: 1
+    path: Assets/Scenes/Credit-Cave.unity
+    guid: 06b7e64d70dbafe438e70257a9c0d87a
+  - enabled: 1
+    path: Assets/Scenes/AllEndCredit.unity
+    guid: aad56a1a63241474c97a7a8934209c9a
   m_configObjects: {}

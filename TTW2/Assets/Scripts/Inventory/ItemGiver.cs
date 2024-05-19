@@ -1,10 +1,11 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 using Yarn.Unity;
 
-public class ItemGiver : MonoBehaviour, ISavable
+public class ItemGiver : MonoBehaviour
 {
-    [SerializeField] ItemData item;
-    [SerializeField] int count = 1;
+    [SerializeField] List<ItemDataList> itemDataLists;
     GameObject parent;
     public bool used = false;
     bool canPick = false;
@@ -16,7 +17,8 @@ public class ItemGiver : MonoBehaviour, ISavable
     {
         dialogueRunner = FindObjectOfType<DialogueRunner>();
 
-        dialogueRunner.AddCommandHandler<string>("SetUseItemGiver", SetUsedInYarn);
+        if (setYarn)
+            dialogueRunner.AddCommandHandler<string>("SetUseItemGiver", SetUsedInYarn);
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -36,18 +38,29 @@ public class ItemGiver : MonoBehaviour, ISavable
 
     public void GiveItem(IsometricPlayerMovementController player)
     {
-        player.GetComponent<Inventory>().AddItem(item, count);
+        foreach (var itemDataList in itemDataLists)
+        {
+            player.GetComponent<Inventory>().AddItem(itemDataList.Item, itemDataList.Count);
+            Debug.Log($"Give {itemDataList.Item} x{itemDataList.Count}.");
+        }
         used = true;
         canPick = false;
 
-        Debug.Log($"Give {item} x{count}.");
         GetComponent<ItemGiver>().enabled = false;
     }
 
     public bool CanBeGiven()
     {
-        return collisionCheck && item != null && !used && count > 0 && canPick;
+        foreach (var itemDataList in itemDataLists)
+        {
+            if (!(collisionCheck && itemDataList.Item != null && !used && itemDataList.Count > 0 && canPick))
+            {
+                return false;
+            }
+        }
+        return true;
     }
+
 
     public void SetUsedInYarn(string parentName)
     {
@@ -55,18 +68,21 @@ public class ItemGiver : MonoBehaviour, ISavable
         parent = GameObject.Find(parentName);
         itemGiver = parent.gameObject.GetComponentInChildren<ItemGiver>();
         itemGiver.canPick = true;
-
-        Debug.Log($"you recive {item} x{count}");
     }
+}
 
-    public object CaptureState()
+[Serializable]
+public class ItemDataList
+{
+    [SerializeField] ItemData item;
+    [SerializeField] int count = 1;
+    public ItemData Item
     {
-        return used;
+        get { return item; }
     }
 
-    public void RestoreState(object state)
+    public int Count
     {
-        used = (bool)state;
+        get { return count; }
     }
-
 }

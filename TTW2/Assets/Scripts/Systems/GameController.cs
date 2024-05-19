@@ -5,7 +5,7 @@ using UnityEngine;
 using Yarn.Unity;
 using Debug = UnityEngine.Debug;
 
-public enum GameState { FreeRoam, Menu, Inventory, Dialogue, PuzzlePicture, Setting, Timeline, SortingPuzzle }
+public enum GameState { FreeRoam, Menu, Inventory, Dialogue, PuzzlePicture, Timeline, SortingPuzzle, Passcode, ItemReward }
 public class GameController : MonoBehaviour
 {
     [SerializeField] InventoryUI inventoryUI;
@@ -17,15 +17,12 @@ public class GameController : MonoBehaviour
     public SceneDetails previousScene { get; private set; }
     MenuController menuController;
     TitleGame titleGame;
-    OptionSetting optionSetting;
     IsometricPlayerMovementController playerController;
     void Awake()
     {
         Time.timeScale = 1;
         menuController = GetComponent<MenuController>();
         titleGame = FindObjectOfType<TitleGame>();
-        optionSetting = FindObjectOfType<OptionSetting>();
-        optionSetting = FindObjectOfType<OptionSetting>();
         playerController = FindObjectOfType<IsometricPlayerMovementController>();
 
         if (menuController != null)
@@ -79,6 +76,7 @@ public class GameController : MonoBehaviour
         }
         else if (state == GameState.PuzzlePicture)
         {
+            playerController.StopMoving();
             Action onBack = () =>
             {
                 state = GameState.Inventory;
@@ -112,6 +110,27 @@ public class GameController : MonoBehaviour
                     PuzzleRail.Instance.HandleUpdate();
                 }
             }
+            if (PuzzleHoneyEasy.Instance != null)
+            {
+                if (PuzzleHoneyEasy.Instance.honeyEasyIsOpen)
+                {
+                    PuzzleHoneyEasy.Instance.HandleUpdate();
+                }
+            }
+            if (PuzzleHoneyMed.Instance != null)
+            {
+                if (PuzzleHoneyMed.Instance.medIsOpen)
+                {
+                    PuzzleHoneyMed.Instance.HandleUpdate();
+                }
+            }
+            if (PuzzleHoneyHard.Instance != null)
+            {
+                if (PuzzleHoneyHard.Instance.hardIsOpen)
+                {
+                    PuzzleHoneyHard.Instance.HandleUpdate();
+                }
+            }
         }
 
         else if (state == GameState.SortingPuzzle)
@@ -124,18 +143,25 @@ public class GameController : MonoBehaviour
             };
             SortingPuzzleTrigger.Instance.HandleUpdate(onBack);
         }
-        else if (state == GameState.Setting)
+
+        else if (state == GameState.Passcode)
         {
+            playerController.StopMoving();
+
             Action onBack = () =>
             {
-                state = GameState.FreeRoam;
-                titleGame.OpenTitle();
+                playerController.ResumeMoving();
             };
-            if (optionSetting != null)
-                optionSetting.HandleUpdate(onBack);
-            else
-                Debug.LogError("Can't find OptionSetting");
+            Passcode.Instance.HandleUpdate(onBack);
+        }
 
+        else if (state == GameState.ItemReward)
+        {
+            if (Input.GetKeyDown(KeyCode.X) || Input.GetKeyDown(KeyCode.Escape))
+            {
+                state = GameState.Inventory;
+                inventoryUI.HideImageReward();
+            }
         }
     }
 
