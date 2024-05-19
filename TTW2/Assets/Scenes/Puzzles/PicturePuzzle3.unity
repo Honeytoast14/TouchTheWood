@@ -331,6 +331,8 @@ MonoBehaviour:
   - {fileID: 1207485502}
   - {fileID: 164189458}
   - {fileID: 964348922}
+  requiredItems: {fileID: 11400000, guid: 02fb257869d8c2a4090786967b9f4fe2, type: 2}
+  requiredCounts: 6
   rewardItem: {fileID: 11400000, guid: 25b124604be13724290c5c617eb32677, type: 2}
   rewardCount: 1
   thirdIsOpen: 0

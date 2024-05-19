@@ -111,4 +111,10 @@ public class TimelineController : MonoBehaviour
         variableStorage.TryGetValue("$beetlePermission", out beetlePermission);
         variableStorage.SetValue("$beetlePermission", beetlePermission = true);
     }
+
+    public void DestroyPlayer()
+    {
+        GameObject player = GameObject.Find("EssentialObjects");
+        Destroy(player);
+    }
 }

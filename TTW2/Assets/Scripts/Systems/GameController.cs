@@ -43,7 +43,6 @@ public class GameController : MonoBehaviour
     {
         if (state == GameState.FreeRoam)
         {
-            playerController.ResumeMoving();
             if (menuController != null)
             {
                 if (Input.GetKeyDown(KeyCode.Escape))
@@ -83,6 +82,11 @@ public class GameController : MonoBehaviour
                 state = GameState.Inventory;
             };
 
+            Action resumeMoving = () =>
+            {
+                playerController.ResumeMoving();
+            };
+
             if (PuzzleRotatePicFirst.Instance != null)
             {
                 if (PuzzleRotatePicFirst.Instance.firstIsOpen)
@@ -108,7 +112,7 @@ public class GameController : MonoBehaviour
             {
                 if (PuzzleRail.Instance.railIsOpen)
                 {
-                    PuzzleRail.Instance.HandleUpdate();
+                    PuzzleRail.Instance.HandleUpdate(resumeMoving);
                 }
             }
             if (PuzzleHoneyEasy.Instance != null)

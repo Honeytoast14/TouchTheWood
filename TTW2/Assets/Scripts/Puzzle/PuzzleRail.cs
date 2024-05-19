@@ -30,9 +30,9 @@ public class PuzzleRail : MonoBehaviour
         cover.SetActive(false);
         soundPlayer = FindObjectOfType<SoundPlayer>();
     }
-    public void HandleUpdate()
+    public void HandleUpdate(Action resumeMoving)
     {
-        Win();
+        Win(resumeMoving);
 
         int preSelection = selectedPicture;
 
@@ -76,10 +76,11 @@ public class PuzzleRail : MonoBehaviour
         {
             GameController.Instance.state = GameState.FreeRoam;
             HidePuzzlePage();
+            resumeMoving?.Invoke();
         }
     }
 
-    void Win()
+    void Win(Action resumeMoving)
     {
         bool allZero = true;
 
@@ -107,6 +108,7 @@ public class PuzzleRail : MonoBehaviour
             UpdatedPictureSelection();
             HidePuzzlePage();
             GameController.Instance.state = GameState.FreeRoam;
+            resumeMoving?.Invoke();
         }
     }
 
