@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Diagnostics;
 using UnityEngine.UI;
 using UnityEngine.Windows;
 using Input = UnityEngine.Input;
@@ -17,12 +18,14 @@ public class PuzzleHoneyEasy : MonoBehaviour
     public bool honeyEasyIsOpen = false;
     SoundPlayer soundPlayer;
     GameObject soundScript;
+    IsometricPlayerMovementController playerController;
     public static PuzzleHoneyEasy Instance { get; private set; }
 
     void Awake()
     {
         Instance = this;
 
+        playerController = FindObjectOfType<IsometricPlayerMovementController>();
         soundScript = GameObject.Find("AudioManager");
         soundPlayer = soundScript.GetComponent<SoundPlayer>();
     }
@@ -81,6 +84,7 @@ public class PuzzleHoneyEasy : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.X) || Input.GetKeyDown(KeyCode.Escape))
         {
             GameController.Instance.state = GameState.FreeRoam;
+            playerController.ResumeMoving();
             HideEasyHon();
         }
     }

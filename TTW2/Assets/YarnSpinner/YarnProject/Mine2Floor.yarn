@@ -73,8 +73,11 @@ title: sortingRabbit
 <<if $correct is false>>
     <<if $question is false>>
         Rabbit: ว่าไงเจ้าหนู จะเข้าไปหยิบของงั้นเรอะ
-        Rabbit: ถ้าจะเข้าไปต้องตอบคำถามให้ได้ก่อนนา ไม่งั้นเดี๋ยวได้เข้าไปหยิบมั่วซั่วพอดี
-        Rabbit: เอาละ คำถามแรก
+        Rabbit: ก่อนจะเข้าไปช่วยอะไรฉันหน่อยสิ
+        Rabbit: เธอช่วยสะกดชื่อแร่เป็นภาษาอังกฤษให้หน่อย ฉันกำลังเขียนชื่อแร่อยู่น่ะ
+        Rabbit: ให้เขียนเป็นภาษาไทยงั้นเรอะ
+        Rabbit: ไม่เอา! อยากเขียนภาษาอังกฤษ! ช่วยฉันหน่อยเถอะ
+        Rabbit: เอาละ คำแรก
         <<set $question = true>>
         <<jump firstQuestion>>
         <<elseif $question is true>>
@@ -89,7 +92,7 @@ title: sortingRabbit
 
 title: firstQuestion
 ---
-Rabbit: แร่สีเขียวชื่ออะไร
+Rabbit: เพริดอต
     -> Perridot
         Rabbit: ถูกต้อง!
         Rabbit: เอาละ ต่อไปข้อที่สอง
@@ -100,12 +103,22 @@ Rabbit: แร่สีเขียวชื่ออะไร
 ===
 title: secondQuestion
 ---
-Rabbit: แร่สีฟ้าชื่ออะไร
+Rabbit: แซฟไฟร์
     -> Sappire
      Rabbit: ถูกต้อง!
-     <<jump correctAnswer>>
+     <<jump thirddQuestion>>
     -> Sapire
     Rabbit: ตอบผิดนะเจ้าหนู เจ้าต้องตอบใหม่ตั้งแต่แรกนะ
+===
+
+title: thirddQuestion
+---
+Rabbit: รูบี้
+    -> Rubuay
+        Rabbit: ตอบผิดนะเจ้าหนู เจ้าต้องตอบใหม่ตั้งแต่แรกนะ
+    -> Ruby
+        Rabbit: ถูกต้อง!
+        <<jump correctAnswer>>
 ===
 
 title: correctAnswer
@@ -152,7 +165,7 @@ title: Running
 <<HidePortraitBox>>
 // System: *คุณได้ยินเสียงเหมือนคนกำลังคุยกัน*
 System: เหมือนว่าเจ้าแมวสีดำนั่น จะถูกพาตัวไปแล้วสินะ
-System: ถ้าถึงเมืองหลวงเร็ว ๆ ก็คงจะดีสินะ
+System: ถ้าถึงฐานลับเร็ว ๆ ก็คงจะดีสินะ
 System: นั่นสิ ถ้าท่านผู้นั้นได้พลังจากผลึกประหลาดนั่น พวกเราคงจะสบายเป็นชาติ ฮ่าาๆๆๆ
 System: ว่าแต่อีกส่วนมันอยู่ไหนกันนะ
 //เล่นเสียง

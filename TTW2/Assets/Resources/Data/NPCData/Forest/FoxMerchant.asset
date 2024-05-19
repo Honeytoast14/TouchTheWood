@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60c896586f6440b4ebea537e7e4c360b, type: 3}
   m_Name: FoxMerchant
   m_EditorClassIdentifier: 
-  npcName: "\u0E1E\u0E48\u0E2D\u0E04\u0E49\u0E32\u0E40\u0E25\u0E48\u0E2B\u0E4C\u0E40\u0E2B\u0E25\u0E35\u0E48\u0E22\u0E21"
+  npcName: "\u0E08\u0E34\u0E49\u0E07\u0E08\u0E2D\u0E01\u0E2A\u0E38\u0E14\u0E2B\u0E25\u0E48\u0E2D"
   dialogueName: merchantFox
   hasPortrait: 1
   portraitPath: Portraits/foxtea_normal/foxtea_happy

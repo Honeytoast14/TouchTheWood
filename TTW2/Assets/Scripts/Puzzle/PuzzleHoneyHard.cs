@@ -16,6 +16,7 @@ public class PuzzleHoneyHard : MonoBehaviour
     int selectedPicture = 0;
     public bool hardIsOpen = false;
     SoundPlayer soundPlayer;
+    IsometricPlayerMovementController playerController;
     GameObject soundScript;
     public static PuzzleHoneyHard Instance { get; private set; }
 
@@ -25,6 +26,7 @@ public class PuzzleHoneyHard : MonoBehaviour
 
         soundScript = GameObject.Find("AudioManager");
         soundPlayer = soundScript.GetComponent<SoundPlayer>();
+        playerController = FindObjectOfType<IsometricPlayerMovementController>();
     }
 
     void Start()
@@ -83,6 +85,7 @@ public class PuzzleHoneyHard : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.X) || Input.GetKeyDown(KeyCode.Escape))
         {
             GameController.Instance.state = GameState.FreeRoam;
+            playerController.ResumeMoving();
             HideHardHon();
         }
     }

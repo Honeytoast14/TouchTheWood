@@ -17,6 +17,7 @@ public class PuzzleHoneyMed : MonoBehaviour
     public bool medIsOpen = false;
     SoundPlayer soundPlayer;
     GameObject soundScript;
+    IsometricPlayerMovementController playerController;
     public static PuzzleHoneyMed Instance { get; private set; }
 
     void Awake()
@@ -25,6 +26,7 @@ public class PuzzleHoneyMed : MonoBehaviour
 
         soundScript = GameObject.Find("AudioManager");
         soundPlayer = soundScript.GetComponent<SoundPlayer>();
+        playerController = FindObjectOfType<IsometricPlayerMovementController>();
     }
     void Start()
     {
@@ -81,6 +83,7 @@ public class PuzzleHoneyMed : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.X) || Input.GetKeyDown(KeyCode.Escape))
         {
             GameController.Instance.state = GameState.FreeRoam;
+            playerController.ResumeMoving();
             HideMedHon();
         }
     }

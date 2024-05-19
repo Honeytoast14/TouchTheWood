@@ -28,23 +28,34 @@ public class PuzzleWall : MonoBehaviour
 
     void Start()
     {
-        Debug.Log("PuzzleWall Start");
         triggerEvent = FindObjectOfType<TriggerEvent>();
-        soundPlayer = FindObjectOfType<SoundPlayer>();
+        GameObject soundPlayerObject = GameObject.FindGameObjectWithTag("Audio");
+        if (soundPlayerObject != null)
+        {
+            soundPlayer = soundPlayerObject.GetComponent<SoundPlayer>();
+        }
 
         GameObject emojis = GameObject.FindGameObjectWithTag("Emoji");
 
         if (emojis != null)
         {
             emojiSprite = emojis.GetComponent<SpriteRenderer>();
-            emojiSprite.enabled = false;
+            if (emojiSprite != null)
+            {
+                emojiSprite.enabled = false;
+            }
             emoji = emojis.GetComponent<Animator>();
             if (emoji != null)
             {
                 Debug.Log("Find Emoji");
             }
         }
+        else
+        {
+            Debug.LogError("Emoji GameObject not found.");
+        }
     }
+
 
     void Update()
     {
@@ -102,15 +113,53 @@ public class PuzzleWall : MonoBehaviour
     public void SetEmoji(string animationName, string objectName)
     {
         GameObject puzzleGameObject = GameObject.Find(objectName);
+        if (puzzleGameObject == null)
+        {
+            Debug.LogError($"GameObject with name {objectName} not found.");
+            return;
+        }
+
         PuzzleWall puzzleWall = puzzleGameObject.GetComponent<PuzzleWall>();
+        if (puzzleWall == null)
+        {
+            Debug.LogError($"PuzzleWall component not found on GameObject {objectName}.");
+            return;
+        }
+
         puzzleWall.StartCoroutine(SetEmojiTime(animationName));
-        if (puzzleWall != null)
+
+        if (puzzleWall.soundPlayer != null)
         {
             puzzleWall.soundPlayer.PlaySFX(soundPlayer.switchUsed);
-            puzzleWall.useSwitch = true;
-            if (puzzleWall.wall != null)
-                puzzleWall.destroyObject = true;
         }
+        else
+        {
+            Debug.LogError("soundPlayer is null in the referenced PuzzleWall.");
+        }
+
+        puzzleWall.useSwitch = true;
+
+        if (puzzleWall.wall != null)
+            puzzleWall.destroyObject = true;
+    }
+
+    public void SetEmojiNoSwitch(string animationName, string objectName)
+    {
+        GameObject puzzleGameObject = GameObject.Find(objectName);
+        if (puzzleGameObject == null)
+        {
+            Debug.LogError($"GameObject with name {objectName} not found.");
+            return;
+        }
+
+        PuzzleWall puzzleWall = puzzleGameObject.GetComponent<PuzzleWall>();
+        if (puzzleWall == null)
+        {
+            Debug.LogError($"PuzzleWall component not found on GameObject {objectName}.");
+            return;
+        }
+
+        puzzleWall.StartCoroutine(SetEmojiTime(animationName));
     }
 
     private IEnumerator SetEmojiTime(string animationName)

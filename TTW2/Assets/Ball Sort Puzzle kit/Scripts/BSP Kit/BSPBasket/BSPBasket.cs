@@ -8,7 +8,6 @@
     {
         #region variables
         //--------------------------------------------------[AddCode]---------------------------------------------------
-        SoundPlayer soundPlayer;
         public bool isEnable = true;
         [Min(1)]
         public int Capacity = 1;
@@ -29,10 +28,7 @@
 #endif
         #endregion
         #region Functions
-        void Start()
-        {
-            soundPlayer = FindObjectOfType<SoundPlayer>();
-        }
+
         public void OnValidate()
         {
             _bSPBasketUI = GetComponent<BSPBasketUI>();
@@ -128,8 +124,6 @@
             {
                 if (balls[i].ClusterIndex != clusterIndex) return false;
             }
-            //--------------------------------------------------------------AddSound--------------------------------------------------------------
-            soundPlayer.PlaySFX(soundPlayer.sortingOre);
             return true;
         }
         public void ApplyBallsClusterIndexChange()

@@ -76,6 +76,7 @@ public class GameController : MonoBehaviour
         }
         else if (state == GameState.PuzzlePicture)
         {
+            playerController.StopMoving();
             Action onBack = () =>
             {
                 state = GameState.Inventory;
