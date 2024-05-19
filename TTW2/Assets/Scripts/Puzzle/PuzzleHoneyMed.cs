@@ -16,18 +16,20 @@ public class PuzzleHoneyMed : MonoBehaviour
     int selectedPicture = 0;
     public bool medIsOpen = false;
     SoundPlayer soundPlayer;
+    GameObject soundScript;
     public static PuzzleHoneyMed Instance { get; private set; }
 
     void Awake()
     {
         Instance = this;
+
+        soundScript = GameObject.Find("AudioManager");
+        soundPlayer = soundScript.GetComponent<SoundPlayer>();
     }
     void Start()
     {
         win = false;
         gameObject.SetActive(false);
-
-        soundPlayer = FindObjectOfType<SoundPlayer>();
 
         foreach (GameObject child in cover)
         {
@@ -105,7 +107,7 @@ public class PuzzleHoneyMed : MonoBehaviour
             }
         }
 
-        if (allZero)
+        if (allZero && !win)
         {
             soundPlayer.PlaySFX(soundPlayer.correct);
             win = true;

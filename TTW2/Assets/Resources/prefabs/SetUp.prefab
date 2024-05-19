@@ -122,6 +122,7 @@ MonoBehaviour:
   passCodePanel: {fileID: 0}
   UiText: {fileID: 0}
   setYarn: 1
+  setUp: 1
 --- !u!114 &7581485937454005980
 MonoBehaviour:
   m_ObjectHideFlags: 0

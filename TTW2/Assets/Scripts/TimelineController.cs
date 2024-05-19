@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Playables;
+using UnityEngine.SceneManagement;
 using Yarn.Unity;
 
 public class TimelineController : MonoBehaviour
@@ -92,6 +93,10 @@ public class TimelineController : MonoBehaviour
         }
     }
 
+    public void SendToMainTitle()
+    {
+        SceneManager.LoadScene("TitleGame");
+    }
 
     public void StartDialogueTinmeline(NPCData npcData)
     {

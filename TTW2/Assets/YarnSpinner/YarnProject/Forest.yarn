@@ -175,6 +175,7 @@ title: knightPass1
 title: knightPass1_correct
 ---
 Knight: ถูกต้อง
+<<set $CodeOne = true>>
 <<PlayTimeline ToForest2>>
 ===
 title: knightPass1_incorrect
@@ -196,6 +197,7 @@ title: knightPass2
 title: knightPass2_correct
 ---
 Knight: ถูกต้อง
+<<set $CodeTwo = true>>
 <<PlayTimeline ToForest3>>
 ===
 title: knightPass2_incorrect
@@ -205,16 +207,17 @@ Knight: ห้ามเดารหัสมั่วนะ!
 
 title: knightPass3
 ---
-<<if $CodeTwo is false>>
+<<if $CodeThree is false>>
     Knight: บอกรหัสมา
     <<OpenPassCode GuardCode3>>
-<<elseif $CodeTwo is true>>
+<<elseif $CodeThree is true>>
     Knight: เจ้าดูหน้าไม่คุ้นเลย แต่ถ้าบอกรหัสถูกก็คงต้องปล่อยให้เข้าไปละนะ
 <<endif>>
 ===
 title: knightPass3_correct
 ---
 Knight: ถูกต้อง
+<<set $CodeThree = true>>
 <<PlayTimeline ToSecretBase>>
 ===
 title: knightPass3_incorrect

@@ -26,8 +26,12 @@ public class PuzzleWall : MonoBehaviour
 
     private bool isSoundPlaying = false;
 
-    void Awake()
+    void Start()
     {
+        Debug.Log("PuzzleWall Start");
+        triggerEvent = FindObjectOfType<TriggerEvent>();
+        soundPlayer = FindObjectOfType<SoundPlayer>();
+
         GameObject emojis = GameObject.FindGameObjectWithTag("Emoji");
 
         if (emojis != null)
@@ -40,12 +44,6 @@ public class PuzzleWall : MonoBehaviour
                 Debug.Log("Find Emoji");
             }
         }
-    }
-
-    void Start()
-    {
-        triggerEvent = FindObjectOfType<TriggerEvent>();
-        soundPlayer = FindObjectOfType<SoundPlayer>();
     }
 
     void Update()
@@ -73,17 +71,17 @@ public class PuzzleWall : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D colision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (colision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Player")
         {
             interactable = true;
         }
     }
 
-    private void OnTriggerExit2D(Collider2D colision)
+    private void OnTriggerExit2D(Collider2D collision)
     {
-        if (colision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Player")
         {
             interactable = false;
         }
@@ -91,42 +89,45 @@ public class PuzzleWall : MonoBehaviour
 
     void HideWall(GameObject gameObject)
     {
-        gameObject.SetActive(false);
-        if (!isSoundPlaying)
+        if (gameObject != null)
         {
-            StartCoroutine(PlayWallSound());
+            gameObject.SetActive(false);
+            if (!isSoundPlaying)
+            {
+                StartCoroutine(PlayWallSound());
+            }
         }
     }
 
     public void SetEmoji(string animationName, string objectName)
     {
-        StartCoroutine(SetEmojiTime(animationName));
         GameObject puzzleGameObject = GameObject.Find(objectName);
-        if (puzzleGameObject != null)
+        PuzzleWall puzzleWall = puzzleGameObject.GetComponent<PuzzleWall>();
+        puzzleWall.StartCoroutine(SetEmojiTime(animationName));
+        if (puzzleWall != null)
         {
-            PuzzleWall puzzleWall = puzzleGameObject.GetComponent<PuzzleWall>();
-            if (puzzleWall != null)
-            {
-                soundPlayer.PlaySFX(soundPlayer.switchUsed);
-                puzzleWall.useSwitch = true;
-                if (wall != null)
-                    puzzleWall.destroyObject = true;
-            }
+            puzzleWall.soundPlayer.PlaySFX(soundPlayer.switchUsed);
+            puzzleWall.useSwitch = true;
+            if (puzzleWall.wall != null)
+                puzzleWall.destroyObject = true;
         }
     }
 
     private IEnumerator SetEmojiTime(string animationName)
     {
-        emojiSprite.enabled = true;
-        emoji.Play(animationName);
-        yield return new WaitForSeconds(0.8f);
-        emojiSprite.enabled = false;
+        if (emoji != null && emojiSprite != null)
+        {
+            emojiSprite.enabled = true;
+            emoji.Play(animationName);
+            yield return new WaitForSeconds(0.8f);
+            emojiSprite.enabled = false;
+        }
     }
 
     private IEnumerator PlayWallSound()
     {
         isSoundPlaying = true;
-        if (soundWall != null)
+        if (soundWall != null && soundPlayer != null)
         {
             soundPlayer.PlaySFX(soundWall);
             destroyObject = false;

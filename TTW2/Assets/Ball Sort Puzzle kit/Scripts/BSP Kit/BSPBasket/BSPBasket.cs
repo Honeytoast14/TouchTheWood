@@ -29,7 +29,7 @@
 #endif
         #endregion
         #region Functions
-        void Awake()
+        void Start()
         {
             soundPlayer = FindObjectOfType<SoundPlayer>();
         }
@@ -117,8 +117,6 @@
         }
         public bool isFullAndSameCluster()
         {
-            //--------------------------------------------------------------AddSound--------------------------------------------------------------
-            soundPlayer.PlaySFX(soundPlayer.sortingOre);
             return GetBallsCount() == Capacity && isAllBallsHaveSameCluster();
         }
 
@@ -130,6 +128,8 @@
             {
                 if (balls[i].ClusterIndex != clusterIndex) return false;
             }
+            //--------------------------------------------------------------AddSound--------------------------------------------------------------
+            soundPlayer.PlaySFX(soundPlayer.sortingOre);
             return true;
         }
         public void ApplyBallsClusterIndexChange()

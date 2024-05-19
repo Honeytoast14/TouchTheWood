@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using UnityEditor.ShaderGraph.Drawing.Inspector.PropertyDrawers;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Windows;
@@ -17,23 +16,28 @@ public class PuzzleHoneyHard : MonoBehaviour
     int selectedPicture = 0;
     public bool hardIsOpen = false;
     SoundPlayer soundPlayer;
+    GameObject soundScript;
     public static PuzzleHoneyHard Instance { get; private set; }
 
     void Awake()
     {
         Instance = this;
+
+        soundScript = GameObject.Find("AudioManager");
+        soundPlayer = soundScript.GetComponent<SoundPlayer>();
     }
+
     void Start()
     {
         win = false;
         gameObject.SetActive(false);
-        soundPlayer = FindObjectOfType<SoundPlayer>();
 
         foreach (GameObject child in cover)
         {
             child.SetActive(false);
         }
     }
+
     public void HandleUpdate()
     {
         Win();
@@ -105,14 +109,13 @@ public class PuzzleHoneyHard : MonoBehaviour
             }
         }
 
-        if (allZero)
+        if (allZero && !win)
         {
             soundPlayer.PlaySFX(soundPlayer.correct);
             win = true;
             UpdatedPictureSelection();
         }
     }
-
 
     void UpdatedPictureSelection()
     {

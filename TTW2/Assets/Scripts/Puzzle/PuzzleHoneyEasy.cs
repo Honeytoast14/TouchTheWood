@@ -16,11 +16,15 @@ public class PuzzleHoneyEasy : MonoBehaviour
     int selectedPicture = 0;
     public bool honeyEasyIsOpen = false;
     SoundPlayer soundPlayer;
+    GameObject soundScript;
     public static PuzzleHoneyEasy Instance { get; private set; }
 
     void Awake()
     {
         Instance = this;
+
+        soundScript = GameObject.Find("AudioManager");
+        soundPlayer = soundScript.GetComponent<SoundPlayer>();
     }
     void Start()
     {
@@ -31,8 +35,6 @@ public class PuzzleHoneyEasy : MonoBehaviour
         {
             child.SetActive(false);
         }
-
-        soundPlayer = FindObjectOfType<SoundPlayer>();
     }
     public void HandleUpdate()
     {
@@ -105,7 +107,7 @@ public class PuzzleHoneyEasy : MonoBehaviour
             }
         }
 
-        if (allZero)
+        if (allZero && !win)
         {
             soundPlayer.PlaySFX(soundPlayer.correct);
             win = true;

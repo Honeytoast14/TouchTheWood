@@ -56,6 +56,7 @@ MonoBehaviour:
   paperSound: {fileID: 8300000, guid: 5bd738d0d599d3040bd1b04e6fe83d25, type: 3}
   getItem: {fileID: 8300000, guid: a1da2236dc0e1634d99fb8cd34bc8155, type: 3}
   sortingOre: {fileID: 8300000, guid: d64bfa1984ddabe47a53ee9726e5cfe6, type: 3}
+  correct: {fileID: 8300000, guid: 26115b312220ec346a232c082fff3860, type: 3}
 --- !u!1 &5816448253441372080
 GameObject:
   m_ObjectHideFlags: 0

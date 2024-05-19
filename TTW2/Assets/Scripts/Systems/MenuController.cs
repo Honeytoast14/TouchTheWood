@@ -20,7 +20,7 @@ public class MenuController : MonoBehaviour
     {
         menuButtons = GameObject.Find("Button Group").GetComponentsInChildren<Button>().ToList();
         playerController = FindObjectOfType<IsometricPlayerMovementController>();
-        soundPlayer = FindObjectOfType<SoundPlayer>();
+        soundPlayer = playerController.GetComponentInChildren<SoundPlayer>();
     }
     private void Start()
     {

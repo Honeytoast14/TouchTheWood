@@ -33,7 +33,7 @@ public class IsometricPlayerMovementController : MonoBehaviour
 
     void Start()
     {
-        walkAudioSource = gameObject.AddComponent<AudioSource>();
+        walkAudioSource = GetComponent<AudioSource>();
         walkAudioSource.loop = true;
 
         Cursor.lockState = CursorLockMode.Locked;
@@ -57,7 +57,6 @@ public class IsometricPlayerMovementController : MonoBehaviour
             }
         }
 
-        // Update the walk sound timer
         if (walkAudioSource.isPlaying)
         {
             walkSoundTimer += Time.deltaTime;

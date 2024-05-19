@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
@@ -11,6 +12,7 @@ using Yarn.Unity;
 public class Passcode : MonoBehaviour
 {
     SoundPlayer soundPlayer;
+    GameObject parent;
     DialogueRunner dialogueRunner;
     TriggerEvent triggerEvent;
     string Nr = null;
@@ -20,6 +22,8 @@ public class Passcode : MonoBehaviour
     [SerializeField] TMP_Text UiText;
     public static Passcode Instance { get; private set; }
     public bool setYarn = false;
+    public bool setUp = false;
+    bool isOpen = false;
     void Awake()
     {
         Instance = this;
@@ -41,23 +45,31 @@ public class Passcode : MonoBehaviour
     void Update()
     {
         HandleUpdate(null);
+        if (isOpen)
+        {
+            StartCoroutine(OpenPass());
+            isOpen = false;
+        }
     }
 
     public void HandleUpdate(Action onBack)
     {
-        if ((Input.GetKeyDown(KeyCode.X) || Input.GetKeyDown(KeyCode.Escape)) && GameController.Instance.state == GameState.Passcode)
+        if (!setUp)
         {
-            GameController.Instance.state = GameState.FreeRoam;
+            if ((Input.GetKeyDown(KeyCode.X) || Input.GetKeyDown(KeyCode.Escape)) && GameController.Instance.state == GameState.Passcode)
+            {
+                GameController.Instance.state = GameState.FreeRoam;
 
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
 
-            Nr = null;
-            UiText.text = "รหัสผ่าน";
+                Nr = null;
+                UiText.text = "รหัสผ่าน";
 
-            passCodePanel.SetActive(false);
+                passCodePanel.SetActive(false);
 
-            onBack?.Invoke();
+                onBack?.Invoke();
+            }
         }
     }
 
@@ -107,23 +119,23 @@ public class Passcode : MonoBehaviour
 
     public void OpenPassCode(string name)
     {
-        StartCoroutine(OpenPass(name));
+        Passcode passcode;
+        parent = GameObject.Find(name);
+        passcode = parent.GetComponentInChildren<Passcode>();
+        passcode.isOpen = true;
+
+        // StartCoroutine(OpenPass(name));
     }
 
-    IEnumerator OpenPass(string parentName)
+    IEnumerator OpenPass()
     {
-        GameObject open = GameObject.Find(parentName);
-        Passcode pass = open.GetComponentInChildren<Passcode>();
-        if (pass != null)
-        {
-            yield return new WaitForSeconds(0.01f);
-            GameController.Instance.state = GameState.Passcode;
-            pass.passCodePanel.SetActive(true);
+        yield return new WaitForSeconds(0.01f);
+        GameController.Instance.state = GameState.Passcode;
+        passCodePanel.SetActive(true);
 
-            codeNumber = name;
+        codeNumber = name;
 
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
-        }
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 }

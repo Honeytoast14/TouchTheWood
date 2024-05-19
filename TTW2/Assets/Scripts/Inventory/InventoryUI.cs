@@ -26,17 +26,19 @@ public class InventoryUI : MonoBehaviour
     [SerializeField] GameObject rewardTwo;
     [SerializeField] GameObject rewardThree;
     Inventory inventory;
-    SoundPlayer soundPlayer;
-    RectTransform itemListRect;
+    SoundPlayer soundPlayer; RectTransform itemListRect;
     List<ItemSlotUI> slotUIList = new List<ItemSlotUI>();
+    GameObject player;
     private int selectedItem = 0;
     public bool openInventory = false;
 
     private void Awake()
     {
+        player = GameObject.Find("Player");
+
         inventory = Inventory.GetInventory();
         itemListRect = itemList.GetComponent<RectTransform>();
-        soundPlayer = FindObjectOfType<SoundPlayer>();
+        soundPlayer = player.GetComponentInChildren<SoundPlayer>();
     }
 
     private void Start()

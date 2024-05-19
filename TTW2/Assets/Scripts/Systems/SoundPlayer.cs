@@ -34,17 +34,20 @@ public class SoundPlayer : MonoBehaviour
         }
     }
 
-    public void PlaySFX(AudioClip clip, bool loop = false)
+    public void PlaySFX(AudioClip clip)
     {
         Debug.Log("Playing SFX: " + clip.name);
-        sfxAudioSource.clip = clip;
-        sfxAudioSource.loop = loop;
-        sfxAudioSource.Play();
+        sfxAudioSource.PlayOneShot(clip);
     }
 
     public void StopSFX()
     {
         sfxAudioSource.Stop();
+    }
+
+    public void StopBGM()
+    {
+        bgmAudioSource.Stop();
     }
 
     public void PlayMusic(AudioClip clip)

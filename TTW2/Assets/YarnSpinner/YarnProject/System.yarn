@@ -149,6 +149,7 @@ title: SwitchMaze
 ---
 System: ลองดันคันโยกหรือไม่
     -> ใช่
+        // <<SetEmojiWall Emoji_Surprise switchBushZZ>>
         <<jump SwitchMaze2>>
     -> ไม่ใช่
 ===
@@ -156,18 +157,22 @@ title: SwitchMaze2
 ---
 System: แน่ใจนะว่าจะดัน
     -> ใช่
-        <<jump SwitchMaze3>>
+        <<jump switchBushZZ>>
     -> ไม่ใช่
 ===
-title: SwitchMaze3
+title: switchBushZZ
 ---
 System: ให้คิดอีกที
     -> ใช่
-        <<SetEmojiWall Emoji_Surprise switchTrigger>>
+        <<SetEmojiWall Emoji_Surprise switchBushZZ>>
     -> ไม่ใช่
 ===
 
 title: SignMaze
 ---
 System: เข้ามาที่นี่ได้ยังไงเนี่ย!
+===
+title: trollButton
+---
+System: เหยียบทำไม
 ===
