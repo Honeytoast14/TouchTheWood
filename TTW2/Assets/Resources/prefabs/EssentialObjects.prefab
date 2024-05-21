@@ -748,7 +748,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9fd9cf994ea8df4abbffe0080628ac1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bgm: {fileID: 0}
   fadeTransition: {fileID: 0}
   loadingScene: {fileID: 2779839180623073754}
   loadingBar: {fileID: 9106052800800133545}

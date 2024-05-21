@@ -12,6 +12,7 @@ public class PuzzleRail : MonoBehaviour
     [SerializeField] private List<Button> pictures;
     [SerializeField] private List<Button> truePics;
     [SerializeField] private List<Button> twoWayPics;
+    [SerializeField] private List<Button> rotatablePics;
     public bool win { get; private set; }
     int selectedPicture = 0;
     public bool railIsOpen = false;
@@ -23,6 +24,7 @@ public class PuzzleRail : MonoBehaviour
     {
         Instance = this;
     }
+
     void Start()
     {
         win = false;
@@ -30,6 +32,7 @@ public class PuzzleRail : MonoBehaviour
         cover.SetActive(false);
         soundPlayer = FindObjectOfType<SoundPlayer>();
     }
+
     public void HandleUpdate(Action resumeMoving)
     {
         Win(resumeMoving);
@@ -65,11 +68,11 @@ public class PuzzleRail : MonoBehaviour
         }
 
         var pic = pictures[selectedPicture];
-        if (Input.GetKeyDown(KeyCode.Z) && !win)
+        if (Input.GetKeyDown(KeyCode.Z) && !win && rotatablePics.Contains(pic))
         {
             soundPlayer.PlaySFX(soundPlayer.paperSound);
             pic.transform.Rotate(0, 0, 90);
-            // Debug.Log(pic.transform.name + pic.transform.rotation.z);
+
         }
 
         if (Input.GetKeyDown(KeyCode.X) || Input.GetKeyDown(KeyCode.Escape))
@@ -111,7 +114,6 @@ public class PuzzleRail : MonoBehaviour
             resumeMoving?.Invoke();
         }
     }
-
 
     void UpdatedPictureSelection()
     {

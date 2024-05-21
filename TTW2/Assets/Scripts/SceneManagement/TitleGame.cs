@@ -6,25 +6,17 @@ using UnityEngine.UI;
 
 public class TitleGame : MonoBehaviour
 {
-    [SerializeField] AudioClip bgm;
     [SerializeField] Animator fadeTransition;
     public GameObject loadingScene;
     public Slider loadingBar;
-    SoundPlayer soundPlayer;
     GameObject title;
-    void Start()
+    void Update()
     {
-        soundPlayer = FindObjectOfType<SoundPlayer>();
-
-        if (title = GameObject.Find("ButtonGroup"))
+        if (Input.GetMouseButtonDown(0))
         {
-            soundPlayer.PlayMusic(bgm);
+            Debug.Log("left click");
         }
-
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
     }
-
     IEnumerator LoadSceneAsyn(string sceneName)
     {
         if (fadeTransition != null)

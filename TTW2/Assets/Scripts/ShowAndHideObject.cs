@@ -75,17 +75,14 @@ public class ShowAndHideObject : MonoBehaviour
 
     public void ShowInYarn(string objectName)
     {
-        if (oneObjectShow != null)
+        GameObject objectToShow = GameObject.Find(objectName);
+        ShowAndHideObject showScript = objectToShow.GetComponentInChildren<ShowAndHideObject>();
+        if (showScript.showObject != null)
         {
-            if (objectName == oneObjectShow.name)
+            foreach (GameObject game in showScript.showObject)
             {
-                Debug.Log("Object to show exists in oneObjectShow.");
-                GameObject objectToShow = GameObject.Find(objectName);
-                if (objectToShow != null)
-                {
-                    Debug.Log("Found object to show: " + objectName);
-                    objectToShow.SetActive(true);
-                }
+                game.SetActive(true);
+                Debug.Log($"show {game.name}");
             }
         }
     }

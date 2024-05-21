@@ -45,7 +45,7 @@ public class GameController : MonoBehaviour
         {
             if (menuController != null)
             {
-                if (Input.GetKeyDown(KeyCode.Escape))
+                if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.X))
                 {
                     menuController.ShowMenuPage();
                     state = GameState.Menu;

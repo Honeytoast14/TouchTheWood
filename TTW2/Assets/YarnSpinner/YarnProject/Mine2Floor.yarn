@@ -93,18 +93,18 @@ title: sortingRabbit
 title: firstQuestion
 ---
 Rabbit: เพริดอต
-    -> Perridot
+    -> Peridot
         Rabbit: ถูกต้อง!
         Rabbit: เอาละ ต่อไปข้อที่สอง
         <<jump secondQuestion>>
-    -> Peridot
+    -> Perridot
         Rabbit: ตอบไม่ถูกนาา ตอบไม่ถูกก็ไม่ได้เข้าหรอกนะ
         Rabbit: ลองไปแอบฟังพวกกระต่างหน้าทางเข้าสิ พวกนั้นเหมือนจะคุยเรื่องแร่อยู่ด้วยนะ
 ===
 title: secondQuestion
 ---
 Rabbit: แซฟไฟร์
-    -> Sappire
+    -> Sapphire
      Rabbit: ถูกต้อง!
      <<jump thirddQuestion>>
     -> Sapire
@@ -176,7 +176,7 @@ System: นั่นเสียงอะไรรีบออกไปดูเ
 <<PlayTimeline Timeline-Villain>> //ใส่ซาวน์ให้ตกใจตอนพุ่งเข้ามา
 <<wait  0.5>>
 // <<ResumeTimeline Timeline_Run>>
-System: นั่น! เจ้าแมวสีขาว!
+System: นั่น! เจ้าแมวสีส้ม!
 System: บ้าเอ้ย! ประตูติด!
 ===
 

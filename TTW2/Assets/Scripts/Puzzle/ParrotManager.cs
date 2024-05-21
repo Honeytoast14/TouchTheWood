@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Playables;
+using Yarn.Unity;
 
 public class ParrotManager : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class ParrotManager : MonoBehaviour
     [SerializeField] AudioClip incorrect;
     [SerializeField] PlayableDirector timelineCorrect;
     private bool puzzleCompleted = false;
+    private int numberCompleteChild = 0;
     private List<ParrotPuzzle> interactedPuzzles = new List<ParrotPuzzle>();
 
     void Start()
@@ -47,6 +49,21 @@ public class ParrotManager : MonoBehaviour
         StartCoroutine(PlayTimeline());
         puzzleCompleted = true;
         DisableInteractedPuzzles();
+
+        numberCompleteChild += correctOrder.Count;
+
+        var variableStorage = GameObject.FindObjectOfType<InMemoryVariableStorage>();
+
+        float numberOfChild;
+        variableStorage.TryGetValue("$numberChild", out numberOfChild);
+        variableStorage.SetValue("$numberChild", numberOfChild + correctOrder.Count);
+
+        // Notify MamaParrotQuset about the completion
+        var mamaParrotQuest = FindObjectOfType<MamaParrotQuset>();
+        if (mamaParrotQuest != null)
+        {
+            mamaParrotQuest.UpdateCompleteCount(correctOrder.Count);
+        }
     }
 
     private void DisableInteractedPuzzles()
@@ -82,5 +99,10 @@ public class ParrotManager : MonoBehaviour
     public bool IsPuzzleCompleted()
     {
         return puzzleCompleted;
+    }
+
+    public int GetNumberCompleteChild()
+    {
+        return numberCompleteChild;
     }
 }

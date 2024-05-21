@@ -42,10 +42,19 @@ title:mamaParrot
         แม่นก: ถ้าเธอช่วยพาลูก ๆ กลับมาเรา เราอาจจะช่วยยกขอนไม้ออกได้นะ
         แม่นก: ลูก ๆ ของฉันมี 20 ตัว ถ้าเธอช่วยเสร็จเดี๋ยวพวกฉันจะเปิดทางให้นะ
         <<HideManyObject Mamaparrot>>
+        <<ShowObject Mamaparrot>>
         <<set $MamatQuest = true>>
     <<elseif $MamatQuest is true>>
+        <<if $numberChild is 0>>
+            แม่นก: ได้โปรดช่วยตามลูก ๆ เถอะนะ คงเล่นอยู่ในป่าใกล้นี้แหละ
+            แม่นก: ฉันและสามีอยู่ไม่สุขแล้ว
+        <<else>>
         <<ChangePortrait MamaParrot Portraits/mamaparrot/mamaparrot_sadl>>
-        แม่นก: ได้โปรดช่วยตามลูก ๆ เถอะนะ ฉันและสามีอยู่ไม่สุขแล้ว
+            แม่นก: เธอยังตามลูก ๆ ไม่ครบอีกหรอ
+            แม่นก: ตอนนี้ลูก ๆ กลับมา {$numberChild} ตัวแล้วละ
+            แม่นก: ได้โปรดช่วยตามลูก ๆ เถอะนะ คงเล่นอยู่ในป่าใกล้นี้แหละ
+            แม่นก: ฉันและสามีอยู่ไม่สุขแล้ว
+        <<endif>>
     <<endif>>
 <<elseif $parrotQuest is true>>
 
@@ -53,6 +62,7 @@ title:mamaParrot
 
     <<if $MamaGivePapa is false>>
     //เสร็จเศวส
+        <<PlayTimeline HideChildParrotNumber>>
         <<ChangePortrait MamaParrot Portraits/mamaparrot/mamaparrot_happyl>>
         แม่นก: ขอบคุณเธอมากจริง ๆ นะ  ลูก ๆ คงสร้างความลำบากให้แย่เลย //หน้าดีใจ
         แม่นก: จริงสิ! สามีของฉันเหมือนจะมีของให้เธอด้วย!
@@ -229,6 +239,7 @@ title: declareForest
 <<declare $parrotQuest = false>>
 <<declare $MamatQuest = false>>
 <<declare $MamaGivePapa = false>>
+<<declare $numberChild = 0 as number>>
 //PassCode
 <<declare $CodeOne = false>>
 <<declare $CodeTwo = false>>

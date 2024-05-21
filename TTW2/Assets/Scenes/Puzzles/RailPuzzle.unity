@@ -870,7 +870,7 @@ RectTransform:
   m_GameObject: {fileID: 208538585}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.1, y: 1.1, z: 1.1}
+  m_LocalScale: {x: 1.32, y: 1.32, z: 1.32}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 519403815}
@@ -980,7 +980,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66700905a177d154a8fe3df2577df331, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  paperSound: {fileID: 8300000, guid: 5bd738d0d599d3040bd1b04e6fe83d25, type: 3}
   cover: {fileID: 1128656050}
   rowSize: 8
   pictures:
@@ -1064,6 +1063,69 @@ MonoBehaviour:
   - {fileID: 433215348}
   - {fileID: 258796446}
   - {fileID: 267152017}
+  rotatablePics:
+  - {fileID: 1757399055}
+  - {fileID: 1111591449}
+  - {fileID: 1207485502}
+  - {fileID: 164189458}
+  - {fileID: 964348922}
+  - {fileID: 2017367750}
+  - {fileID: 398854620}
+  - {fileID: 188681535}
+  - {fileID: 1021046704}
+  - {fileID: 1287944830}
+  - {fileID: 795242610}
+  - {fileID: 627201584}
+  - {fileID: 1697819563}
+  - {fileID: 1119108784}
+  - {fileID: 1290329312}
+  - {fileID: 387641682}
+  - {fileID: 294049007}
+  - {fileID: 1318590806}
+  - {fileID: 761192173}
+  - {fileID: 1064775074}
+  - {fileID: 741240321}
+  - {fileID: 283012965}
+  - {fileID: 843325420}
+  - {fileID: 913614807}
+  - {fileID: 1751811293}
+  - {fileID: 1669867041}
+  - {fileID: 975684205}
+  - {fileID: 1123260031}
+  - {fileID: 433215348}
+  - {fileID: 538918183}
+  - {fileID: 288170026}
+  - {fileID: 159010831}
+  - {fileID: 245824096}
+  - {fileID: 543304742}
+  - {fileID: 1211768502}
+  - {fileID: 1100535913}
+  - {fileID: 1210894544}
+  - {fileID: 258796446}
+  - {fileID: 868699527}
+  - {fileID: 1184494746}
+  - {fileID: 1009743132}
+  - {fileID: 1353549656}
+  - {fileID: 1022966358}
+  - {fileID: 735720159}
+  - {fileID: 723054289}
+  - {fileID: 267152017}
+  - {fileID: 1623122253}
+  - {fileID: 1251560300}
+  - {fileID: 2088437114}
+  - {fileID: 1009414891}
+  - {fileID: 1350524494}
+  - {fileID: 1962431882}
+  - {fileID: 912185831}
+  - {fileID: 1828730679}
+  - {fileID: 1402089162}
+  - {fileID: 1907705352}
+  - {fileID: 604632774}
+  - {fileID: 98179376}
+  - {fileID: 1264401181}
+  - {fileID: 1484893472}
+  - {fileID: 1109159390}
+  - {fileID: 173572670}
   railIsOpen: 0
 --- !u!1 &245824094
 GameObject:

@@ -22,7 +22,10 @@ public class YarnSpinnerFunction : MonoBehaviour
     {
         dialogueRunner.AddCommandHandler<bool>("setGroupTalk", newLineView.SetGroupTalk);
 
-        dialogueRunner.AddCommandHandler<string, string>("SetEmojiWall", puzzleWall.SetEmoji);
-        dialogueRunner.AddCommandHandler<string, string>("SetEmoji", puzzleWall.SetEmojiNoSwitch);
+        if (puzzleWall != null)
+        {
+            dialogueRunner.AddCommandHandler<string, string>("SetEmojiWall", puzzleWall.SetEmoji);
+            dialogueRunner.AddCommandHandler<string, string>("SetEmoji", puzzleWall.SetEmojiNoSwitch);
+        }
     }
 }

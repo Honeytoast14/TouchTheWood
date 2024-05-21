@@ -1,22 +1,23 @@
-using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using Yarn.Unity;
 
 public class MamaParrotQuset : MonoBehaviour
 {
-    DialogueRunner dialogueRunner;
     [SerializeField] List<ParrotManager> parrotManagers;
+    [SerializeField] TMP_Text completeCountText;
+    private int totalCompletedPuzzles = 0;
 
     void Start()
     {
-        dialogueRunner = FindObjectOfType<DialogueRunner>();
+        UpdateCompleteCountText();
     }
+
     void Update()
     {
         if (AllPuzzlesCompleted())
         {
-            // Debug.Log("All puzzles are completed!");
             var variableStorage = GameObject.FindObjectOfType<InMemoryVariableStorage>();
 
             bool parrotQuest;
@@ -24,7 +25,6 @@ public class MamaParrotQuset : MonoBehaviour
             variableStorage.SetValue("$parrotQuest", parrotQuest = true);
         }
     }
-
 
     private bool AllPuzzlesCompleted()
     {
@@ -36,5 +36,21 @@ public class MamaParrotQuset : MonoBehaviour
             }
         }
         return true;
+    }
+
+    public void UpdateCompleteCount(int completeCount)
+    {
+        totalCompletedPuzzles += completeCount;
+        completeCountText.text = "Completed Puzzles: " + totalCompletedPuzzles;
+    }
+
+    private void UpdateCompleteCountText()
+    {
+        totalCompletedPuzzles = 0;
+        foreach (ParrotManager parrotManager in parrotManagers)
+        {
+            totalCompletedPuzzles += parrotManager.GetNumberCompleteChild();
+        }
+        completeCountText.text = "Completed Puzzles: " + totalCompletedPuzzles;
     }
 }
