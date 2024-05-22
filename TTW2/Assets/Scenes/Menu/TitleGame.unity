@@ -229,7 +229,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inventoryUI: {fileID: 0}
   newLineView: {fileID: 0}
-  state: 0
+  state: 9
 --- !u!4 &151844435
 Transform:
   m_ObjectHideFlags: 0

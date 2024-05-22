@@ -5,7 +5,7 @@ using UnityEngine;
 using Yarn.Unity;
 using Debug = UnityEngine.Debug;
 
-public enum GameState { FreeRoam, Menu, Inventory, Dialogue, PuzzlePicture, Timeline, SortingPuzzle, Passcode, ItemReward }
+public enum GameState { FreeRoam, Menu, Inventory, Dialogue, PuzzlePicture, Timeline, SortingPuzzle, Passcode, ItemReward, titlePage }
 public class GameController : MonoBehaviour
 {
     [SerializeField] InventoryUI inventoryUI;
@@ -66,6 +66,11 @@ public class GameController : MonoBehaviour
                 menuController.cover.enabled = false;
             };
             inventoryUI.HandleUpdate(onBack);
+        }
+        else if (state == GameState.titlePage)
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
         }
         else if (state == GameState.Dialogue)
         {
